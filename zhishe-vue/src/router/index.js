@@ -10,14 +10,16 @@ import AdminLogin from "@/pages/admin/adminLogin";
 import Check from "@/pages/admin/check";
 import CollegeManage from "@/pages/admin/collegeManage";
 import Log from "@/pages/admin/log";
+import Welcome from "@/pages/zhishe/welcome";
+
 
 Vue.use(VueRouter)
 
 const routes = [
   {
-    path: '/home',
-    name: 'Home',
-    component: Home
+    path: '/',
+    name: 'Welcome',
+    component: Welcome
   },
   {
     path: '/college',
@@ -63,6 +65,11 @@ const routes = [
     path: '/log',
     name: 'Log',
     component: Log
+  },
+  {
+    path: '/home',
+    name: 'Home',
+    component: Home
   }
 ]
 
