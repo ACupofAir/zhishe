@@ -1,12 +1,12 @@
 <template>
-  <div class="headerWrapper">
-    home
-  </div>
+<div>
+
+</div>
 </template>
 
 <script>
 export default {
-  name: "header"
+  name: "welcome"
 }
 </script>
 
