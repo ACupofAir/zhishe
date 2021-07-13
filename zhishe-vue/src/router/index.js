@@ -1,22 +1,68 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import Home from '../views/Home.vue'
+import Home from '../pages/zhishe/home.vue'
+import College from "@/pages/zhishe/college";
+import Campus from "@/pages/zhishe/campus";
+import Comment from "@/pages/zhishe/comment";
+import AdminHome from "@/pages/admin/adminHome";
+import AdminList from "@/pages/admin/adminList";
+import AdminLogin from "@/pages/admin/adminLogin";
+import Check from "@/pages/admin/check";
+import CollegeManage from "@/pages/admin/collegeManage";
+import Log from "@/pages/admin/log";
 
 Vue.use(VueRouter)
 
 const routes = [
   {
-    path: '/',
+    path: '/home',
     name: 'Home',
     component: Home
   },
   {
-    path: '/about',
-    name: 'About',
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: "about" */ '../views/About.vue')
+    path: '/college',
+    name: 'College',
+    component: College
+  },
+  {
+    path: '/campus',
+    name: 'Campus',
+    component: Campus
+  },
+  {
+    path: '/comment',
+    name: 'Comment',
+    component: Comment
+  },
+  {
+    path: '/adminHome',
+    name: 'AdminHome',
+    component: AdminHome
+  },
+  {
+    path: '/adminList',
+    name: 'AdminList',
+    component: AdminList
+  },
+  {
+    path: '/adminLogin',
+    name: 'AdminLogin',
+    component: AdminLogin
+  },
+  {
+    path: '/check',
+    name: 'Check',
+    component: Check
+  },
+  {
+    path: '/collegeManage',
+    name: 'CollegeManage',
+    component: CollegeManage
+  },
+  {
+    path: '/log',
+    name: 'Log',
+    component: Log
   }
 ]
 
