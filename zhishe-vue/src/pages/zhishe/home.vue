@@ -26,37 +26,36 @@ export default {
 
 .header {
   grid-area: header;
-  border: #42b983 solid 5px;
+  /*border: #42b983 solid 5px;*/
   position: absolute;
-  right: 1px;
-  left: 1px;
-  top: 5px;
-  bottom: 2px;
+  right: 0px;
+  left: 0px;
+  top: 0px;
+  bottom: 0px;
 }
 
 .footer {
   grid-area: footer;
-  border: #222222 solid 5px;
+  /*border: #222222 solid 5px;*/
   position: absolute;
-  right: 1px;
-  left: 1px;
-  top: 1px;
-  bottom: 5px;
+  right: 0px;
+  left: 0px;
+  top: 0px;
+  bottom: 0px;
 }
 
 .content{
   grid-area: content;
-  border: #222222 solid 5px;
-  position: fixed;
-  bottom: 50px;
-  top: 60px;
-  right: 5px;
-  left: 5px;
+  /*border: #222222 solid 5px;*/
+  position: absolute;
+  bottom: 0px;
+  top: 0px;
+  right: 0px;
+  left: 0px;
 }
 
 .wrapper {
   display: grid;
-  grid-gap: 5px;
   grid-template-columns: 1fr 1fr 1fr;
   grid-template-rows: 60px auto 50px;
   grid-template-areas:
@@ -67,10 +66,9 @@ export default {
   height: 100%;
   width: 100%;
   background-size: cover;
-  position: fixed;
+  position: absolute;
   top: 0;
-  /*right: 0;*/
-  /*bottom: 0;*/
+  left: 0;
 }
 .box {
   color: #222222;    /*字体颜色*/
