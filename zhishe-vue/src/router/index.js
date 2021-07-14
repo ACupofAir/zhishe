@@ -12,7 +12,6 @@ import CollegeManage from "@/pages/admin/collegeManage";
 import Log from "@/pages/admin/adminLog";
 import Welcome from "@/pages/zhishe/welcome";
 
-
 Vue.use(VueRouter)
 
 const routes = [
@@ -71,6 +70,7 @@ const routes = [
         name: 'Comment',
         component: Comment
       }
+
     ]
   }
 ]
