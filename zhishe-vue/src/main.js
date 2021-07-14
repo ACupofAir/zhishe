@@ -10,7 +10,6 @@ import 'element-ui/lib/theme-chalk/index.css'
 =======
 >>>>>>> master
 
-
 Vue.config.productionTip = false
 
 Vue.use(ElementUI)
