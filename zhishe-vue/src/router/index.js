@@ -10,29 +10,16 @@ import AdminLogin from "@/pages/admin/adminLogin";
 import Check from "@/pages/admin/check";
 import CollegeManage from "@/pages/admin/collegeManage";
 import Log from "@/pages/admin/log";
+import Welcome from "@/pages/zhishe/welcome";
+
 
 Vue.use(VueRouter)
 
 const routes = [
   {
-    path: '/home',
-    name: 'Home',
-    component: Home
-  },
-  {
-    path: '/college',
-    name: 'College',
-    component: College
-  },
-  {
-    path: '/campus',
-    name: 'Campus',
-    component: Campus
-  },
-  {
-    path: '/comment',
-    name: 'Comment',
-    component: Comment
+    path: '/',
+    name: 'Welcome',
+    component: Welcome
   },
   {
     path: '/adminHome',
@@ -63,6 +50,28 @@ const routes = [
     path: '/log',
     name: 'Log',
     component: Log
+  },
+  {
+    path: '/home',
+    name: 'Home',
+    component: Home,
+    children: [
+      {
+        path: '/college',
+        name: 'College',
+        component: College
+      },
+      {
+        path: '/campus',
+        name: 'Campus',
+        component: Campus
+      },
+      {
+        path: '/comment',
+        name: 'Comment',
+        component: Comment
+      }
+    ]
   }
 ]
 
