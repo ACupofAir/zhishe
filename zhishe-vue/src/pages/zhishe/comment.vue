@@ -159,6 +159,7 @@
 
       </span>
       <span class="submitEmail">
+        <el-form :model="numberValidateForm" ref="numberValidateForm" label-width="100px" class="demo-ruleForm">
           <el-form-item label="email" prop="email" :rules="[
               { required: false, message: '若需反馈请填写邮箱'},
             ]">
