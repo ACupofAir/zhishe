@@ -9,7 +9,7 @@ import AdminList from "@/pages/admin/adminList";
 import AdminLogin from "@/pages/admin/adminLogin";
 import Check from "@/pages/admin/check";
 import CollegeManage from "@/pages/admin/collegeManage";
-import Log from "@/pages/admin/log";
+import Log from "@/pages/admin/adminLog";
 import Welcome from "@/pages/zhishe/welcome";
 
 

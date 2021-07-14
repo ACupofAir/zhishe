@@ -1,21 +1,21 @@
 <template>
   <div class="wrapper">
-    <div class="box header">
+    <div class="box homeheader">
       <Header></Header>
     </div>
-    <div class="box content">
+    <div class="box homecontent">
       <router-link to="/campus">Campus</router-link>
       <router-view/>
     </div>
-    <div class="box footer">
+    <div class="box homefooter">
       <Footer></Footer>
     </div>
   </div>
 </template>
 
 <script>
-import Header from "@/components/header";
-import Footer from "@/components/footer";
+import Header from "@/components/homeheader";
+import Footer from "@/components/homefooter";
 export default {
   name: "home",
   components: {
@@ -26,36 +26,21 @@ export default {
 
 <style scoped>
 
-.header {
-  grid-area: header;
-  border: #42b983 solid 5px;
+.homeheader {
+  /*grid-area: homeheader;*/
+  /*border: #42b983 solid 5px;*/
   height: 60px;
-  /*position: absolute;*/
-  /*right: 0px;*/
-  /*left: 0px;*/
-  /*top: 0px;*/
-  /*bottom: 0px;*/
 }
 
-.footer {
-  grid-area: footer;
-  border: #222222 solid 2px;
-  height: 50px;
-  /*position: absolute;*/
-  /*right: 0px;*/
-  /*left: 0px;*/
-  /*top: 0px;*/
-  /*bottom: 0px;*/
+.homefooter {
+  /*grid-area: homefooter;*/
+  /*!*border: #222222 solid 2px;*! */
+  height: 90px;
 }
 
-.content{
-  grid-area: content;
-  border: #222222 solid 2px;
-  /*position: absolute;*/
-  /*bottom: 0px;*/
-  /*top: 0px;*/
-  /*right: 0px;*/
-  /*left: 0px;*/
+.homecontent{
+  /*grid-area: content;*/
+  /*border: #222222 solid 2px;*/
   height: auto;
 }
 
