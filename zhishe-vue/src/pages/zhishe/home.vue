@@ -7,17 +7,18 @@
       <router-view/>
     </div>
     <div class="box footer">
-      知舍
+      <Footer></Footer>
     </div>
   </div>
 </template>
 
 <script>
 import Header from "@/components/header";
+import Footer from "@/components/footer";
 export default {
   name: "home",
   components: {
-    Header
+    Header, Footer
   }
 }
 </script>

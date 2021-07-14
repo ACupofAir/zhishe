@@ -52,10 +52,10 @@ export default {
   .searchWrapper{
     grid-area: search;
     border: aquamarine solid 3px;
-    width: 500px;
+    width: 700px;
     position: absolute;
     right: 2px;
-    /*left: 2px;*/
+    /*left: 300px;*/
     top: 0px;
     bottom: 0px;
   }

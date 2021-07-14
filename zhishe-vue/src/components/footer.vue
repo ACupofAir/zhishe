@@ -1,6 +1,6 @@
 <template>
-  <div>
-    home
+  <div class="footerWrapper">
+
   </div>
 </template>
 

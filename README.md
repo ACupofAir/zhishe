@@ -7,10 +7,7 @@
 * 需求说明 ✅   7.5
 *  概要设计✅   7.7
 * UI界面设计✅ 7.9
-* 详细设计  进度：45%
-
-* author: wj
-
-* for rains
-* branch: This is branch from air.
+* 详细设计  进度：95%
+* 前端工程及结构搭建✅ 7.13
+* 后端项目搭建
 
