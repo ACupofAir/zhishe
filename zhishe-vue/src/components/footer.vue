@@ -1,6 +1,6 @@
 <template>
   <div class="footerWrapper">
-
+    footer
   </div>
 </template>
 

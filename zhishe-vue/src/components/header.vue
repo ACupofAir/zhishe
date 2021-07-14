@@ -72,7 +72,8 @@ export default {
     right: 0px;
     left: 0px;
     top: 0px;
-    bottom: 0px;
+    /*bottom: 0px;*/
+    height: 60px;
   }
 
 </style>

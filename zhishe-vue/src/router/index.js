@@ -22,21 +22,6 @@ const routes = [
     component: Welcome
   },
   {
-    path: '/college',
-    name: 'College',
-    component: College
-  },
-  {
-    path: '/campus',
-    name: 'Campus',
-    component: Campus
-  },
-  {
-    path: '/comment',
-    name: 'Comment',
-    component: Comment
-  },
-  {
     path: '/adminHome',
     name: 'AdminHome',
     component: AdminHome
@@ -69,7 +54,24 @@ const routes = [
   {
     path: '/home',
     name: 'Home',
-    component: Home
+    component: Home,
+    children: [
+      {
+        path: '/college',
+        name: 'College',
+        component: College
+      },
+      {
+        path: '/campus',
+        name: 'Campus',
+        component: Campus
+      },
+      {
+        path: '/comment',
+        name: 'Comment',
+        component: Comment
+      }
+    ]
   }
 ]
 
