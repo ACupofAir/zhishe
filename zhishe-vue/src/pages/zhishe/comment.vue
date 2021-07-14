@@ -19,7 +19,7 @@
         </el-col>
         <el-col :span="16">
           <div class="">
-            <el-slider v-model="value2" :step="1" :max='5' show-stops>
+            <el-slider v-model="buildingScore" :step="1" :max='5' show-stops>
             </el-slider>
           </div>
         </el-col>
@@ -30,7 +30,7 @@
         </el-col>
         <el-col :span="16">
           <div class="">
-            <el-slider v-model="value3" :step="1" :max='5' show-stops>
+            <el-slider v-model="locationScore" :step="1" :max='5' show-stops>
             </el-slider>
           </div>
         </el-col>
@@ -79,7 +79,7 @@
 
       <div class="refrigerator tag">
         <span class="tagLeft">
-          <img src="../../assets/comment/refrigerator.svg" height="30" width="30" alt="">
+          <img src="../../assets/comment/refrigerator.svg" height="30" width="30" alt="" title="冰箱">
         </span>
         <span class="tagRight">
           <el-switch v-model="hasRefrigerator" active-color="#13ce66" inactive-color="#ff4949">
@@ -89,40 +89,40 @@
 
       <div class="sofa tag">
         <span class="tagLeft">
-          <img src="../../assets/comment/sofa.svg" height="30" width="30" alt="">
+          <img src="../../assets/comment/sofa.svg" height="30" width="30" alt="" titel="沙发">
         </span>
         <span class="tagRight">
-          <el-switch v-model="hasRefrigerator" active-color="#13ce66" inactive-color="#ff4949">
+          <el-switch v-model="hasSofa" active-color="#13ce66" inactive-color="#ff4949">
           </el-switch>
         </span>
       </div>
 
       <div class="washer tag">
         <span class="tagLeft">
-          <img src="../../assets/comment/washer.svg" height="30" width="30" alt="">
+          <img src="../../assets/comment/washer.svg" height="30" width="30" alt="" title="洗衣机">
         </span>
         <span class="tagRight">
-          <el-switch v-model="hasRefrigerator" active-color="#13ce66" inactive-color="#ff4949">
+          <el-switch v-model="hasWasher" active-color="#13ce66" inactive-color="#ff4949">
           </el-switch>
         </span>
       </div>
 
       <div class="airConditionor tag">
         <span class="tagLeft">
-          <img src="../../assets/comment/air-cool.svg" height="30" width="30" alt="">
+          <img src="../../assets/comment/air-cool.svg" height="30" width="30" alt="" title="空调">
         </span>
         <span class="tagRight">
-          <el-switch v-model="hasRefrigerator" active-color="#13ce66" inactive-color="#ff4949">
+          <el-switch v-model="hasAirCool" active-color="#13ce66" inactive-color="#ff4949">
           </el-switch>
         </span>
       </div>
 
       <div class="cooker tag">
         <span class="tagLeft">
-          <img src="../../assets/comment/cooker.svg" height="30" width="30" alt="">
+          <img src="../../assets/comment/cooker.svg" height="30" width="30" alt="" title="烹饪">
         </span>
         <span class="tagRight">
-          <el-switch v-model="hasRefrigerator" active-color="#13ce66" inactive-color="#ff4949">
+          <el-switch v-model="hasCooker" active-color="#13ce66" inactive-color="#ff4949">
           </el-switch>
         </span>
       </div>
@@ -132,7 +132,7 @@
           <img src="../../assets/comment/balcony.svg" height="30" width="30" alt="" title="阳台">
         </span>
         <span class="tagRight">
-          <el-switch v-model="hasRefrigerator" active-color="#13ce66" inactive-color="#ff4949">
+          <el-switch v-model="hasBalcony" active-color="#13ce66" inactive-color="#ff4949">
           </el-switch>
         </span>
       </div>
@@ -143,14 +143,38 @@
 
     <!-- shortComment -->
     <div class="shortComment">
+      <el-input type="textarea" :rows="5" placeholder="请输入你在宿舍的住宿体验，不要少于15个字符~" v-model="shortComment">
+      </el-input>
     </div>
 
 
     <!-- cameraAndMail -->
     <div class="cameraAndMail">
+      <span class="uploadImg">
+        <el-upload class="upload-demo" drag action="https://jsonplaceholder.typicode.com/posts/" multiple>
+          <i class="el-icon-upload"></i>
+          <div class="el-upload__text">将文件拖到此处，或<em>点击上传</em></div>
+          <div class="el-upload__tip" slot="tip">只能上传jpg/png文件，且不超过500kb</div>
+        </el-upload>
+    
+      </span>
+      <span class="submitEmail">
+          <el-form-item label="email" prop="email" :rules="[
+              { required: false, message: '若需反馈请填写邮箱'},
+            ]">
+            <el-input type="age" v-model.number="numberValidateForm.age" autocomplete="off"></el-input>
+          </el-form-item>
+          <el-form-item>
+            <el-button type="primary" @click="submitForm('numberValidateForm')">提交</el-button>
+            <el-button @click="resetForm('numberValidateForm')">重置</el-button>
+          </el-form-item>
+        </el-form>
+    
+      </span>
+    
     </div>
-
-  </div>
+    
+    </div>
 </template>
 
 <script>
@@ -159,6 +183,8 @@
     data: () => {
       return {
         basicInfoScore: 3,
+        buildingScore: 3,
+        locationScore: 3,
         value2: 3,
         value3: 3,
         yearIn: "",
@@ -166,6 +192,30 @@
         scale: "",
         isRecommend: true,
         hasRefrigerator: false,
+        hasSofa: false,
+        hasWasher: false,
+        hasAirCool: false,
+        hasCooker: false,
+        hasBalcony: false,
+        shortComment: "",
+        numberValidateForm: {
+          email: ''
+        }
+      }
+    },
+    methods: {
+      submitForm(formName) {
+        this.$refs[formName].validate((valid) => {
+          if (valid) {
+            alert('submit!');
+          } else {
+            console.log('error submit!!');
+            return false;
+          }
+        });
+      },
+      resetForm(formName) {
+        this.$refs[formName].resetFields();
       }
     }
   }
@@ -205,9 +255,8 @@
 
   .commentPage {
     display: grid;
-    /* grid-template-rows: 1fr 1fr 1fr 1fr 1fr; */
-    padding-left: 200px;
-    padding-right: 200px;
+    padding-left: 320px;
+    padding-right: 320px;
     row-gap: 120px;
 
     grid-template-areas:
@@ -313,11 +362,32 @@
   .shortComment {
     grid-area: shortComment;
 
+    box-shadow: 0 9px 9px rgba(0, 0, 0, .12), 0 0 6px rgba(0, 0, 0, .04);
+    border-radius: 8px;
   }
 
   .cameraAndMail {
     grid-area: cameraAndMail;
+    display: grid;
 
+    grid-template-columns: 1fr 1fr;
+    grid-template-areas: "uploadImg submitEmail";
+    column-gap: 70px;
+
+  }
+
+  .uploadImg {
+    grid-area: uploadImg;
+
+    box-shadow: 0 9px 9px rgba(0, 0, 0, .12), 0 0 6px rgba(0, 0, 0, .04);
+    border-radius: 8px;
+  }
+
+  .submitEmail {
+    grid-area: submitEmail;
+
+    box-shadow: 0 9px 9px rgba(0, 0, 0, .12), 0 0 6px rgba(0, 0, 0, .04);
+    border-radius: 8px;
   }
 
   .checkBox {
@@ -331,13 +401,15 @@
 
   .checkBoxLeft {
     grid-area: checkBoxLeft;
-    border-radius: 8px;
+    border-bottom-left-radius: 8px;
+    border-top-left-radius: 8px;
     background-color: #0488D1;
   }
 
   .checkBoxRight {
     grid-area: checkBoxRight;
-    border-radius: 8px;
+    border-bottom-right-radius: 8px;
+    border-top-right-radius: 8px;
   }
 
 
