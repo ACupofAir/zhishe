@@ -156,7 +156,7 @@
           <div class="el-upload__text">将文件拖到此处，或<em>点击上传</em></div>
           <div class="el-upload__tip" slot="tip">只能上传jpg/png文件，且不超过500kb</div>
         </el-upload>
-    
+
       </span>
       <span class="submitEmail">
           <el-form-item label="email" prop="email" :rules="[
@@ -169,11 +169,11 @@
             <el-button @click="resetForm('numberValidateForm')">重置</el-button>
           </el-form-item>
         </el-form>
-    
+
       </span>
-    
+
     </div>
-    
+
     </div>
 </template>
 
