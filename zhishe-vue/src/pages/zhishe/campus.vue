@@ -15,35 +15,8 @@
     <div>campus</div>
     <div>campus</div>
     <div>campus</div>
-    <div>campus</div>
-    <div>campus</div>
-    <div>campus</div>
-    <div>campus</div>
-    <div>campus</div>
-    <div>campus</div>
-    <div>campus</div>
-    <div>campus</div>
-    <div>campus</div>
-    <div>campus</div>
-    <div>campus</div>
-    <div>campus</div>
-    <div>campus</div>
-    <div>campus</div>
-    <div>campus</div>
-    <div>campus</div>
-    <div>campus</div>
-    <div>campus</div>
-    <div>campus</div>
-    <div>campus</div>
-    <div>campus</div>
-    <div>campus</div>
-    <div>campus</div>
-    <div>campus</div>
-    <div>campus</div>
-    <div>campus</div>
-    <div>campus</div>
-    <div>campus</div>
-    <div>campus</div>
+
+
   </div>
 </template>
 
