@@ -32,8 +32,8 @@ export default {
   methods: {
     loadAll() {
       return [
-        { "value": "东南大学（九龙湖校区）", "address": "长宁区新渔路144号" },
-        { "value": "东南大学（四牌楼校区）", "address": "长宁区新渔路144号" },
+        { "value": "东南大学", "address": "长宁区新渔路144号" },
+        { "value": "南京大学", "address": "长宁区新渔路144号" },
       ];
     },
     querySearchAsync(queryString, cb) {

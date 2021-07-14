@@ -4,7 +4,6 @@
       <Header></Header>
     </div>
     <div class="box homecontent">
-      <router-link to="/campus">Campus</router-link>
       <router-view/>
     </div>
     <div class="box homefooter">
