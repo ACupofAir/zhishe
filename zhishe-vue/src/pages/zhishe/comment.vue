@@ -138,7 +138,7 @@
       </div>
     </div>
 
-    
+
 
 
     <!-- shortComment -->
@@ -210,7 +210,7 @@
     padding-right: 200px;
     row-gap: 120px;
 
-    grid-template-areas: 
+    grid-template-areas:
       "threeScores"
       "fourChecks"
       "specialTags"
@@ -245,15 +245,14 @@
     grid-template-columns: 1fr 1fr 1fr;
     grid-template-rows: 1fr 1fr;
 
-    grid-template-areas: 
+    grid-template-areas:
       "refrigerator sofa washer"
-      "airConditionor cooker balcony"; 
+      "airConditionor cooker balcony";
 
     row-gap: 20px;
     column-gap: 60px;
 
   }
-
   .tag {
     display: grid;
 
