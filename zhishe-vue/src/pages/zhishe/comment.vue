@@ -160,7 +160,7 @@
 
       <div class="bathroom tag">
         <span class="tagLeft">
-          <img src="../../assets/comment/bathRoom.svg" height="30" width="30" alt="" title="阳台">
+          <img src="../../assets/comment/bathRoom.svg" height="30" width="30" alt="" title="独立浴室">
         </span>
         <span class="tagRight">
           <el-switch v-model="hasBathroom" active-color="#13ce66" inactive-color="#ff4949">
@@ -170,7 +170,7 @@
 
       <div class="toilet tag">
         <span class="tagLeft">
-          <img src="../../assets/comment/Toilet.svg" height="30" width="30" alt="" title="阳台">
+          <img src="../../assets/comment/Toilet.svg" height="30" width="30" alt="" title="独立卫生间">
         </span>
         <span class="tagRight">
           <el-switch v-model="hasToilet" active-color="#13ce66" inactive-color="#ff4949">
