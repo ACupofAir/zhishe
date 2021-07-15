@@ -37,45 +37,107 @@
       <div class="campusPhoto"></div>
     </div>
     <div class="statisticWrapper">
-        各项得分
       <div class="campusScore">
-        <div class="basicScore"></div>
-        <div class="buildingScore"></div>
-        <div class="positionScore"></div>
+        各项得分
+        <div v-for="(item, index) in rate" :key="index" class="basicScore">
+          <span id="basicScoreTitle">{{item.rateTitle}}</span>
+          <el-rate
+              v-model="item.rateScore"
+              disabled
+              id="basicStar">
+          </el-rate>
+        </div>
       </div>
       <div class="campusLabel">
-        特色标签
-        <div class="refrigeratorLabel"></div>
-        <div class="sofaLabel"></div>
-        <div class="washerLabel"></div>
-        <div class="airLabel"></div>
-        <div class="cookLabel"></div>
-        <div class="balconyLabel"></div>
+        <div>特色标签</div>
+        <div v-for="(item , index) in label" :key="index"  class="LabelItem">
+          <i class="el-icon-collection-tag"></i>
+          {{item.labelName}}
+        </div>
       </div>
       <div class="gradeDistribution">
-        年级分布
+        <div style="border: #3c85cb solid 2px; border-radius: ">年级分布</div>
       </div>
     </div>
     <div class="campusCommentWrapper">
-
+      <briefComment v-for="(comItem, index) in briefComment" :key="index" class="briefCommentArea"></briefComment>
     </div>
   </div>
+
 </template>
 
 <script>
+import briefComment from "@/components/briefComment";
 export default {
   name: "campus",
+  components: {briefComment},
   data: () => {
     return {
       campusRate: 3.7,
+      rate: [{rateTitle: "基础情况",rateScore: 3.8}, {rateTitle: "建筑情况",rateScore: 4.5}, {rateTitle: "位置情况",rateScore: 3.1}],
+      label: [{labelName:"独立卫浴"},{labelName:"自习室"}, {labelName:"WIFI"},
+        {labelName:"冰箱"},{labelName:"沙发"},{labelName:"洗衣机",},
+        {labelName:"空调"},{labelName:"烹饪"},{labelName:"阳台"}],
+      briefComment: [{id: 1},{id:2},{id: 1},{id:2}],
     }
+  },
+  methods: {
+
   }
 }
 </script>
 
 <style scoped>
+
+/*简评*/
+.briefCommentArea{
+  margin-top: 20px;
+}
+
+
+
+/*---年级分布----*/
+.gradeDistribution{
+  margin-top: 20px;
+  height: 200px;
+  /*border: #2c3e50 solid 2px;*/
+}
+
+
+
+/*----------*/
+
+/*----标签---*/
+.campusLabel{
+  margin-top: 30px;
+}
+
+.LabelItem{
+  display: inline-block;
+  margin-top: 10px;
+  margin-left: 20px;
+  margin-bottom: 10px;
+}
+
+/*----------*/
+
 /*----统计-----*/
 
+.statisticWrapper{
+  font-size: 17px;
+}
+.basicScore{
+  margin-top: 20px;
+}
+
+#basicScoreTitle{
+  display: inline-block;
+}
+
+#basicStar{
+  display: inline-block;
+  margin-left: 16px;
+}
 
 
 
@@ -133,9 +195,8 @@ export default {
 /*整体布局*/
   .campusWrapper{
     display: grid;
-    grid-gap: 0px;
     grid-template-columns: 320px 1fr;
-    grid-template-rows: 160px 500px;
+    grid-template-rows: 160px auto;
     grid-template-areas:
       "titleWrapper titleWrapper"
       "statisticWrapper campusCommentWrapper";
@@ -153,12 +214,12 @@ export default {
 
   .statisticWrapper{
     grid-area: statisticWrapper;
-    border: #99a9bf solid 2px;
+    /*border: #99a9bf solid 2px;*/
   }
 
   .campusCommentWrapper{
     grid-area: campusCommentWrapper;
-    border: #99a9bf solid 2px;
+    /*border: #99a9bf solid 2px;*/
 
   }
 </style>
