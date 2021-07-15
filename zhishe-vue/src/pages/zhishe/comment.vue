@@ -2,7 +2,7 @@
   <div class="commentPage">
     <!-- Three score items -->
     <div class="threeScores">
-      <el-row :gutter="20">
+      <el-row :gutter="60">
         <el-col :span="8">
           <div class="">宿舍基础情况</div>
         </el-col>
@@ -13,7 +13,7 @@
           </div>
         </el-col>
       </el-row>
-      <el-row :gutter="20">
+      <el-row :gutter="60">
         <el-col :span="8">
           <div class="">宿舍建筑情况</div>
         </el-col>
@@ -24,7 +24,7 @@
           </div>
         </el-col>
       </el-row>
-      <el-row :gutter="20">
+      <el-row :gutter="60">
         <el-col :span="8">
           <div class="">宿舍位置情况</div>
         </el-col>
@@ -43,28 +43,39 @@
     <div class="fourChecks">
 
       <div class="yearIn checkBox">
-        <span class="checkBoxLeft">入住年份</span>
+        <span class="checkBoxLeft">
+          <font color="white">入住年份</font>
+        </span>
         <div class="checkBoxRight">
           <el-date-picker v-model="yearIn" type="year" placeholder="选择年"></el-date-picker>
         </div>
       </div>
 
       <div class="grade checkBox">
-        <span class="checkBoxLeft">你的年级</span>
+        <span class="checkBoxLeft">
+          <font color="white">你的年级</font>
+        </span>
         <div class="checkBoxRight">
-          <el-input-number v-model="gradeNum" :step="1" step-strictly min="0" max="5"></el-input-number>
+          <el-select v-model="gradeValue" placeholder="请选择">
+            <el-option v-for="item in gradeOptions" :key="item.value" :label="item.label" :value="item.value">
+            </el-option>
+          </el-select>
         </div>
       </div>
 
       <div class="scale checkBox">
-        <span class="checkBoxLeft">住宿规模</span>
+        <span class="checkBoxLeft">
+          <font color="white">住宿规模</font>
+        </span>
         <div class="checkBoxRight">
-          <el-input-number v-model="scale" :step="1" step-strictly min="0" max="5"></el-input-number>
+          <el-input-number v-model="scale" :step="1" step-strictly :min=0 :max=5></el-input-number>
         </div>
       </div>
 
       <div class="isRecommend checkBox">
-        <span class="checkBoxLeft">是否推荐</span>
+        <span class="checkBoxLeft">
+          <font color="white">是否推荐</font>
+        </span>
         <div class="checkBoxRight">
           <el-switch v-model="isRecommend" active-color="#13ce66" inactive-color="#ff4949">
           </el-switch>
@@ -89,7 +100,7 @@
 
       <div class="sofa tag">
         <span class="tagLeft">
-          <img src="../../assets/comment/sofa.svg" height="30" width="30" alt="" titel="沙发">
+          <img src="../../assets/comment/sofa.svg" height="30" width="30" alt="" title="沙发">
         </span>
         <span class="tagRight">
           <el-switch v-model="hasSofa" active-color="#13ce66" inactive-color="#ff4949">
@@ -136,6 +147,37 @@
           </el-switch>
         </span>
       </div>
+
+      <div class="wifi tag">
+        <span class="tagLeft">
+          <img src="../../assets/comment/wifi.svg" height="30" width="30" alt="" title="无线网覆盖">
+        </span>
+        <span class="tagRight">
+          <el-switch v-model="hasWifi" active-color="#13ce66" inactive-color="#ff4949">
+          </el-switch>
+        </span>
+      </div>
+
+      <div class="bathroom tag">
+        <span class="tagLeft">
+          <img src="../../assets/comment/bathRoom.svg" height="30" width="30" alt="" title="独立浴室">
+        </span>
+        <span class="tagRight">
+          <el-switch v-model="hasBathroom" active-color="#13ce66" inactive-color="#ff4949">
+          </el-switch>
+        </span>
+      </div>
+
+      <div class="toilet tag">
+        <span class="tagLeft">
+          <img src="../../assets/comment/Toilet.svg" height="30" width="30" alt="" title="独立卫生间">
+        </span>
+        <span class="tagRight">
+          <el-switch v-model="hasToilet" active-color="#13ce66" inactive-color="#ff4949">
+          </el-switch>
+        </span>
+      </div>
+
     </div>
 
 
@@ -143,39 +185,54 @@
 
     <!-- shortComment -->
     <div class="shortComment">
+      <div class="subTitle">
+        <font color="white">您的简评</font>
+      </div>
       <el-input type="textarea" :rows="5" placeholder="请输入你在宿舍的住宿体验，不要少于15个字符~" v-model="shortComment">
       </el-input>
     </div>
 
 
-    <!-- cameraAndMail -->
-    <div class="cameraAndMail">
-      <span class="uploadImg">
-        <el-upload class="upload-demo" drag action="https://jsonplaceholder.typicode.com/posts/" multiple>
+    <!-- camera -->
+    <div class="photo">
+      <div class="subTitle">
+        <font color="white">宿舍照片</font>
+      </div>
+      <span class="uploadImg imgBox">
+        <span class="imgBoxLeft">
+          <img src="../../assets/comment/house_example.svg" height=190px width=190px alt="" title="宿舍">
+        </span>
+        <el-upload class="imgBoxRight" drag action="https://jsonplaceholder.typicode.com/posts/" multiple>
           <i class="el-icon-upload"></i>
           <div class="el-upload__text">将文件拖到此处，或<em>点击上传</em></div>
           <div class="el-upload__tip" slot="tip">只能上传jpg/png文件，且不超过500kb</div>
         </el-upload>
-
       </span>
+
+    </div>
+
+    <!--email -->
+    <div class="email">
+      <div class="subTitle">
+        <font color="white">如需反馈请提供您的邮箱</font>
+      </div>
       <span class="submitEmail">
-        <el-form :model="numberValidateForm" ref="numberValidateForm" label-width="100px" class="demo-ruleForm">
-          <el-form-item label="email" prop="email" :rules="[
-              { required: false, message: '若需反馈请填写邮箱'},
-            ]">
-            <el-input type="age" v-model.number="numberValidateForm.age" autocomplete="off"></el-input>
-          </el-form-item>
-          <el-form-item>
-            <el-button type="primary" @click="submitForm('numberValidateForm')">提交</el-button>
-            <el-button @click="resetForm('numberValidateForm')">重置</el-button>
-          </el-form-item>
-        </el-form>
-
+        <el-input type="textarea" autosize placeholder="xxxxx@example.com" v-model="email">
+        </el-input>
       </span>
-
     </div>
 
+    <!-- submit button -->
+    <div class="buttonBox">
+      <span class="buttonBoxLeft">
+        <el-button type="primary">提交<i class="el-icon-upload el-icon--right"></i></el-button>
+      </span>
+      <span class="buttonBoxRight">
+        <el-button type="primary">重置<i class="el-icon-refresh-right el-icon--right"></i></el-button>
+      </span>
     </div>
+
+  </div>
 </template>
 
 <script>
@@ -186,11 +243,29 @@
         basicInfoScore: 3,
         buildingScore: 3,
         locationScore: 3,
-        value2: 3,
-        value3: 3,
         yearIn: "",
-        gradeNum: "",
-        scale: "",
+        gradeNum: 0,
+        gradeOptions: [{
+          value: '选项1',
+          label: '大一'
+        }, {
+          value: '选项2',
+          label: '大二'
+        }, {
+          value: '选项3',
+          label: '大三'
+        }, {
+          value: '选项4',
+          label: '大四'
+        }, {
+          value: '选项5',
+          label: '研究生'
+        }, {
+          value: '选项6',
+          label: '博士生'
+          }],
+        gradeValue: '',
+        scale: 0,
         isRecommend: true,
         hasRefrigerator: false,
         hasSofa: false,
@@ -198,10 +273,11 @@
         hasAirCool: false,
         hasCooker: false,
         hasBalcony: false,
+        hasWifi: false,
+        hasBathroom: false,
+        hasToilet: false,
         shortComment: "",
-        numberValidateForm: {
-          email: ''
-        }
+        email: ''
       }
     },
     methods: {
@@ -256,8 +332,10 @@
 
   .commentPage {
     display: grid;
-    padding-left: 320px;
-    padding-right: 320px;
+    padding-top: 120px;
+    padding-left: 22%;
+    padding-right: 22%;
+    padding-bottom: 120px;
     row-gap: 120px;
 
     grid-template-areas:
@@ -265,7 +343,10 @@
       "fourChecks"
       "specialTags"
       "shortComment"
-      "cameraAndMail";
+      "photo"
+      "email"
+      "buttonBox";
+
 
   }
 
@@ -293,16 +374,18 @@
     grid-area: specialTags;
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
-    grid-template-rows: 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr;
 
     grid-template-areas:
       "refrigerator sofa washer"
-      "airConditionor cooker balcony";
+      "airConditionor cooker balcony"
+      "wifi bathroom toilet";
 
     row-gap: 20px;
     column-gap: 60px;
 
   }
+
   .tag {
     display: grid;
 
@@ -360,6 +443,24 @@
     border-radius: 8px;
   }
 
+  .wifi {
+    grid-area: wifi;
+    box-shadow: 0 9px 9px rgba(0, 0, 0, .12), 0 0 6px rgba(0, 0, 0, .04);
+    border-radius: 8px;
+  }
+
+  .bathroom {
+    grid-area: bathroom;
+    box-shadow: 0 9px 9px rgba(0, 0, 0, .12), 0 0 6px rgba(0, 0, 0, .04);
+    border-radius: 8px;
+  }
+
+  .toilet {
+    grid-area: toilet;
+    box-shadow: 0 9px 9px rgba(0, 0, 0, .12), 0 0 6px rgba(0, 0, 0, .04);
+    border-radius: 8px;
+  }
+
   .shortComment {
     grid-area: shortComment;
 
@@ -367,28 +468,23 @@
     border-radius: 8px;
   }
 
-  .cameraAndMail {
-    grid-area: cameraAndMail;
-    display: grid;
+  .photo {
+    grid-area: photo;
 
-    grid-template-columns: 1fr 1fr;
+    box-shadow: 0 9px 9px rgba(0, 0, 0, .12), 0 0 6px rgba(0, 0, 0, .04);
+    border-radius: 8px;
     grid-template-areas: "uploadImg submitEmail";
     column-gap: 70px;
 
   }
 
-  .uploadImg {
-    grid-area: uploadImg;
+  .email {
+    grid-area: email;
 
     box-shadow: 0 9px 9px rgba(0, 0, 0, .12), 0 0 6px rgba(0, 0, 0, .04);
     border-radius: 8px;
-  }
-
-  .submitEmail {
-    grid-area: submitEmail;
-
-    box-shadow: 0 9px 9px rgba(0, 0, 0, .12), 0 0 6px rgba(0, 0, 0, .04);
-    border-radius: 8px;
+    row-gap: 0px;
+    column-gap: 0px;
   }
 
   .checkBox {
@@ -413,7 +509,41 @@
     border-top-right-radius: 8px;
   }
 
+  .imgBox {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
 
+    box-shadow: 0 9px 9px rgba(0, 0, 0, .12), 0 0 6px rgba(0, 0, 0, .04);
+    border-radius: 8px;
+    grid-template-areas: "imgBoxLeft imgBoxRight";
+  }
+
+  .imgBoxLeft {
+    grid-area: imgBoxLeft;
+    border-bottom-left-radius: 8px;
+  }
+
+  .imgBoxRight {
+    grid-area: imgBoxRight;
+    border-bottom-right-radius: 8px;
+  }
+
+  .buttonBox {
+    grid-area: buttonBox;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+
+    grid-template-areas: "buttonBoxLeft buttonBoxRight";
+    column-gap: 50px;
+  }
+
+  .buttonBoxLeft {
+    grid-area: buttonBoxLeft;
+  }
+
+  .buttonBoxRight {
+    grid-area: buttonBoxRight;
+  }
 
   .yearIn {
     grid-area: yearIn;
@@ -431,4 +561,13 @@
   .isRecommend {
     grid-area: isRecommend;
   }
+
+  .subTitle {
+    background-color: #0488D1;
+    box-shadow: 0 9px 9px rgba(0, 0, 0, .12), 0 0 6px rgba(0, 0, 0, .04);
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+    text-align: center;
+  }
+
 </style>
