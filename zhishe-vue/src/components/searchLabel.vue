@@ -1,6 +1,6 @@
 <template>
     <div>
-       <el-checkbox label= "{msg}" border></el-checkbox>
+       <el-checkbox v-model = "msg" label= {msg} border></el-checkbox>
     </div>
 </template>
 

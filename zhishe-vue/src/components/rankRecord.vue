@@ -33,7 +33,7 @@ export default {
     },
     methods:{
         enter(){
-
+            location.href = "/college";
         }
     }
 }

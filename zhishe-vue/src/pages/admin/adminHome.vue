@@ -1,12 +1,16 @@
 <template>
   <div>
-    home
+    <Slide/>
   </div>
 </template>
 
 <script>
+import Slide from "../../components/sideBar.vue";
 export default {
-  name: "adminHome"
+  name: "adminHome",
+  components:{
+    Slide,
+  },
 }
 </script>
 
