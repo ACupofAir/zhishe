@@ -2,7 +2,7 @@
   <div class="campusWrapper">
     <div class="titleWrapper">
       <div class="campusNameWrapper">
-        <el-button round id="campusToCollege">返回</el-button>
+        <router-link to="/"><el-button round id="campusToCollege">返回</el-button></router-link>
         <div class="campusName">九龙湖校区</div>
         <div class="campusRate">
           <el-rate
@@ -14,13 +14,16 @@
           </el-rate>
         </div>
         <div class="rateAndUpload">
-          <el-popover
-              placement="top-start"
-              width="50"
-              trigger="hover"
-              content="写评价">
-            <el-button type="primary" icon="el-icon-edit" circle slot="reference" id="rateButton"></el-button>
-          </el-popover>
+          <router-link to="/comment">
+            <el-popover
+                placement="top-start"
+                width="50"
+                trigger="hover"
+                content="写评价">
+              <el-button type="primary" icon="el-icon-edit" circle slot="reference" id="rateButton"></el-button>
+            </el-popover>
+          </router-link>
+
           <el-popover
               placement="top-start"
               width="50"
