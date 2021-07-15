@@ -1,8 +1,7 @@
 <template>
   <div class="collegePage">
     <div class="pageHeader">
-      <el-page-header @back="goBack" content="学校详情页面">
-      </el-page-header>
+      <el-button round @click="$router.push('/')">返回</el-button>
     </div>
 
     <div class="collegePicture">
@@ -20,22 +19,31 @@
         <div>
           <el-divider><i class="el-icon-mobile-phone"></i></el-divider>
         </div>
-        <div class="commentsNumber"> 1300条学生评价</div>
+        <div>
+                <div class="commentsNumber"> 1300</div> 条学生评价 
+        </div>
+
         <div>
           <el-divider><i class="el-icon-mobile-phone"></i></el-divider>
         </div>
         <div class="sort">
           <el-row>排序</el-row>
-          <el-radio-group v-model="radio" size="medium">
-            <el-row>
-              <el-radio :label="1">校区名称</el-radio>
-            </el-row>
-            <el-row>
-              <el-radio :label="2">最多评价</el-radio>
-            </el-row>
-            <el-row>
-              <el-radio :label="3">最高评分</el-radio>
-            </el-row>
+          <el-radio-group v-model="radio" size="large">
+            <div class="campusName">
+              <el-row>
+                <el-radio :label="1">校区名称</el-radio>
+              </el-row>
+            </div>
+            <div class="mostComment">
+              <el-row>
+                <el-radio :label="2">最多评价</el-radio>
+              </el-row>
+            </div>
+            <div class="highestScore">
+              <el-row>
+                <el-radio :label="3">最高评分</el-radio>
+              </el-row>
+            </div>
           </el-radio-group>
         </div>
 
@@ -46,27 +54,42 @@
         <div class="grade">
           <el-row>匹配的年级</el-row>
           <el-radio-group v-model="radio" size="medium">
-            <el-row>
-              <el-radio :label="4">所有年级</el-radio>
-            </el-row>
-            <el-row>
-              <el-radio :label="5">大一</el-radio>
-            </el-row>
-            <el-row>
-              <el-radio :label="6">大二</el-radio>
-            </el-row>
-            <el-row>
-              <el-radio :label="7">大三</el-radio>
-            </el-row>
-            <el-row>
-              <el-radio :label="8">大四</el-radio>
-            </el-row>
-            <el-row>
-              <el-radio :label="9">大五</el-radio>
-            </el-row>
-            <el-row>
-              <el-radio :label="10">研究生</el-radio>
-            </el-row>
+
+            <div class="allGrade">
+              <el-row>
+                <el-radio :label="4">所有年级</el-radio>
+              </el-row>
+            </div>
+            <div class="freshman">
+              <el-row>
+                <el-radio :label="5">大一</el-radio>
+              </el-row>
+            </div>
+            <div class="sophomores">
+              <el-row>
+                <el-radio :label="6">大二</el-radio>
+              </el-row>
+            </div>
+            <div class="threes">
+              <el-row>
+                <el-radio :label="7">大三</el-radio>
+              </el-row>
+            </div>
+            <div class="fours">
+              <el-row>
+                <el-radio :label="8">大四</el-radio>
+              </el-row>
+            </div>
+            <div class="fives">
+              <el-row>
+                <el-radio :label="9">大五</el-radio>
+              </el-row>
+            </div>
+            <div class="graduate">
+              <el-row>
+                <el-radio :label="10">研究生</el-radio>
+              </el-row>
+            </div>
           </el-radio-group>
         </div>
       </div>
@@ -84,7 +107,7 @@
 
     <div class="cannotFind">
       找不到你想要的校区?
-      <el-link type="primary"> 点击这里</el-link>
+      <el-link type="primary" @click="$router.push('/comment')"> 点击这里</el-link>
     </div>
 
   </div>
@@ -94,11 +117,6 @@
 <script>
   export default {
     name: "college",
-    methods: {
-      goBack() {
-        console.log("go back");
-      },
-    },
     data() {
       return {
         radio: 1
@@ -114,14 +132,16 @@
 
 <style scoped>
   .pageHeader {
-    margin-top: 5px;
-    font-weight: bold
+    text-align: left;
+    left:10px;
+    margin-top: 8px;
+    margin-bottom: 5px; 
   }
 
   .campusViews {
 
     display: grid;
-    grid-template-rows: 500px;
+    grid-template-rows: 100%;
     grid-template-columns: 3fr 7fr;
     grid-template-areas:
       "selection views";
@@ -144,6 +164,7 @@
 
   .commentsNumber {
     font-size: 1.0em;
+    color: cornflowerblue;
   }
 
   .views {
@@ -167,6 +188,37 @@
     margin-left: 130px;
     font-weight: bold
   }
-  
-  
+
+  .campusName {
+    margin-top: 15px;
+  }
+
+  .mostComment {
+    margin-top: 10px;
+  }
+
+  .highestScore {
+    margin-top: 10px;
+  }
+  .allGrade{
+    margin-top: 15px;
+  }
+  .freshman{
+    margin-top: 10px;
+  }
+  .sophomores{
+    margin-top: 10px;
+  }
+  .threes{
+    margin-top: 10px;
+  }
+  .fours{
+    margin-top: 10px;
+  }
+  .fives{
+    margin-top: 10px;
+  }
+  .graduate{
+    margin-top: 10px;
+  }
 </style>

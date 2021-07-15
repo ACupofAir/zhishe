@@ -42,12 +42,6 @@ const routes = [
     component: Check
   },
   {
-    path: '/campusInfo',
-    name:'CampusInfo',
-    component: CampusInfo
-
-  },
-  {
     path:'/comDetails',
     name:'ComDetails',
     component:ComDetails
