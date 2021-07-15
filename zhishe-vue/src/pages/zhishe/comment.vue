@@ -52,14 +52,14 @@
       <div class="grade checkBox">
         <span class="checkBoxLeft">你的年级</span>
         <div class="checkBoxRight">
-          <el-input-number v-model="gradeNum" :step="1" step-strictly min="0" max="5"></el-input-number>
+          <el-input-number v-model="gradeNum" :step="1" :min=0 :max=5></el-input-number>
         </div>
       </div>
 
       <div class="scale checkBox">
         <span class="checkBoxLeft">住宿规模</span>
         <div class="checkBoxRight">
-          <el-input-number v-model="scale" :step="1" step-strictly min="0" max="5"></el-input-number>
+          <el-input-number v-model="scale" :step="1" step-strictly :min=0 :max=5></el-input-number>
         </div>
       </div>
 
@@ -89,7 +89,7 @@
 
       <div class="sofa tag">
         <span class="tagLeft">
-          <img src="../../assets/comment/sofa.svg" height="30" width="30" alt="" titel="沙发">
+          <img src="../../assets/comment/sofa.svg" height="30" width="30" alt="" title="沙发">
         </span>
         <span class="tagRight">
           <el-switch v-model="hasSofa" active-color="#13ce66" inactive-color="#ff4949">
@@ -189,8 +189,8 @@
         value2: 3,
         value3: 3,
         yearIn: "",
-        gradeNum: "",
-        scale: "",
+        gradeNum: 0,
+        scale: 0,
         isRecommend: true,
         hasRefrigerator: false,
         hasSofa: false,
@@ -256,8 +256,10 @@
 
   .commentPage {
     display: grid;
+    padding-top: 120px;
     padding-left: 320px;
     padding-right: 320px;
+    padding-bottom: 120px;
     row-gap: 120px;
 
     grid-template-areas:
