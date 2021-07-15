@@ -32,9 +32,13 @@
               >
             <el-button type="success" icon="el-icon-picture-outline" circle slot="reference" id="uploadButton"></el-button>
           </el-popover>
+
         </div>
+        <el-divider class="titleDivider"><i class="el-icon-price-tag"></i></el-divider>
       </div>
-      <div class="campusPhoto"></div>
+      <div class="campusPhoto">
+        <el-image :src="pictureURL" fit="cover" class="campusPic"> </el-image>
+      </div>
     </div>
     <div class="statisticWrapper">
       <div class="campusScore">
@@ -56,7 +60,7 @@
         </div>
       </div>
       <div class="gradeDistribution">
-        <div style="border: #3c85cb solid 2px; border-radius: ">年级分布</div>
+        <div style="border: #3c85cb solid 2px; border-radius: 10px">年级分布</div>
       </div>
     </div>
     <div class="campusCommentWrapper">
@@ -73,6 +77,9 @@ export default {
   components: {briefComment},
   data: () => {
     return {
+      pictureURL: "https://gitee.com/thisisbadBao/imgrepo/raw/master/imgrepo1/20210715214908.jpeg",
+
+
       campusRate: 3.7,
       rate: [{rateTitle: "基础情况",rateScore: 3.8}, {rateTitle: "建筑情况",rateScore: 4.5}, {rateTitle: "位置情况",rateScore: 3.1}],
       label: [{labelName:"独立卫浴"},{labelName:"自习室"}, {labelName:"WIFI"},
@@ -91,7 +98,10 @@ export default {
 
 /*简评*/
 .briefCommentArea{
+  /*border: #3c85cb solid 2px;*/
   margin-top: 20px;
+  margin-left: 120px;
+  margin-bottom: 15px;
 }
 
 
@@ -102,7 +112,6 @@ export default {
   height: 200px;
   /*border: #2c3e50 solid 2px;*/
 }
-
 
 
 /*----------*/
@@ -139,8 +148,6 @@ export default {
   margin-left: 16px;
 }
 
-
-
 /*---------*/
 
 #rateButton{
@@ -156,7 +163,7 @@ export default {
 }
 
 .campusName{
-  margin-top: 15px;
+  margin-top: 45px;
 }
 
 .campusRate{
@@ -171,6 +178,10 @@ export default {
   position: absolute;
 }
 
+.titleDivider{
+  margin-top: 110px;
+}
+
 
 .campusNameWrapper{
   grid-area: campusNameWrapper;
@@ -179,10 +190,12 @@ export default {
 
 .campusPhoto{
   grid-area: campusPhoto;
-  /*border: #2c3e50 solid 2px;*/
-  background: url("https://gitee.com/thisisbadBao/imgrepo/raw/master/imgrepo1/20210714170601.png");
-  background-size: cover;
 }
+.campusPic{
+  height: 230px;
+  border-radius: 10px;
+}
+
 
 #campusToCollege{
   position: absolute;
@@ -196,7 +209,7 @@ export default {
   .campusWrapper{
     display: grid;
     grid-template-columns: 320px 1fr;
-    grid-template-rows: 160px auto;
+    grid-template-rows: 230px auto;
     grid-template-areas:
       "titleWrapper titleWrapper"
       "statisticWrapper campusCommentWrapper";
@@ -206,7 +219,6 @@ export default {
   .titleWrapper{
     grid-area: titleWrapper;
     /*border: #99a9bf solid 2px;*/
-
     display: grid;
     grid-template-columns: 320px 1fr;
     grid-template-areas: "campusNameWrapper campusPhoto";
@@ -215,6 +227,7 @@ export default {
   .statisticWrapper{
     grid-area: statisticWrapper;
     /*border: #99a9bf solid 2px;*/
+    margin-top: 20px;
   }
 
   .campusCommentWrapper{

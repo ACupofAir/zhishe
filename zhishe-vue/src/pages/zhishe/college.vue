@@ -1,108 +1,40 @@
 <template>
   <div class="collegePage">
-    <div class="pageHeader">
-      <el-button round @click="$router.push('/')">返回</el-button>
-    </div>
-
-    <div class="collegePicture">
-      <img src="https://cube.elemecdn.com/6/94/4d3ea53c084bad6931a56d5158a48jpeg.jpeg" id="psc" width=100% height="200">
-    </div>
-
-    <div>
-      <el-divider><i class="el-icon-mobile-phone"></i></el-divider>
-    </div>
-
     <div class="campusViews">
+      <div class="collegePicture">
+        <el-image :src="pictureURL" fit="cover" class="collegePic"> </el-image>
+      </div>
+
       <div class="selection">
-        <div class="collegeName"> 东南大学</div>
-        <div class="collegeAddress"> 江苏--南京</div>
-        <div>
-          <el-divider><i class="el-icon-mobile-phone"></i></el-divider>
-        </div>
-        <div>
-                <div class="commentsNumber"> 1300</div> 条学生评价 
-        </div>
-
-        <div>
-          <el-divider><i class="el-icon-mobile-phone"></i></el-divider>
-        </div>
+        <div class="collegeName" style="font-weight: bold; font-size: 40px">{{collegeName}}</div>
+        <div class="collegeAddress" style="color: #99a9bf">{{collegeAddress}}</div>
+        <div class="commentsNumber" style="font-size: 16px; margin-top: 10px">共{{totalComment}}条学生评价</div>
+        <el-divider class="titleDivider"><i class="el-icon-price-tag"></i></el-divider>
         <div class="sort">
-          <el-row>排序</el-row>
-          <el-radio-group v-model="radio" size="large">
-            <div class="campusName">
-              <el-row>
-                <el-radio :label="1">校区名称</el-radio>
-              </el-row>
-            </div>
-            <div class="mostComment">
-              <el-row>
-                <el-radio :label="2">最多评价</el-radio>
-              </el-row>
-            </div>
-            <div class="highestScore">
-              <el-row>
-                <el-radio :label="3">最高评分</el-radio>
-              </el-row>
+          <div style="font-weight: bold">排序</div>
+          <el-radio-group v-model="radio1" >
+            <div class="rankItem" v-for="(item, index) in rankName" :key="index">
+                <el-radio  :label="index">{{item.name}}</el-radio>
             </div>
           </el-radio-group>
         </div>
-
-        <div>
-          <el-divider><i class="el-icon-mobile-phone"></i></el-divider>
-        </div>
-
+        <el-divider class="titleDivider"><i class="el-icon-price-tag"></i></el-divider>
         <div class="grade">
-          <el-row>匹配的年级</el-row>
-          <el-radio-group v-model="radio" size="medium">
-
-            <div class="allGrade">
-              <el-row>
-                <el-radio :label="4">所有年级</el-radio>
-              </el-row>
-            </div>
-            <div class="freshman">
-              <el-row>
-                <el-radio :label="5">大一</el-radio>
-              </el-row>
-            </div>
-            <div class="sophomores">
-              <el-row>
-                <el-radio :label="6">大二</el-radio>
-              </el-row>
-            </div>
-            <div class="threes">
-              <el-row>
-                <el-radio :label="7">大三</el-radio>
-              </el-row>
-            </div>
-            <div class="fours">
-              <el-row>
-                <el-radio :label="8">大四</el-radio>
-              </el-row>
-            </div>
-            <div class="fives">
-              <el-row>
-                <el-radio :label="9">大五</el-radio>
-              </el-row>
-            </div>
-            <div class="graduate">
-              <el-row>
-                <el-radio :label="10">研究生</el-radio>
-              </el-row>
+          <div style="font-weight: bold">匹配的年级</div>
+          <el-radio-group v-model="radio2">
+            <div class="gradeItem" v-for="(item, index) in gradeName" :key="index">
+              <el-radio  :label="index">{{item.name}}</el-radio>
             </div>
           </el-radio-group>
         </div>
+        <el-divider class="titleDivider"><i class="el-icon-price-tag"></i></el-divider>
       </div>
-
       <div class="views">
-        <div>
-          4个校区符合你的要求
-        </div>
+        <div>4个校区符合你的要求</div>
         <div class="campusList">
-
+          <briefComment v-for="(item, index) in briefCampus" :key="index"></briefComment>
         </div>
       </div>
-
     </div>
 
     <div class="cannotFind">
@@ -115,61 +47,82 @@
 
 
 <script>
+import briefComment from "@/components/briefComment";
   export default {
     name: "college",
+    components: {briefComment},
     data() {
       return {
-        radio: 1
-      };
-      return {
-        value: 3.7
+        radio1: 1,
+        radio2: 1,
+
+        rankName: [{name: "校区名称"}, {name: "最多评价"},{name: "最高评分"}],
+        gradeName: [{name: "所有年级"}, {name: "大一"},{name: "大二"},{name: "大三"},
+                    {name: "大四"},{name: "大五"},{name: "研究生"}],
+
+
+        pictureURL: "https://gitee.com/thisisbadBao/imgrepo/raw/master/imgrepo1/20210715214908.jpeg",
+        collegeName: "东南大学",
+        collegeAddress: "江苏,南京",
+        totalComment: "995",
+        campus: [{campusName: "东南大学"}],
+        briefCampus: [{id: 1},{id:2},{id: 1},{id:2}],
       }
     }
-
-
   };
 </script>
 
 <style scoped>
-  .pageHeader {
-    text-align: left;
-    left:10px;
-    margin-top: 8px;
-    margin-bottom: 5px; 
-  }
+.campusList{
+  margin-left: 50px;
+}
 
+
+
+.gradeItem{
+  margin-top: 15px;
+}
+.rankItem{
+  margin-top: 15px;
+}
+.grade{
+  margin-top: 10px;
+}
+.sort{
+  margin-top: 10px;
+}
+
+.collegePic{
+  height: 320px;
+}
   .campusViews {
-
     display: grid;
-    grid-template-rows: 100%;
+    grid-template-rows: 320px auto;
     grid-template-columns: 3fr 7fr;
     grid-template-areas:
+      "collegePicture collegePicture"
       "selection views";
     width: 100%;
     height: 100%;
+    font-size: 19px;
   }
 
   .selection {
     grid-area: selection;
-  }
-
-  .collegeName {
-    font-size: 1.6em;
-    font-weight: bold
-  }
-
-  .collegeAddress {
-    font-size: 1.0em;
-  }
-
-  .commentsNumber {
-    font-size: 1.0em;
-    color: cornflowerblue;
+    /*border: #3c85cb solid 2px;*/
+    text-align: left;
+    padding-left: 50px;
   }
 
   .views {
     grid-area: views;
-    /* background-color: slateblue; */
+    /*border: #3c85cb solid 2px;*/
+  }
+
+  .collegePicture{
+    grid-area: collegePicture;
+    /*border: #3c85cb solid 2px;*/
+    height: 200px;
   }
 
   .cannotFind {
@@ -177,48 +130,4 @@
     font-weight: bold
   }
 
-  .sort {
-    text-align: left;
-    margin-left: 130px;
-    font-weight: bold
-  }
-
-  .grade {
-    text-align: left;
-    margin-left: 130px;
-    font-weight: bold
-  }
-
-  .campusName {
-    margin-top: 15px;
-  }
-
-  .mostComment {
-    margin-top: 10px;
-  }
-
-  .highestScore {
-    margin-top: 10px;
-  }
-  .allGrade{
-    margin-top: 15px;
-  }
-  .freshman{
-    margin-top: 10px;
-  }
-  .sophomores{
-    margin-top: 10px;
-  }
-  .threes{
-    margin-top: 10px;
-  }
-  .fours{
-    margin-top: 10px;
-  }
-  .fives{
-    margin-top: 10px;
-  }
-  .graduate{
-    margin-top: 10px;
-  }
 </style>

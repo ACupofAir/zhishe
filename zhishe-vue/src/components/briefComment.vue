@@ -16,10 +16,10 @@ export default {
 
 .briefCommentWrapper{
   height: 185px;
-  width: 800px;
+  width: 700px;
   /*border: #3c85cb solid 3px;*/
   box-shadow: 0 0 20px #cac6c6;
-  margin-left: 30px;
+  /*margin-left: 30px;*/
 }
 
 .briefInfo{

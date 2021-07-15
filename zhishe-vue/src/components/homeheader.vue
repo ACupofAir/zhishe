@@ -1,10 +1,13 @@
 <template>
   <div class="headerWrapper">
     <div class="iconWrapper">
-      <div class="logoWrapper">
-        <img src="../assets/logo.png" id="logo">
-        <img src="../assets/zhishelogo.png" id="zhishelogo">
-      </div>
+      <router-link to="/">
+        <div class="logoWrapper">
+          <img src="../assets/logo.png" id="logo">
+          <img src="../assets/zhishelogo.png" id="zhishelogo">
+        </div>
+      </router-link>
+
     </div>
     <div class="searchWrapper">
       <el-autocomplete
