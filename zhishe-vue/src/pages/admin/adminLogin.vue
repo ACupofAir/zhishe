@@ -33,14 +33,45 @@
           </div>
           <div id="register">
             <el-row>
-              <el-button type="primary" round>注册</el-button>
+              <el-button type="primary" round @click="registerForm = true">
+                注册
+              </el-button>
             </el-row>
+            <el-dialog title="注册" :visible.sync="registerForm">
+              <el-form :model="form">
+                <el-form-item label="账户名称" :label-width="formLabelWidth">
+                  <el-input v-model="form.name" autocomplete="off"> </el-input>
+                </el-form-item>
+                <el-form-item label="账户密码" :label-width="formLabelWidth">
+                  <el-input v-model="form.code" autocomplete="off"> </el-input>
+                </el-form-item>
+                <el-form-item label="邀请码" :label-width="formLabelWidth">
+                  <el-input v-model="form.lisence" autocomplete="off">
+                  </el-input>
+                </el-form-item>
+              </el-form>
+              <div slot="footer" class="dialog-footer">
+                <el-button @click="registerForm = false">取 消</el-button>
+                <el-button type="primary" @click="formOK">确 定</el-button>
+              </div>
+            </el-dialog>
           </div>
         </div>
         <div id="loginService">
           <p id="serveText">如果想要了解更多，那么请联系我们~</p>
           <div id="textButton">
-            <el-button type="text"> 找到我们 </el-button>
+            <el-button type="text" @click="openForm = true">
+              找到我们
+            </el-button>
+            <el-dialog
+              title="我们的家"
+              :visible.sync="openForm"
+              width="580px"
+              top="8px"
+            >
+              <p style="font-size: 25px">河底摸鱼工作室</p>
+              <img src="../../assets/publicity.jpg" alt="mark" />
+            </el-dialog>
           </div>
         </div>
       </div>
@@ -56,11 +87,68 @@ export default {
     return {
       input1: "",
       input2: "",
+      registerForm: false,
+      openForm: false,
+      form: {
+        name: "",
+        code: "",
+        lisence: "",
+      },
+      formLabelWidth: "80px",
     };
   },
   methods: {
     log_in() {
-      if (input1 == "rains" && input2 == "123") console.log(0);
+      if (!this.input1) {
+        const h1 = this.$createElement;
+
+        this.$notify({
+          title: "",
+          message: h1("i", { style: "color: balck" }, "请输入账号"),
+        });
+        return;
+      }
+      if (!this.input2) {
+        const h2 = this.$createElement;
+
+        this.$notify({
+          title: "",
+          message: h2("i", { style: "color: black" }, "请输入密码"),
+        });
+        return;
+      }
+      if (this.input1 === "rains" && this.input2 === "123") {
+        // this.$message({
+        //   message: "登录成功！",
+        //   type: "success",
+        // });
+        location.href = "/adminHome";
+        // console.log(0);
+      }
+    },
+    open() {
+      // this.$alert("河底摸鱼工作室", "关于我们", {
+      //   confirmButtonText: "知道啦",
+      // callback: action => {
+      //   this.$message({
+      //     type: 'info',
+      //     message: `action: ${ action }`
+      //   });
+      // }
+      // });
+      openForm = true;
+    },
+    formOK() {
+      // this.registerForm = false;
+      if (this.form.lisence === "711191") {
+        this.$alert("注册成功", "", {
+          confirmButtonText: "确认",
+        });
+      }
+      if (this.form.lisence === "711191") this.registerForm = false;
+      else {
+        this.$message.error("邀请码错误");
+      }
     },
   },
 };
@@ -77,11 +165,13 @@ export default {
     "middle"
     "downSpace";
   width: 100%;
-  height: 768px;
+  height: 100%;
   position: absolute;
   left: 0px;
+  top: 0px;
+  bottom: 0px;
   right: 0px;
-  background: url("../../assets/bg01.jpg");
+  background: url("../../assets/bg02.jpg");
   background-size: cover;
 }
 #upSpace {
@@ -90,7 +180,7 @@ export default {
 }
 #middle {
   grid-area: middle;
-  position: absolute; 
+  position: absolute;
   top: 0px;
   bottom: 0px;
   left: 0px;
@@ -111,7 +201,7 @@ export default {
   right: 0px;
   border: wheat solid 2px; */
 }
-#middleSpace{
+#middleSpace {
   display: grid;
   grid-template-columns: 100%;
   grid-template-rows: 1fr 1fr 1fr 1fr 1fr;
@@ -130,14 +220,15 @@ export default {
 }
 #loginText {
   grid-area: loginText;
+  color: white;
   /* border: wheat solid 2px; */
-  width: 200px;
-  height: 60px;
+  /* width: 200px; */
+  /* height: 60px; */
   position: absolute;
-  top: 25px;
+  top: 5px;
   bottom: 0px;
-  left: 450px;
-  right: 0px;
+  left: 0px;
+  right: 450px;
   /* border: wheat solid 2px; */
   font-size: 30px;
 }
@@ -159,16 +250,14 @@ export default {
   top: 0px;
   bottom: 0px;
   left: 500px;
-  right: 435px;
+  right: 500px;
   /* border: wheat solid 2px; */
   /* width: 600px; */
-  
-  
 }
-.inputAccount >>> input {
-  background-color: rgb(238, 230, 228);
-  /* color: rgb(245, 245, 245); */
-}
+/* .inputAccount >>> input {
+  background-color: rgb(238, 230, 228); 
+  color: rgb(245, 245, 245);
+} */
 #password {
   grid-area: password;
   /* background-color: rgb(250, 250, 250); */
@@ -178,22 +267,22 @@ export default {
   top: 0px;
   bottom: 0px;
   left: 500px;
-  right: 435px;
+  right: 500px;
   /* width:600px; */
   /* border: wheat solid 2px; */
 }
-.inputPassword >>> input {
+/* .inputPassword >>> input {
   background-color: rgb(238, 230, 228);
-}
+} */
 
 #buttonArea {
   grid-area: buttonArea;
   /* border: wheat solid 2px; */
   position: absolute;
-  top:0px;
-  bottom:0px;
-  left:0px;
-  right:0px;
+  top: 0px;
+  bottom: 0px;
+  left: 0px;
+  right: 0px;
   /* width:100px; */
   /* left:685px; */
   /* top:25px; */
@@ -216,7 +305,7 @@ export default {
   top: 25px;
   bottom: 0px;
   left: 585px;
-  right: 0px;
+  right: 130px;
   /* width:100px; */
   /* border: wheat solid 2px; */
 }
@@ -224,10 +313,10 @@ export default {
   grid-area: loginService;
   /* border: wheat solid 2px; */
   position: absolute;
-  top:0px;
-  bottom:0px;
-  left:0px;
-  right:0px;
+  top: 0px;
+  bottom: 0px;
+  left: 0px;
+  right: 0px;
   /* width:300px; */
   /* height:50px; */
   /* left:500px;
@@ -244,16 +333,17 @@ export default {
   /* width: 300px; */
   left: 0px;
   top: 1px;
-  bottom:0px;
-  right:120px;
+  bottom: 0px;
+  right: 120px;
+  /* border: wheat solid 2px; */
 }
 #textButton {
   position: absolute;
   height: 50px;
   left: 350px;
   top: 10px;
-  bottom:0px;
-  right:0px;
+  bottom: 0px;
+  right: 0px;
   /* border: wheat solid 2px; */
 }
 #downSpace {
