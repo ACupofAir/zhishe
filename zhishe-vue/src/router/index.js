@@ -11,7 +11,8 @@ import Check from "@/pages/admin/check";
 import CollegeManage from "@/pages/admin/collegeManage";
 import Log from "@/pages/admin/adminLog";
 import Welcome from "@/pages/zhishe/welcome";
-
+import CampusInfo from "@/components/campusInfo";
+import ComDetails from "@/components/comDetails";
 Vue.use(VueRouter)
 
 const routes = [
@@ -39,6 +40,17 @@ const routes = [
     path: '/check',
     name: 'Check',
     component: Check
+  },
+  {
+    path: '/campusInfo',
+    name:'CampusInfo',
+    component: CampusInfo
+
+  },
+  {
+    path:'/comDetails',
+    name:'ComDetails',
+    component:ComDetails
   },
   {
     path: '/collegeManage',
