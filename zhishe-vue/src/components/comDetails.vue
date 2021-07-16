@@ -47,33 +47,33 @@
     <div class="dormInfo">
       <div class="dormBasicInfo">
         <el-divider content-position="center">宿舍信息 ({{dormScale}}人间)</el-divider>
-        <el-row :gutter="60">
-          <el-col :span="8">
+        <el-row :gutter="60" style="margin-top: 20px; margin-left: 20%; margin-right: 20%;">
+          <el-col :span="12">
             <div class="">宿舍基础情况</div>
           </el-col>
-          <el-col :span="16">
+          <el-col :span="12">
             <div class="">
               <el-rate v-model="unitedScore" disabled show-score text-color="#ff9900" score-template="{value}">
               </el-rate>
             </div>
           </el-col>
         </el-row>
-        <el-row :gutter="60">
-          <el-col :span="8">
+        <el-row :gutter="60" style="margin-top: 20px; margin-left: 20%; margin-right: 20%;">
+          <el-col :span="12">
             <div class="">宿舍建筑情况</div>
           </el-col>
-          <el-col :span="16">
+          <el-col :span="12">
             <div class="">
               <el-rate v-model="buildingScore" disabled show-score text-color="#ff9900" score-template="{value}">
               </el-rate>
             </div>
           </el-col>
         </el-row>
-        <el-row :gutter="60">
-          <el-col :span="8">
+        <el-row :gutter="60" style="margin-top: 20px; margin-bottom: 50px; margin-left: 20%; margin-right: 20%;">
+          <el-col :span="12">
             <div class="">宿舍位置情况</div>
           </el-col>
-          <el-col :span="16">
+          <el-col :span="12">
             <div class="">
               <el-rate v-model="locationScore" disabled show-score text-color="#ff9900" score-template="{value}">
               </el-rate>
@@ -81,7 +81,8 @@
           </el-col>
         </el-row>
       </div>
-      <div class="specialTags">
+      <el-divider><i class="el-icon-price-tag">特色标签</i></el-divider>
+      <div class="specialTags" style="margin-top: 50px;">
 
         <div class="refrigerator tag">
           <span class="tagLeft">
@@ -222,10 +223,8 @@
     grid-gap: 0;
     width: 100%;
     height: 100%;
-    position: absolute;
+    /* position: absolute; */
     bottom: 0px;
-    right: 0px;
-    left: 0px;
   }
 
   .pageHeader {
@@ -270,7 +269,7 @@
       "airConditionor cooker balcony"
       "wifi bathroom toilet";
 
-    row-gap: 20px;
+    row-gap: 30px;
     column-gap: 60px;
 
   }
