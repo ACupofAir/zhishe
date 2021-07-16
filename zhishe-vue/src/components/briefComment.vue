@@ -11,7 +11,7 @@
 
     <el-dialog
         :visible.sync="dialogVisible"
-        width="80%">
+        width="70%">
       <comDetails></comDetails>
     </el-dialog>
   </div>
