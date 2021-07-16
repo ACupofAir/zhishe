@@ -3,7 +3,7 @@
     <div class="pageHeader"></div>
 
     <div class="logContent">
-      <el-table :data="tableData" style="width: 100%" height="600">
+      <el-table v-loading = "loading" :data="tableData" style="width: 100%" height="600">
         <el-table-column fixed prop="operator" label="操作人" width="150">
         </el-table-column>
         <el-table-column prop="type" label="操作类型" width="150">
@@ -29,6 +29,7 @@
     name: "adminLog",
     data() {
       return {
+        loading:false,
         tableData: [{
           operator: 'Run',
           type: '修改',
@@ -166,5 +167,7 @@
 </script>
 
 <style scoped>
-
+  body {
+    margin: 0;
+  } 
 </style>

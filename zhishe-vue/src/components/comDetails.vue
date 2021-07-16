@@ -21,14 +21,14 @@
         </el-divider>
       </div>
 
-      <div class="recommendRate" style="margin-top: 40px; margin-bottom: 20px; width:320px; margin-left: 215px; ">
+      <div class="recommendRate" style="margin-top: 55px; margin-bottom: 10px; width:320px; margin-left: 215px; ">
         <el-progress :text-inside="true" :stroke-width="20" :percentage="recommendrate" :width="50"></el-progress>
       </div>
 
     </div>
 
 
-    <div class="commentorInfo">
+    <div class="commentorInfo" style="margin-bottom:30px;">
       <div>
         <div class="">
           <el-divider content-position="center">
@@ -39,7 +39,7 @@
         <div class="Year" style="font-size: 18px; text-align: center; margin-top: 35px;">
           入学年份：{{year}}
         </div>
-        <div class="Grade" style="font-size: 18px; text-align: center; margin-top: 15px; margin-bottom: 20px;">
+        <div class="Grade" style="font-size: 18px; text-align: center; margin-top: 15px;">
           年级： {{grade}}
         </div>
       </div>
@@ -53,9 +53,11 @@
           <div class="" style="font-size: 20px; font-weight: bold;">宿舍信息 ({{dormScale}}人间)</div>
         </el-divider>
       </div>
-        <el-row :gutter="60">
-          <el-col :span="8">
-            <div class="">宿舍基础情况</div>
+
+
+        <el-row :gutter="60" style="margin-top: 40px; margin-left: 20%; margin-right: 20%;">
+          <el-col :span="12">
+            <div class="" style="font-size: 17px;">宿舍基础情况</div>
           </el-col>
           <el-col :span="12">
             <div class="">
@@ -66,7 +68,7 @@
         </el-row>
         <el-row :gutter="60" style="margin-top: 20px; margin-left: 20%; margin-right: 20%;">
           <el-col :span="12">
-            <div class="">宿舍建筑情况</div>
+            <div class="" style="font-size: 17px;">宿舍建筑情况</div>
           </el-col>
           <el-col :span="12">
             <div class="">
@@ -77,7 +79,7 @@
         </el-row>
         <el-row :gutter="60" style="margin-top: 20px; margin-bottom: 50px; margin-left: 20%; margin-right: 20%;">
           <el-col :span="12">
-            <div class="">宿舍位置情况</div>
+            <div class="" style="font-size: 17px;">宿舍位置情况</div>
           </el-col>
           <el-col :span="12">
             <div class="">
@@ -87,7 +89,7 @@
           </el-col>
         </el-row>
       </div>
-      <el-divider><i class="el-icon-price-tag">特色标签</i></el-divider>
+      <el-divider><i class="el-icon-price-tag" style="font-size: 20px; font-weight: bold;">特色标签</i></el-divider>
       <div class="specialTags" style="margin-top: 50px;">
 
         <div class="refrigerator tag">
@@ -222,7 +224,7 @@
   .comDetails {
     display: grid;
     grid-template-columns: 100%;
-    grid-template-rows: 4.5fr 4fr 10fr;
+    grid-template-rows: 2fr 1fr 5fr;
     grid-template-areas:
       "overallComment"
       "commentorInfo"
