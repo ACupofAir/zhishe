@@ -55,7 +55,7 @@
       </div>
         <el-row :gutter="60" style="margin-top: 40px; margin-left: 20%; margin-right: 20%;">
           <el-col :span="12">
-            <div class="">宿舍基础情况</div>
+            <div class="" style="font-size: 17px;">宿舍基础情况</div>
           </el-col>
           <el-col :span="12">
             <div class="">
@@ -66,7 +66,7 @@
         </el-row>
         <el-row :gutter="60" style="margin-top: 20px; margin-left: 20%; margin-right: 20%;">
           <el-col :span="12">
-            <div class="">宿舍建筑情况</div>
+            <div class="" style="font-size: 17px;">宿舍建筑情况</div>
           </el-col>
           <el-col :span="12">
             <div class="">
@@ -77,7 +77,7 @@
         </el-row>
         <el-row :gutter="60" style="margin-top: 20px; margin-bottom: 50px; margin-left: 20%; margin-right: 20%;">
           <el-col :span="12">
-            <div class="">宿舍位置情况</div>
+            <div class="" style="font-size: 17px;">宿舍位置情况</div>
           </el-col>
           <el-col :span="12">
             <div class="">
