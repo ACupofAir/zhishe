@@ -1,31 +1,28 @@
 <template>
   <div class="comDetails">
-
-    <div class="pageHeader">
-      <el-page-header @back="goBack" content="校区页面">
-      </el-page-header>
-    </div>
-
     <div class="overallComment">
-      <div class="campusName">
-        东南大学(九龙湖校区)
+      <div class="campusName" style="font-weight: bolder; font-size: 40px; margin-top: 30px; text-align: center;">
+        {{campusName}}</div>
+
+      <div class="" style="margin-top: 30px;">
+        <el-divider content-position="center">
+          <div class="" style="font-size: 20px; font-weight: bold; margin-top: 10px;">校区总评分</div>
+        </el-divider>
       </div>
 
-      <div>
-        <el-divider content-position="center">校区总评分</el-divider>
-      </div>
-
-      <div class="totalScore">
+      <div class="totalScore" style="margin-top: 40px;">
         <el-rate v-model="totalvalue" disabled show-score text-color="#ff9900" score-template="{value}">
         </el-rate>
       </div>
 
-      <div>
-        <el-divider content-position="center">宿舍推荐率</el-divider>
+      <div class="" style="margin-top: 30px;">
+        <el-divider content-position="center">
+          <div class="" style="font-size: 20px; font-weight: bold; margin-top: 10px;">宿舍推荐率</div>
+        </el-divider>
       </div>
 
-      <div class="recommendRate">
-        <el-progress :text-inside="true" :stroke-width="20" :percentage="60" :width="50"></el-progress>
+      <div class="recommendRate" style="margin-top: 40px; margin-bottom: 20px; width:320px; margin-left: 215px; ">
+        <el-progress :text-inside="true" :stroke-width="20" :percentage="recommendrate" :width="50"></el-progress>
       </div>
 
     </div>
@@ -33,12 +30,17 @@
 
     <div class="commentorInfo">
       <div>
-        <el-divider content-position="center">评价者信息</el-divider>
-        <div class="Year">
-          入学年份：2019
+        <div class="">
+          <el-divider content-position="center">
+            <div class="" style="font-size: 20px; font-weight: bold; margin-top: 10px; margin-bottom: 10px;">评价者信息</div>
+          </el-divider>
         </div>
-        <div class="Grade">
-          年级： 大三
+
+        <div class="Year" style="font-size: 18px; text-align: center; margin-top: 35px;">
+          入学年份：{{year}}
+        </div>
+        <div class="Grade" style="font-size: 18px; text-align: center; margin-top: 15px; margin-bottom: 20px;">
+          年级： {{grade}}
         </div>
       </div>
 
@@ -46,9 +48,13 @@
 
     <div class="dormInfo">
       <div class="dormBasicInfo">
-        <el-divider content-position="center">宿舍信息 ({{dormScale}}人间)</el-divider>
-        <el-row :gutter="60" style="margin-top: 20px; margin-left: 20%; margin-right: 20%;">
-          <el-col :span="12">
+        <div class = "" >
+        <el-divider content-position="center" >
+          <div class="" style="font-size: 20px; font-weight: bold;">宿舍信息 ({{dormScale}}人间)</div>
+        </el-divider>
+      </div>
+        <el-row :gutter="60">
+          <el-col :span="8">
             <div class="">宿舍基础情况</div>
           </el-col>
           <el-col :span="12">
@@ -186,8 +192,12 @@
     name: "comDetails",
     data() {
       return {
+        campusName: '东南大学（九龙湖校区）',
         totalvalue: 4.5,
         unitedScore: 4.2,
+        recommendrate: 82,
+        year:'2019',
+        grade: '大三',
         buildingScore: 4.4,
         locationScore: 3.7,
         dormScale: 4,
@@ -203,9 +213,7 @@
       }
     },
     methods: {
-      goBack() {
-        console.log("go back");
-      },
+
     },
   }
 </script>
@@ -214,9 +222,8 @@
   .comDetails {
     display: grid;
     grid-template-columns: 100%;
-    grid-template-rows: 1fr 4.5fr 4fr 10fr;
+    grid-template-rows: 4.5fr 4fr 10fr;
     grid-template-areas:
-      "pageHeader"
       "overallComment"
       "commentorInfo"
       "dormInfo";
@@ -225,13 +232,6 @@
     height: 100%;
     /* position: absolute; */
     bottom: 0px;
-  }
-
-  .pageHeader {
-    margin-top: 5px;
-    font-weight: bold;
-    grid-area: pageHeader;
-    /* background-color: blueviolet; */
   }
 
   .overallComment {
