@@ -69,7 +69,7 @@
               width="580px"
               top="8px"
             >
-              <p style="font-size: 25px">河底摸鱼工作室</p>
+              <p style="font-size: 25px">河底摸鱼工作室(qq群)</p>
               <img src="../../assets/publicity.jpg" alt="mark" />
             </el-dialog>
           </div>
