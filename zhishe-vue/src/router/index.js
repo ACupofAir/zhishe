@@ -38,7 +38,7 @@ const routes = [
         component: Check
       },
       {
-        path: '/collegeManage',
+        path: '/collegeManage/',
         name: 'CollegeManage',
         component: CollegeManage
       },

@@ -10,7 +10,7 @@
         active-text-color="#ffd04b"
         style="height: 100%">
       <router-link v-for="(item, ind) in sideItems" :key="ind" :to="item.routerIndex">
-        <el-menu-item :index="ind">
+        <el-menu-item :index="ind" style="margin-right: 100%;">
             <i :class="item.icon"></i>
             <span>{{item.title}}</span>
         </el-menu-item>
@@ -28,11 +28,12 @@
 export default {
   data() {
     return {
-      sideItems: [{icon: 'el-icon-paperclip', title: '首页', routerIndex: '/adminMain'},
-                  {icon: 'el-icon-paperclip', title: '审核请求', routerIndex: '/check'},
-                  {icon: 'el-icon-paperclip', title: '学校管理', routerIndex: '/collegeManage'},
-                  {icon: 'el-icon-paperclip', title: '管理员列表', routerIndex: '/adminList'},
-                  {icon: 'el-icon-paperclip', title: '日志', routerIndex: '/log'}]
+      sideItems: [{icon: 'el-icon-s-home', title: '首页', routerIndex: '/adminMain'},
+                  {icon: 'el-icon-s-comment', title: '审核请求', routerIndex: '/check'},
+                  {icon: 'el-icon-user-solid', title: '管理员列表', routerIndex: '/adminList'},
+                  {icon: 'el-icon-s-order', title: '日志', routerIndex: '/log'},
+                  {icon: 'el-icon-s-grid', title: '学校管理', routerIndex: '/collegeManage'},
+                ]
     }
   }
 };
