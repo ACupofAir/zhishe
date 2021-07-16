@@ -4,6 +4,7 @@
     <div id="middle">
       <div id="middleSpace">
         <div id="loginText">登录</div>
+        <div style="text-align: center">
         <div id="account">
           <el-input
             placeholder="管理员账号"
@@ -12,6 +13,7 @@
             class="inputAccount"
           >
           </el-input>
+          </div>
         </div>
         <div id="password">
           <el-input
@@ -99,32 +101,32 @@ export default {
   },
   methods: {
     log_in() {
-      if (!this.input1) {
-        const h1 = this.$createElement;
+      // if (!this.input1) {
+      //   const h1 = this.$createElement;
 
-        this.$notify({
-          title: "",
-          message: h1("i", { style: "color: balck" }, "请输入账号"),
-        });
-        return;
-      }
-      if (!this.input2) {
-        const h2 = this.$createElement;
+      //   this.$notify({
+      //     title: "",
+      //     message: h1("i", { style: "color: balck" }, "请输入账号"),
+      //   });
+      //   return;
+      // }
+      // if (!this.input2) {
+      //   const h2 = this.$createElement;
 
-        this.$notify({
-          title: "",
-          message: h2("i", { style: "color: black" }, "请输入密码"),
-        });
-        return;
-      }
-      if (this.input1 === "rains" && this.input2 === "123") {
+      //   this.$notify({
+      //     title: "",
+      //     message: h2("i", { style: "color: black" }, "请输入密码"),
+      //   });
+      //   return;
+      // }
+      // if (this.input1 === "rains" && this.input2 === "123") {
         // this.$message({
         //   message: "登录成功！",
         //   type: "success",
         // });
         location.href = "/adminHome";
         // console.log(0);
-      }
+      // }
     },
     open() {
       // this.$alert("河底摸鱼工作室", "关于我们", {
@@ -176,11 +178,11 @@ export default {
 }
 #upSpace {
   grid-area: upSpace;
-  position: absolute;
+  /* position: absolute; */
 }
 #middle {
   grid-area: middle;
-  position: absolute;
+  /* position: absolute; */
   top: 0px;
   bottom: 0px;
   left: 0px;
@@ -211,7 +213,7 @@ export default {
     "password"
     "buttonArea"
     "loginService";
-  position: absolute;
+  /* position: absolute; */
   top: 0px;
   bottom: 0px;
   left: 0px;
@@ -224,11 +226,11 @@ export default {
   /* border: wheat solid 2px; */
   /* width: 200px; */
   /* height: 60px; */
-  position: absolute;
+  /* position: absolute; */
   top: 5px;
   bottom: 0px;
   left: 0px;
-  right: 450px;
+  margin-right: 30%;
   /* border: wheat solid 2px; */
   font-size: 30px;
 }
@@ -246,11 +248,13 @@ export default {
 #account {
   grid-area: account;
   /* background-color: rgb(250, 250, 250); */
-  position: absolute;
+  /* position: absolute; */
   top: 0px;
   bottom: 0px;
-  left: 500px;
-  right: 500px;
+  
+  margin-left: 33%;
+  margin-right: 33%;
+  /* width:30%; */
   /* border: wheat solid 2px; */
   /* width: 600px; */
 }
@@ -263,11 +267,11 @@ export default {
   /* background-color: rgb(250, 250, 250); */
   /* color: rgb(245, 245, 245); */
   /* border: wheat solid 2px; */
-  position: absolute;
+  /* position: absolute; */
   top: 0px;
   bottom: 0px;
-  left: 500px;
-  right: 500px;
+  margin-left: 33%;
+  margin-right: 33%;
   /* width:600px; */
   /* border: wheat solid 2px; */
 }
@@ -278,7 +282,7 @@ export default {
 #buttonArea {
   grid-area: buttonArea;
   /* border: wheat solid 2px; */
-  position: absolute;
+  /* position: absolute; */
   top: 0px;
   bottom: 0px;
   left: 0px;
@@ -290,35 +294,35 @@ export default {
 
 #login {
   /* border: wheat solid 2px; */
-  position: absolute;
-  top: 25px;
-  bottom: 0px;
-  left: 0px;
-  right: 450px;
+  /* position: absolute; */
+  /* margin-top: 20px; */
+  margin-bottom: 0px;
+  margin-left: 0px;
+  margin-right: 29%;
   /* width:100px; */
   /* border: wheat solid 2px; */
 }
 
 #register {
   /* border: wheat solid 2px; */
-  position: absolute;
-  top: 25px;
-  bottom: 0px;
-  left: 585px;
-  right: 130px;
-  /* width:100px; */
+  /* position: absolute; */
+  margin-top: -40px;
+  margin-bottom: 0px;
+  margin-left: 61%;
+  margin-right: 10px;
+  width:100px;
   /* border: wheat solid 2px; */
 }
 #loginService {
   grid-area: loginService;
   /* border: wheat solid 2px; */
-  position: absolute;
-  top: 0px;
-  bottom: 0px;
-  left: 0px;
-  right: 0px;
-  /* width:300px; */
-  /* height:50px; */
+  /* position: absolute; */
+  margin-top: 40px;
+  margin-bottom: 0px;
+  margin-left: 40%;
+  margin-right: 0px;
+  /* width:600px;  */
+  height:50px;
   /* left:500px;
   top:20px; */
   /* color:white;
@@ -328,27 +332,27 @@ export default {
 #serveText {
   color: white;
   text-shadow: 0 0 2px black;
-  position: absolute;
+  /* position: absolute; */
   /* height:50px; */
   /* width: 300px; */
-  left: 0px;
+  margin-left: -50%;
   top: 1px;
   bottom: 0px;
-  right: 120px;
+  margin-right: 30%;
   /* border: wheat solid 2px; */
 }
 #textButton {
-  position: absolute;
+  /* position: absolute; */
   height: 50px;
-  left: 350px;
-  top: 10px;
-  bottom: 0px;
-  right: 0px;
+  margin-left: 0px;
+  margin-top: -45px;
+  margin-bottom: 40px;
+  margin-right: 30%;
   /* border: wheat solid 2px; */
 }
 #downSpace {
   grid-area: downSpace;
-  position: absolute;
+  /* position: absolute; */
   /* border: wheat solid 2px; */
   /* background: url("../../assets/loginFoot.jpg");
   background-position-x: -160px;
