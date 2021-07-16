@@ -14,7 +14,7 @@
 <style scoped>
     .campusInfoWrapper {
         height: 185px;
-        width: 900px;
+        width: 800px;
         /*border: #3c85cb solid 3px;*/
         box-shadow: 0 0 20px #cac6c6;
         /*margin-left: 30px;*/

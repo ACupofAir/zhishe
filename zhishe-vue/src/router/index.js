@@ -67,30 +67,42 @@ const routes = [
     name:'ComDetails',
     component:ComDetails
   },
-
   {
-    path: '/home',
+    path: '/college/:id',
     name: 'Home',
+    props: true,
     component: Home,
     children: [
       {
-        path: '/college',
+        path: 'college',
         name: 'College',
         component: College
-      },
-      {
-        path: '/campus',
-        name: 'Campus',
-        component: Campus
-      },
-      {
-        path: '/comment',
-        name: 'Comment',
-        component: Comment
       }
-
     ]
   }
+  // {
+  //   path: '/home',
+  //   name: 'Home',
+  //   component: Home,
+  //   children: [
+  //     {
+  //       path: '/college',
+  //       name: 'College',
+  //       component: College
+  //     },
+  //     {
+  //       path: '/campus',
+  //       name: 'Campus',
+  //       component: Campus
+  //     },
+  //     {
+  //       path: '/comment',
+  //       name: 'Comment',
+  //       component: Comment
+  //     }
+  //
+  //   ]
+  // }
 ]
 
 const router = new VueRouter({

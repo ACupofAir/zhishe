@@ -1,6 +1,14 @@
 <template>
   <div class="collegePage">
 
+    <div>
+      {{to}}
+    </div>
+
+
+
+
+
     <div class="campusViews">
 
       <div class="collegePicture">
@@ -45,7 +53,9 @@
           style="font-weight: bold; font-size: 28px; margin-top: 37px; margin-bottom:40px; text-align: left; margin-left: 60px;">
           {{totalCampus}}个校区符合你的要求</div>
         <div class="campusList">
-            <campusInfo v-for="(item, index) in briefCampus" :key="index" class = "briefcomment"></campusInfo>
+            <router-link v-for="(item, index) in briefCampus" :key="index" to="/campus" >
+              <campusInfo  class = "briefCampusInfo"></campusInfo>
+            </router-link>
         </div>
       </div>
 
@@ -82,9 +92,18 @@
         totalComment: "995",
         totalCampus: "5",
         campus: [{ campusName: "东南大学" }],
-        briefCampus: [{ id: 1 }, { id: 2 }, { id: 3 }, { id: 4 }, { id: 5 }],
+        briefCampus: [{ id: "九龙湖校区" }, { id: "四牌楼校区" }],
+        campusId: "",
+
+
+        collegeList: [{id: "dong"},{id: "南京大学"}],
+        currentCollege: null,
       }
+    },
+    created() {
+      this.currentCollege = this.collegeList.find(x => x.id === this.$route.params.id);
     }
+
   };
 </script>
 
@@ -93,7 +112,7 @@
     margin-left: 50px;
 
   }
-  .briefcomment{
+  .briefCampusInfo{
     margin-top: 20px;
   }
   .gradeItem {

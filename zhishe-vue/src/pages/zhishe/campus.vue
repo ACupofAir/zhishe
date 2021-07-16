@@ -86,10 +86,19 @@ export default {
         {labelName:"冰箱"},{labelName:"沙发"},{labelName:"洗衣机",},
         {labelName:"空调"},{labelName:"烹饪"},{labelName:"阳台"}],
       briefComment: [{id: 1},{id:2},{id: 1},{id:2}],
+
+
+
+      campusList: [{ id: "九龙湖校区" }, { id: "四牌楼校区" }],
+      toCampus: null,
     }
   },
   methods: {
 
+  },
+
+  created() {
+    this.toCampus = this.campusList.find(x => x.id === this.$route.params.id)
   }
 }
 </script>

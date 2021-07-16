@@ -19,6 +19,14 @@ export default {
   name: "home",
   components: {
     Header, Footer
+  },
+  data() {
+    return {
+      collegeName: "",
+    }
+  },
+  mounted() {
+    this.collegeName = this.$route.params.id;
   }
 }
 </script>
