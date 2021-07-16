@@ -15,25 +15,10 @@
         </div>
         <div id="slogan">
           <div id="sloganContent">
-            <!-- <p id = 'sloganText'>
-          知舍，寻所想之舍
-        </p> -->
             <img src="../../assets/slogan.png" alt="slogan" />
           </div>
         </div>
         <div id="search">
-          <!-- <div class="demo-input-suffix">
-         <el-input
-          placeholder="请选择日期"
-          suffix-icon="el-icon-date"
-          v-model="input1">
-         </el-input>
-         <el-input
-          placeholder="请输入内容"
-          prefix-icon="el-icon-search"
-          v-model="input2">
-         </el-input>
-       </div>   -->
           <div id="searchInput">
             <el-input
               placeholder="搜索你的学校"
@@ -55,28 +40,14 @@
         <div id="downerLabel">
           <div id="labelText">选择你喜欢的宿舍特点</div>
           <div id="labelContent">
-            <!-- <el-checkbox-group v-model="checkboxGroup">
-          <el-checkbox-button v-for="feature in features" :label="feature" :key="feature">
-            {{feature}}</el-checkbox-button>
-          </el-checkbox-group> -->
-            <!-- <div> -->
             <el-checkbox-group v-model="checkboxGroup" v-on:click="change()">
-              <!-- <Label msg = "健身房"/> -->
-              <el-checkbox label="空调" border></el-checkbox>
-              <!-- <el-checkbox label="沙发" border></el-checkbox> -->
-              <el-checkbox label="洗衣机" border></el-checkbox>
-              <el-checkbox label="可烹饪" border></el-checkbox>
-              <el-checkbox label="室外阳台" border></el-checkbox>
-              <el-checkbox label="独立卫浴" border></el-checkbox>
+              <Label
+                v-for="(item, index) in labelNames"
+                :key="index"
+                :msg="item.name"
+                class="labelBox"
+              ></Label>
             </el-checkbox-group>
-            <!-- </div> -->
-            <!-- <div style="margin-top: 30px">
-            <el-checkbox-group v-model="checkboxGroup1">
-              <el-checkbox label="可烹饪" border></el-checkbox>
-              <el-checkbox label="室外阳台" border></el-checkbox>
-              <el-checkbox label="独立卫浴" border></el-checkbox>
-            </el-checkbox-group>
-          </div> -->
           </div>
         </div>
         <div id="downerRank">
@@ -89,24 +60,6 @@
               :value="item.rate"
             ></record>
           </div>
-          <!-- <record v-for="(item, index) in collegeAndRate" :key="index"
-        :msg = item.college :value = item.rate
-        ></record> -->
-          <!-- <div id = 'rankContent1'>
-          <record msg = "东南大学" value = "3.9" />
-        </div>
-        <div id = 'rankContent2'>
-          <record msg = "南京大学" value = "3.8" />
-        </div>
-        <div id = 'rankContent3'>
-          <record msg = "哈尔滨工业大学" value = "1.0" />
-        </div>
-        <div id = 'rankContent4'>
-          <record msg = "华中科技大学" value = "4.0" />
-        </div>
-        <div id = 'rankContent5'>
-          <record msg = "天津大学" value = "3.7" />
-        </div> -->
         </div>
       </div>
     </div>
@@ -114,7 +67,6 @@
 </template>
 
 <script>
-// const featureOptions = ['空调', '沙发', '洗衣机'];
 import Label from "../../components/searchLabel.vue";
 import Record from "../../components/rankRecord.vue";
 export default {
@@ -127,10 +79,6 @@ export default {
     return {
       input: "",
       checkboxGroup: [],
-      // features: featureOptions,
-      // label1: String = "空调",
-      // value: 3.7,
-      // colors:['#3c85cb', '#3c85cb', '#3c85cb'],
       collegeAndRate: [
         { college: "东南大学", rate: "3.9" },
         { college: "南京大学", rate: "3.8" },
@@ -138,19 +86,27 @@ export default {
         { college: "华中科技大学", rate: "4.0" },
         { college: "天津大学", rate: "3.7" },
       ],
+      labelNames: [
+        { name: "健身房" },
+        { name: "空调" },
+        { name: "洗衣机" },
+        { name: "可烹饪" },
+        { name: "室外阳台" },
+        { name: "独立卫浴" },
+        { name: "自习室" },
+      ],
     };
   },
   methods: {
     change() {},
     submit() {
       // console.log(this.input);
-      if(this.input != ''){
-        location.href = '/college';
-      }
-      else{
+      if (this.input != "") {
+        location.href = "/college";
+      } else {
         this.$message({
-           message: "请输入内容",
-           type: "warning",
+          message: "请输入内容",
+          type: "warning",
         });
       }
     },
@@ -292,14 +248,6 @@ export default {
   left: 0px;
 }
 
-/* #sloganText{
-  word-spacing: 10px;
-  font-size: 15px;
-  /* text-align: center;
-  background-color: white; 
-  text-shadow: 2px; 
-} */
-
 #search {
   grid-area: search;
   position: absolute;
@@ -387,42 +335,7 @@ export default {
   right: 0px;
   left: 0px;
 }
-/* #rankContent1{
-  position: absolute;
-  height: 50px;
-  bottom: 0px;
-  top:140px;
-  right:0px;
-  left:0px;
-}
-#rankContent2{
-  position: absolute;
-  bottom: 0px;
-  top:190px;
-  right:0px;
-  left:0px;
-}
-#rankContent3{
-  position: absolute;
-  bottom: 0px;
-  top:240px;
-  right:0px;
-  left:0px;
-}
-#rankContent4{
-  position: absolute;
-  bottom: 0px;
-  top:290px;
-  right:0px;
-  left:0px;
-}
-#rankContent5{
-  position: absolute;
-  bottom: 0px;
-  top:340px;
-  right:0px;
-  left:0px;
-} */
+
 #rankContent {
   position: absolute;
   bottom: 0px;
@@ -431,5 +344,10 @@ export default {
   left: 0px;
   /* border: #3c85cb solid 2px; */
   line-height: 50px;
+}
+
+.labelBox {
+  display: inline-block;
+  margin-left: 30px;
 }
 </style>
