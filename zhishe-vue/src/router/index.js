@@ -11,8 +11,9 @@ import Check from "@/pages/admin/check";
 import CollegeManage from "@/pages/admin/collegeManage";
 import Log from "@/pages/admin/adminLog";
 import Welcome from "@/pages/zhishe/welcome";
-import CampusInfo from "@/components/campusInfo";
 import ComDetails from "@/components/comDetails";
+import AdminMain from "@/pages/admin/adminMain";
+
 Vue.use(VueRouter)
 
 const routes = [
@@ -24,38 +25,49 @@ const routes = [
   {
     path: '/adminHome',
     name: 'AdminHome',
-    component: AdminHome
+    component: AdminHome,
+    children: [
+      {
+        path: '/adminList',
+        name: 'AdminList',
+        component: AdminList
+      },
+      {
+        path: '/check',
+        name: 'Check',
+        component: Check
+      },
+      {
+        path: '/collegeManage',
+        name: 'CollegeManage',
+        component: CollegeManage
+      },
+      {
+        path: '/log',
+        name: 'Log',
+        component: Log
+      },
+      {
+        path: '/adminMain',
+        name: 'AdminMain',
+        component: AdminMain,
+      },
+    ]
+
   },
-  {
-    path: '/adminList',
-    name: 'AdminList',
-    component: AdminList
-  },
+
   {
     path: '/adminLogin',
     name: 'AdminLogin',
     component: AdminLogin
   },
-  {
-    path: '/check',
-    name: 'Check',
-    component: Check
-  },
+
   {
     path:'/comDetails',
     name:'ComDetails',
     component:ComDetails
   },
-  {
-    path: '/collegeManage',
-    name: 'CollegeManage',
-    component: CollegeManage
-  },
-  {
-    path: '/log',
-    name: 'Log',
-    component: Log
-  },
+
   {
     path: '/home',
     name: 'Home',

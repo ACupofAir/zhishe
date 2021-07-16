@@ -1,6 +1,6 @@
 <template>
   <div>
-    home
+    cm
   </div>
 </template>
 

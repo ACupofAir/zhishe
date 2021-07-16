@@ -1,13 +1,33 @@
 <template>
-  <div class="briefCommentWrapper">
+  <div>
+    <div class="briefCommentWrapper" v-on:click="openComDetails">
       <div class="briefInfo"></div>
       <div class="briefComment"></div>
+    </div>
+
+    <el-dialog
+        title="提示"
+        :visible.sync="dialogVisible"
+        width="30%">
+      <span>这是一段信息</span>
+    </el-dialog>
   </div>
+
 </template>
 
 <script>
 export default {
-  name: "briefComment"
+  name: "briefComment",
+  data() {
+    return {
+      dialogVisible: false
+    }
+  },
+  methods: {
+    openComDetails () {
+      this.dialogVisible = true
+    }
+  }
 }
 </script>
 

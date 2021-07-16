@@ -1,6 +1,8 @@
 <template>
   <div class="collegePage">
+
     <div class="campusViews">
+
       <div class="collegePicture">
         <el-image :src="pictureURL" fit="cover" class="collegePic"> </el-image>
       </div>
@@ -9,7 +11,9 @@
         <div class="collegeName" style="font-weight: bold; font-size: 40px">{{collegeName}}</div>
         <div class="collegeAddress" style="color: #99a9bf">{{collegeAddress}}</div>
         <div class="commentsNumber" style="font-size: 16px; margin-top: 10px">共{{totalComment}}条学生评价</div>
+
         <el-divider class="titleDivider"><i class="el-icon-price-tag"></i></el-divider>
+
         <div class="sort">
           <div style="font-weight: bold">排序</div>
           <el-radio-group v-model="radio1" >
@@ -18,7 +22,9 @@
             </div>
           </el-radio-group>
         </div>
+
         <el-divider class="titleDivider"><i class="el-icon-price-tag"></i></el-divider>
+
         <div class="grade">
           <div style="font-weight: bold">匹配的年级</div>
           <el-radio-group v-model="radio2">
@@ -27,14 +33,17 @@
             </div>
           </el-radio-group>
         </div>
+
         <el-divider class="titleDivider"><i class="el-icon-price-tag"></i></el-divider>
       </div>
+
       <div class="views">
         <div>4个校区符合你的要求</div>
         <div class="campusList">
           <briefComment v-for="(item, index) in briefCampus" :key="index"></briefComment>
         </div>
       </div>
+
     </div>
 
     <div class="cannotFind">
