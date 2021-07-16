@@ -1,6 +1,6 @@
 <template>
   <div>
-    <!-- <side/> -->
+    
 
   </div>
 </template>
@@ -8,10 +8,8 @@
 <script>
 
 export default {
-  name: "adminHome",
-  components:{
-    // Side,
-  },
+  name: "adminHome"
+  
 }
 </script>
 
