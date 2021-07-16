@@ -2,8 +2,7 @@
   <div class="campusWrapper">
     <div class="titleWrapper">
       <div class="campusNameWrapper">
-        <router-link to="/"><el-button round id="campusToCollege">返回</el-button></router-link>
-        <div class="campusName">九龙湖校区</div>
+        <div class="campusName">{{currentCampus}}</div>
         <div class="campusRate">
           <el-rate
               v-model="campusRate"
@@ -90,15 +89,14 @@ export default {
 
 
       campusList: [{ id: "九龙湖校区" }, { id: "四牌楼校区" }],
-      toCampus: null,
+      currentCampus: null,
     }
   },
   methods: {
 
   },
-
   created() {
-    this.toCampus = this.campusList.find(x => x.id === this.$route.params.id)
+    this.currentCampus = this.$route.params.campusName;
   }
 }
 </script>

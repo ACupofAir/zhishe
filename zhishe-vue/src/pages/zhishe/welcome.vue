@@ -145,7 +145,7 @@ export default {
     submit() {
       // console.log(this.input);
       if(this.input != ''){
-        location.href = '/college';
+        location.href = '/college/' + this.input;
       }
       else{
         this.$message({
@@ -296,8 +296,8 @@ export default {
   word-spacing: 10px;
   font-size: 15px;
   /* text-align: center;
-  background-color: white; 
-  text-shadow: 2px; 
+  background-color: white;
+  text-shadow: 2px;
 } */
 
 #search {
