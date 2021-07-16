@@ -12,7 +12,7 @@
         <span style="display:inline-block">知舍后台管理</span>
     </el-header>
     <el-container>
-      <el-aside width="260px" class="adminAsideWrapper"><Side></Side></el-aside>
+      <el-aside width="200px" class="adminAsideWrapper"><Side></Side></el-aside>
       <el-main class="adminMainWrapper">
         <router-view></router-view>
       </el-main>
