@@ -1,56 +1,35 @@
 <template>
-    <div class="campusInfo">
-        <el-column>
-            <el-row :span="30" v-for="(o, index) in 6" :key="o" :offset="index > 0 ? 10 : 0">
-                <el-card :body-style="{ padding: '10px' }">
-                    <img src="https://shadow.elemecdn.com/app/element/hamburger.9cf7b091-55e9-11e9-a976-7f4d0b07eef6.png"
-                        class="image">
-                    <div style="padding: 10px;">
-                        <span>东南大学</span>
-                        <div class="bottom clearfix">
-                            <el-button type="text" class="button">查看详情</el-button>
-                        </div>
-                    </div>
-                </el-card>
-            </el-row>
-        </el-column>
-
+    <div class="campusInfoWrapper">
+        <div class="briefInfo"></div>
+        <div class="briefComment"></div>
     </div>
 </template>
 
 <script>
     export default {
-        name: "campusInfo",
+        name: "campusInfo"
     }
 </script>
 
 <style scoped>
-
-    .bottom {
-        margin-top: 5px;
-        line-height: 12px;
+    .campusInfoWrapper {
+        height: 185px;
+        width: 900px;
+        /*border: #3c85cb solid 3px;*/
+        box-shadow: 0 0 20px #cac6c6;
+        /*margin-left: 30px;*/
     }
 
-    .button {
-        padding: 0;
-        float: right;
+    .briefInfo {
+        /*border: #3c85cb solid 3px;*/
+        height: 30px;
+        margin-top: 8px;
+
     }
 
-    .image {
-        width: 120px;
+    .briefComment {
+        margin-top: 10px;
+        /*border: #3c85cb solid 3px;*/
         height: 120px;
-        margin-top:20px;
-        margin-left:5px;
-        display: block;
-    }
-
-    .clearfix:before,
-    .clearfix:after {
-        display: table;
-        content: "";
-    }
-
-    .clearfix:after {
-        clear: both
     }
 </style>

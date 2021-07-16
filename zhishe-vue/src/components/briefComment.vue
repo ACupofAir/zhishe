@@ -16,7 +16,7 @@ export default {
 
 .briefCommentWrapper{
   height: 185px;
-  width: 700px;
+  width: 900px;
   /*border: #3c85cb solid 3px;*/
   box-shadow: 0 0 20px #cac6c6;
   /*margin-left: 30px;*/
@@ -25,7 +25,7 @@ export default {
 .briefInfo{
   /*border: #3c85cb solid 3px;*/
   height: 30px;
-  margin-top: 7px;
+  margin-top: 8px;
 
 }
 
