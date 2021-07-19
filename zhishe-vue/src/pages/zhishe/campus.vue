@@ -103,7 +103,7 @@ export default {
 
 <style scoped>
 
-/deep/ .el-rate__icon{
+::v-deep .el-rate__icon{
   font-size: 28px;
 }
 
