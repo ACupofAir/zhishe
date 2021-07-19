@@ -28,15 +28,16 @@
               width="50"
               trigger="hover"
               content="上传图片"
-              >
-            <el-button type="success" icon="el-icon-picture-outline" circle slot="reference" id="uploadButton"></el-button>
+          >
+            <el-button type="success" icon="el-icon-picture-outline" circle slot="reference"
+                       id="uploadButton"></el-button>
           </el-popover>
 
         </div>
         <el-divider class="titleDivider"><i class="el-icon-price-tag"></i></el-divider>
       </div>
       <div class="campusPhoto">
-        <el-image :src="pictureURL" fit="cover" class="campusPic"> </el-image>
+        <el-image :src="pictureURL" fit="cover" class="campusPic"></el-image>
       </div>
     </div>
     <div class="statisticWrapper">
@@ -53,7 +54,7 @@
       </div>
       <div class="campusLabel">
         <div>特色标签</div>
-        <div v-for="(item , index) in label" :key="index"  class="LabelItem">
+        <div v-for="(item , index) in label" :key="index" class="LabelItem">
           <i class="el-icon-collection-tag"></i>
           {{item.labelName}}
         </div>
@@ -71,6 +72,7 @@
 
 <script>
 import briefComment from "@/components/briefComment";
+
 export default {
   name: "campus",
   components: {briefComment},
@@ -80,20 +82,21 @@ export default {
 
 
       campusRate: 3.7,
-      rate: [{rateTitle: "基础情况",rateScore: 3.8}, {rateTitle: "建筑情况",rateScore: 4.5}, {rateTitle: "位置情况",rateScore: 3.1}],
-      label: [{labelName:"独立卫浴"},{labelName:"自习室"}, {labelName:"WIFI"},
-        {labelName:"冰箱"},{labelName:"沙发"},{labelName:"洗衣机",},
-        {labelName:"空调"},{labelName:"烹饪"},{labelName:"阳台"}],
-      briefComment: [{id: 1},{id:2},{id: 1},{id:2}],
+      rate: [{rateTitle: "基础情况", rateScore: 3.8}, {rateTitle: "建筑情况", rateScore: 4.5}, {
+        rateTitle: "位置情况",
+        rateScore: 3.1
+      }],
+      label: [{labelName: "独立卫浴"}, {labelName: "自习室"}, {labelName: "WIFI"},
+        {labelName: "冰箱"}, {labelName: "沙发"}, {labelName: "洗衣机",},
+        {labelName: "空调"}, {labelName: "烹饪"}, {labelName: "阳台"}],
+      briefComment: [{id: 1}, {id: 2}, {id: 1}, {id: 2}],
 
 
-      campusList: [{ id: "九龙湖校区" }, { id: "四牌楼校区" }],
+      campusList: [{id: "九龙湖校区"}, {id: "四牌楼校区"}],
       currentCampus: null,
     }
   },
-  methods: {
-
-  },
+  methods: {},
   created() {
     this.currentCampus = this.$route.params.campusName;
   }
@@ -102,11 +105,12 @@ export default {
 
 <style scoped>
 
-::v-deep .el-rate__icon{
+::v-deep .el-rate__icon {
   font-size: 28px;
 }
+
 /*简评*/
-.briefCommentArea{
+.briefCommentArea {
   /*border: #3c85cb solid 2px;*/
   margin-top: 20px;
   margin-left: 120px;
@@ -114,9 +118,8 @@ export default {
 }
 
 
-
 /*---年级分布----*/
-.gradeDistribution{
+.gradeDistribution {
   margin-top: 20px;
   height: 200px;
   /*border: #2c3e50 solid 2px;*/
@@ -126,11 +129,11 @@ export default {
 /*----------*/
 
 /*----标签---*/
-.campusLabel{
+.campusLabel {
   margin-top: 30px;
 }
 
-.LabelItem{
+.LabelItem {
   display: inline-block;
   margin-top: 10px;
   margin-left: 20px;
@@ -141,45 +144,46 @@ export default {
 
 /*----统计-----*/
 
-.statisticWrapper{
+.statisticWrapper {
   font-size: 17px;
 }
-.basicScore{
+
+.basicScore {
   margin-top: 20px;
 }
 
-#basicScoreTitle{
+#basicScoreTitle {
   display: inline-block;
 }
 
-#basicStar{
+#basicStar {
   display: inline-block;
   margin-left: 16px;
 }
 
 /*---------*/
 
-#rateButton{
+#rateButton {
   position: absolute;
   top: 10px;
   left: 80px;
 }
 
-#uploadButton{
+#uploadButton {
   position: absolute;
   top: 10px;
   right: 80px;
 }
 
-.campusName{
+.campusName {
   margin-top: 45px;
 }
 
-.campusRate{
+.campusRate {
   margin-top: 15px;
 }
 
-.rateAndUpload{
+.rateAndUpload {
   /*border: #2c3e50 solid 2px;*/
   width: 320px;
   height: 50px;
@@ -187,61 +191,61 @@ export default {
   position: absolute;
 }
 
-.titleDivider{
+.titleDivider {
   margin-top: 110px;
 }
 
 
-.campusNameWrapper{
+.campusNameWrapper {
   grid-area: campusNameWrapper;
   /*border: #2c3e50 solid 2px;*/
 }
 
-.campusPhoto{
+.campusPhoto {
   grid-area: campusPhoto;
 }
-.campusPic{
+
+.campusPic {
   height: 230px;
   border-radius: 10px;
 }
 
 
-#campusToCollege{
+#campusToCollege {
   position: absolute;
   left: 5px;
   margin-top: 10px;
 }
 
 
-
 /*整体布局*/
-  .campusWrapper{
-    display: grid;
-    grid-template-columns: 320px 1fr;
-    grid-template-rows: 230px auto;
-    grid-template-areas:
+.campusWrapper {
+  display: grid;
+  grid-template-columns: 320px 1fr;
+  grid-template-rows: 230px auto;
+  grid-template-areas:
       "titleWrapper titleWrapper"
       "statisticWrapper campusCommentWrapper";
-  }
+}
 
 
-  .titleWrapper{
-    grid-area: titleWrapper;
-    /*border: #99a9bf solid 2px;*/
-    display: grid;
-    grid-template-columns: 320px 1fr;
-    grid-template-areas: "campusNameWrapper campusPhoto";
-  }
+.titleWrapper {
+  grid-area: titleWrapper;
+  /*border: #99a9bf solid 2px;*/
+  display: grid;
+  grid-template-columns: 320px 1fr;
+  grid-template-areas: "campusNameWrapper campusPhoto";
+}
 
-  .statisticWrapper{
-    grid-area: statisticWrapper;
-    /*border: #99a9bf solid 2px;*/
-    margin-top: 20px;
-  }
+.statisticWrapper {
+  grid-area: statisticWrapper;
+  /*border: #99a9bf solid 2px;*/
+  margin-top: 20px;
+}
 
-  .campusCommentWrapper{
-    grid-area: campusCommentWrapper;
-    /*border: #99a9bf solid 2px;*/
+.campusCommentWrapper {
+  grid-area: campusCommentWrapper;
+  /*border: #99a9bf solid 2px;*/
 
-  }
+}
 </style>

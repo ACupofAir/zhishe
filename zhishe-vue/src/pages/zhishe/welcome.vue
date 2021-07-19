@@ -4,7 +4,7 @@
       <div id="upContainer">
         <div id="mark">
           <div id="markLogo">
-            <img src="../../assets/logo.png" alt="mark" v-on:click="toLogin" />
+            <img src="../../assets/logo.png" alt="mark" v-on:click="toLogin"/>
           </div>
 
           <!-- <img src="../../assets/logo.png" alt="mark"/> -->
@@ -16,16 +16,16 @@
         </div>
         <div id="slogan">
           <div id="sloganContent">
-            <img src="../../assets/slogan.png" alt="slogan" />
+            <img src="../../assets/slogan.png" alt="slogan"/>
           </div>
         </div>
         <div id="search">
           <div id="searchInput">
             <el-input
-              placeholder="搜索你的学校"
-              suffix-icon="el-icon-search"
-              v-model="input"
-              v-on:keyup.enter.native="submit"
+                placeholder="搜索你的学校"
+                suffix-icon="el-icon-search"
+                v-model="input"
+                v-on:keyup.enter.native="submit"
             >
             </el-input>
             <!-- <input type="text" v-on:keyup.enter = "submit"/> -->
@@ -43,10 +43,10 @@
           <div id="labelContent">
             <el-checkbox-group v-model="checkboxGroup" @change="updateRank">
               <Label
-                v-for="(item, index) in labelNames"
-                :key="index"
-                :msg="item.name"
-                class="labelBox"
+                  v-for="(item, index) in labelNames"
+                  :key="index"
+                  :msg="item.name"
+                  class="labelBox"
               ></Label>
             </el-checkbox-group>
           </div>
@@ -55,10 +55,10 @@
           <div id="rankText">最符合条件的学校</div>
           <div id="rankContent">
             <record
-              v-for="(item, index) in collegeAndRate"
-              :key="index"
-              :msg="item.college"
-              :value="item.rate"
+                v-for="(item, index) in collegeAndRate"
+                :key="index"
+                :msg="item.college"
+                :value="item.rate"
             ></record>
           </div>
         </div>
@@ -83,51 +83,48 @@ export default {
       checkboxGroup: [],
       test: null,
       collegeAndRate: [
-        { college: "东南大学", rate: 3.9 },
-        { college: "南京大学", rate: 3.8 },
-        { college: "哈尔滨工业大学", rate: 1.8 },
-        { college: "华中科技大学", rate: 4.0 },
-        { college: "天津大学", rate: 3.7 },
+        {college: "东南大学", rate: 3.9},
+        {college: "南京大学", rate: 3.8},
+        {college: "哈尔滨工业大学", rate: 1.8},
+        {college: "华中科技大学", rate: 4.0},
+        {college: "天津大学", rate: 3.7},
       ],
       labelNames: [
-        { name: "健身房" },
-        { name: "空调" },
-        { name: "洗衣机" },
-        { name: "可烹饪" },
-        { name: "室外阳台" },
-        { name: "独立卫浴" },
-        { name: "自习室" },
+        {name: "健身房"},
+        {name: "空调"},
+        {name: "洗衣机"},
+        {name: "可烹饪"},
+        {name: "室外阳台"},
+        {name: "独立卫浴"},
+        {name: "自习室"},
       ],
     };
   },
   methods: {
     updateRank() {
-      if(this.checkboxGroup.length != 0)
-      {
+      if (this.checkboxGroup.length != 0) {
         this.collegeAndRate = [
-        { college: "北京大学", rate: 5.0 },
-        { college: "清华大学", rate: 4.0 },
-        { college: "东北大学", rate: 3.0 },
-        { college: "武汉大学", rate: 2.0 },
-        { college: "南开大学", rate: 1.0 },
-      ];
-      }
-      else{
+          {college: "北京大学", rate: 5.0},
+          {college: "清华大学", rate: 4.0},
+          {college: "东北大学", rate: 3.0},
+          {college: "武汉大学", rate: 2.0},
+          {college: "南开大学", rate: 1.0},
+        ];
+      } else {
         this.collegeAndRate = [
-        { college: "东南大学", rate: 3.9 },
-        { college: "南京大学", rate: 3.8 },
-        { college: "哈尔滨工业大学", rate: 1.8 },
-        { college: "华中科技大学", rate: 4.0 },
-        { college: "天津大学", rate: 3.7 },
-      ]
+          {college: "东南大学", rate: 3.9},
+          {college: "南京大学", rate: 3.8},
+          {college: "哈尔滨工业大学", rate: 1.8},
+          {college: "华中科技大学", rate: 4.0},
+          {college: "天津大学", rate: 3.7},
+        ]
       }
     },
     submit() {
       // console.log(this.input);
-      if(this.input != ''){
+      if (this.input != '') {
         location.href = '/college/' + this.input;
-      }
-      else{
+      } else {
         this.$message({
           message: "请输入内容",
           type: "warning",
@@ -139,7 +136,7 @@ export default {
       location.href = "/adminLogin";
     },
   },
-  
+
 };
 </script>
 
@@ -339,6 +336,7 @@ export default {
   right: 0px;
   left: 0px;
 }
+
 #labelContent {
   position: absolute;
   bottom: 0px;
@@ -350,6 +348,7 @@ export default {
   line-height: 60px;
   /* background-color: #3c85cb; */
 }
+
 #rankText {
   color: #3c85cb;
   font-size: 35px;

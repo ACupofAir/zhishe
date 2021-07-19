@@ -38,7 +38,6 @@
     </div>
 
 
-
     <!-- Four ckeck boxes -->
     <div class="fourChecks">
 
@@ -82,7 +81,6 @@
         </div>
       </div>
     </div>
-
 
 
     <!-- specialTags -->
@@ -181,8 +179,6 @@
     </div>
 
 
-
-
     <!-- shortComment -->
     <div class="shortComment">
       <div class="subTitle">
@@ -236,109 +232,109 @@
 </template>
 
 <script>
-  export default {
-    name: "comment",
-    data: () => {
-      return {
-        basicInfoScore: 3,
-        buildingScore: 3,
-        locationScore: 3,
-        yearIn: "",
-        gradeNum: 0,
-        gradeOptions: [{
-          value: '选项1',
-          label: '大一'
-        }, {
-          value: '选项2',
-          label: '大二'
-        }, {
-          value: '选项3',
-          label: '大三'
-        }, {
-          value: '选项4',
-          label: '大四'
-        }, {
-          value: '选项5',
-          label: '研究生'
-        }, {
-          value: '选项6',
-          label: '博士生'
-          }],
-        gradeValue: '',
-        scale: 0,
-        isRecommend: true,
-        hasRefrigerator: false,
-        hasSofa: false,
-        hasWasher: false,
-        hasAirCool: false,
-        hasCooker: false,
-        hasBalcony: false,
-        hasWifi: false,
-        hasBathroom: false,
-        hasToilet: false,
-        shortComment: "",
-        email: ''
-      }
+export default {
+  name: "comment",
+  data: () => {
+    return {
+      basicInfoScore: 3,
+      buildingScore: 3,
+      locationScore: 3,
+      yearIn: "",
+      gradeNum: 0,
+      gradeOptions: [{
+        value: '选项1',
+        label: '大一'
+      }, {
+        value: '选项2',
+        label: '大二'
+      }, {
+        value: '选项3',
+        label: '大三'
+      }, {
+        value: '选项4',
+        label: '大四'
+      }, {
+        value: '选项5',
+        label: '研究生'
+      }, {
+        value: '选项6',
+        label: '博士生'
+      }],
+      gradeValue: '',
+      scale: 0,
+      isRecommend: true,
+      hasRefrigerator: false,
+      hasSofa: false,
+      hasWasher: false,
+      hasAirCool: false,
+      hasCooker: false,
+      hasBalcony: false,
+      hasWifi: false,
+      hasBathroom: false,
+      hasToilet: false,
+      shortComment: "",
+      email: ''
+    }
+  },
+  methods: {
+    submitForm(formName) {
+      this.$refs[formName].validate((valid) => {
+        if (valid) {
+          alert('submit!');
+        } else {
+          console.log('error submit!!');
+          return false;
+        }
+      });
     },
-    methods: {
-      submitForm(formName) {
-        this.$refs[formName].validate((valid) => {
-          if (valid) {
-            alert('submit!');
-          } else {
-            console.log('error submit!!');
-            return false;
-          }
-        });
-      },
-      resetForm(formName) {
-        this.$refs[formName].resetFields();
-      }
+    resetForm(formName) {
+      this.$refs[formName].resetFields();
     }
   }
+}
 </script>
 
 <style scoped>
-  .el-row {
-    margin-bottom: 20px;
-    /* box-shadow: 0 2px 4px rgba(0, 0, 0, .12), 0 0 6px rgba(0, 0, 0, .04) */
-  }
+.el-row {
+  margin-bottom: 20px;
+  /* box-shadow: 0 2px 4px rgba(0, 0, 0, .12), 0 0 6px rgba(0, 0, 0, .04) */
+}
 
-  .el-col {
-    border-radius: 4px;
-  }
+.el-col {
+  border-radius: 4px;
+}
 
-  .bg-purple-dark {
-    background: #99a9bf;
-  }
+.bg-purple-dark {
+  background: #99a9bf;
+}
 
-  .bg-purple {
-    background: #d3dce6;
-  }
+.bg-purple {
+  background: #d3dce6;
+}
 
-  .bg-purple-light {
-    background: #e5e9f2;
-  }
+.bg-purple-light {
+  background: #e5e9f2;
+}
 
-  .grid-content {
-    border-radius: 4px;
-    min-height: 36px;
-  }
+.grid-content {
+  border-radius: 4px;
+  min-height: 36px;
+}
 
-  .row-bg {
-    padding: 10px 0;
-    background-color: #f9fafc;
-  }
+.row-bg {
+  padding: 10px 0;
+  background-color: #f9fafc;
+}
 
-  .commentPage {
-    display: grid;
-    padding-top: 120px;
-    padding-left: 22%;
-    padding-right: 22%;
-    padding-bottom: 120px;
-    row-gap: 120px;
+.commentPage {
+  display: grid;
+  padding-top: 120px;
+  padding-left: 22%;
+  padding-right: 22%;
+  padding-bottom: 120px;
+  row-gap: 120px;
 
-    grid-template-areas:
+  grid-template-areas:
       "threeScores"
       "fourChecks"
       "specialTags"
@@ -348,226 +344,226 @@
       "buttonBox";
 
 
-  }
+}
 
 
-  .threeScores {
-    grid-area: threeScores;
+.threeScores {
+  grid-area: threeScores;
 
-  }
+}
 
-  .fourChecks {
-    grid-area: fourChecks;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    grid-template-rows: 1fr 1fr;
+.fourChecks {
+  grid-area: fourChecks;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
 
-    grid-template-areas:
+  grid-template-areas:
       "yearIn grade"
       "scale isRecommend";
 
-    row-gap: 20px;
-    column-gap: 80px;
-  }
+  row-gap: 20px;
+  column-gap: 80px;
+}
 
-  .specialTags {
-    grid-area: specialTags;
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    grid-template-rows: 1fr 1fr 1fr;
+.specialTags {
+  grid-area: specialTags;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: 1fr 1fr 1fr;
 
-    grid-template-areas:
+  grid-template-areas:
       "refrigerator sofa washer"
       "airConditionor cooker balcony"
       "wifi bathroom toilet";
 
-    row-gap: 20px;
-    column-gap: 60px;
+  row-gap: 20px;
+  column-gap: 60px;
 
-  }
+}
 
-  .tag {
-    display: grid;
+.tag {
+  display: grid;
 
-    grid-template-columns: 1fr 1fr;
-    border-radius: 8px;
+  grid-template-columns: 1fr 1fr;
+  border-radius: 8px;
 
-    column-gap: 80px;
+  column-gap: 80px;
 
-    grid-template-areas: "tagLeft tagRight";
-  }
+  grid-template-areas: "tagLeft tagRight";
+}
 
-  .tagLeft {
-    grid-area: tagLeft;
-    border-radius: 8px;
-  }
+.tagLeft {
+  grid-area: tagLeft;
+  border-radius: 8px;
+}
 
-  .tagRight {
-    grid-area: tagRight;
-    border-radius: 8px;
-  }
+.tagRight {
+  grid-area: tagRight;
+  border-radius: 8px;
+}
 
-  .refrigerator {
-    grid-area: refrigerator;
-    box-shadow: 0 9px 9px rgba(0, 0, 0, .12), 0 0 6px rgba(0, 0, 0, .04);
-    border-radius: 8px;
-  }
+.refrigerator {
+  grid-area: refrigerator;
+  box-shadow: 0 9px 9px rgba(0, 0, 0, .12), 0 0 6px rgba(0, 0, 0, .04);
+  border-radius: 8px;
+}
 
-  .sofa {
-    grid-area: sofa;
-    box-shadow: 0 9px 9px rgba(0, 0, 0, .12), 0 0 6px rgba(0, 0, 0, .04);
-    border-radius: 8px;
-  }
+.sofa {
+  grid-area: sofa;
+  box-shadow: 0 9px 9px rgba(0, 0, 0, .12), 0 0 6px rgba(0, 0, 0, .04);
+  border-radius: 8px;
+}
 
-  .washer {
-    grid-area: washer;
-    box-shadow: 0 9px 9px rgba(0, 0, 0, .12), 0 0 6px rgba(0, 0, 0, .04);
-    border-radius: 8px;
-  }
+.washer {
+  grid-area: washer;
+  box-shadow: 0 9px 9px rgba(0, 0, 0, .12), 0 0 6px rgba(0, 0, 0, .04);
+  border-radius: 8px;
+}
 
-  .airConditionor {
-    grid-area: airConditionor;
-    box-shadow: 0 9px 9px rgba(0, 0, 0, .12), 0 0 6px rgba(0, 0, 0, .04);
-    border-radius: 8px;
-  }
+.airConditionor {
+  grid-area: airConditionor;
+  box-shadow: 0 9px 9px rgba(0, 0, 0, .12), 0 0 6px rgba(0, 0, 0, .04);
+  border-radius: 8px;
+}
 
-  .cooker {
-    grid-area: cooker;
-    box-shadow: 0 9px 9px rgba(0, 0, 0, .12), 0 0 6px rgba(0, 0, 0, .04);
-    border-radius: 8px;
-  }
+.cooker {
+  grid-area: cooker;
+  box-shadow: 0 9px 9px rgba(0, 0, 0, .12), 0 0 6px rgba(0, 0, 0, .04);
+  border-radius: 8px;
+}
 
-  .balcony {
-    grid-area: balcony;
-    box-shadow: 0 9px 9px rgba(0, 0, 0, .12), 0 0 6px rgba(0, 0, 0, .04);
-    border-radius: 8px;
-  }
+.balcony {
+  grid-area: balcony;
+  box-shadow: 0 9px 9px rgba(0, 0, 0, .12), 0 0 6px rgba(0, 0, 0, .04);
+  border-radius: 8px;
+}
 
-  .wifi {
-    grid-area: wifi;
-    box-shadow: 0 9px 9px rgba(0, 0, 0, .12), 0 0 6px rgba(0, 0, 0, .04);
-    border-radius: 8px;
-  }
+.wifi {
+  grid-area: wifi;
+  box-shadow: 0 9px 9px rgba(0, 0, 0, .12), 0 0 6px rgba(0, 0, 0, .04);
+  border-radius: 8px;
+}
 
-  .bathroom {
-    grid-area: bathroom;
-    box-shadow: 0 9px 9px rgba(0, 0, 0, .12), 0 0 6px rgba(0, 0, 0, .04);
-    border-radius: 8px;
-  }
+.bathroom {
+  grid-area: bathroom;
+  box-shadow: 0 9px 9px rgba(0, 0, 0, .12), 0 0 6px rgba(0, 0, 0, .04);
+  border-radius: 8px;
+}
 
-  .toilet {
-    grid-area: toilet;
-    box-shadow: 0 9px 9px rgba(0, 0, 0, .12), 0 0 6px rgba(0, 0, 0, .04);
-    border-radius: 8px;
-  }
+.toilet {
+  grid-area: toilet;
+  box-shadow: 0 9px 9px rgba(0, 0, 0, .12), 0 0 6px rgba(0, 0, 0, .04);
+  border-radius: 8px;
+}
 
-  .shortComment {
-    grid-area: shortComment;
+.shortComment {
+  grid-area: shortComment;
 
-    box-shadow: 0 9px 9px rgba(0, 0, 0, .12), 0 0 6px rgba(0, 0, 0, .04);
-    border-radius: 8px;
-  }
+  box-shadow: 0 9px 9px rgba(0, 0, 0, .12), 0 0 6px rgba(0, 0, 0, .04);
+  border-radius: 8px;
+}
 
-  .photo {
-    grid-area: photo;
+.photo {
+  grid-area: photo;
 
-    box-shadow: 0 9px 9px rgba(0, 0, 0, .12), 0 0 6px rgba(0, 0, 0, .04);
-    border-radius: 8px;
-    grid-template-areas: "uploadImg submitEmail";
-    column-gap: 70px;
+  box-shadow: 0 9px 9px rgba(0, 0, 0, .12), 0 0 6px rgba(0, 0, 0, .04);
+  border-radius: 8px;
+  grid-template-areas: "uploadImg submitEmail";
+  column-gap: 70px;
 
-  }
+}
 
-  .email {
-    grid-area: email;
+.email {
+  grid-area: email;
 
-    box-shadow: 0 9px 9px rgba(0, 0, 0, .12), 0 0 6px rgba(0, 0, 0, .04);
-    border-radius: 8px;
-    row-gap: 0px;
-    column-gap: 0px;
-  }
+  box-shadow: 0 9px 9px rgba(0, 0, 0, .12), 0 0 6px rgba(0, 0, 0, .04);
+  border-radius: 8px;
+  row-gap: 0px;
+  column-gap: 0px;
+}
 
-  .checkBox {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
+.checkBox {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
 
-    box-shadow: 0 9px 9px rgba(0, 0, 0, .12), 0 0 6px rgba(0, 0, 0, .04);
-    border-radius: 8px;
-    grid-template-areas: "checkBoxLeft checkBoxRight";
-  }
+  box-shadow: 0 9px 9px rgba(0, 0, 0, .12), 0 0 6px rgba(0, 0, 0, .04);
+  border-radius: 8px;
+  grid-template-areas: "checkBoxLeft checkBoxRight";
+}
 
-  .checkBoxLeft {
-    grid-area: checkBoxLeft;
-    border-bottom-left-radius: 8px;
-    border-top-left-radius: 8px;
-    background-color: #0488D1;
-  }
+.checkBoxLeft {
+  grid-area: checkBoxLeft;
+  border-bottom-left-radius: 8px;
+  border-top-left-radius: 8px;
+  background-color: #0488D1;
+}
 
-  .checkBoxRight {
-    grid-area: checkBoxRight;
-    border-bottom-right-radius: 8px;
-    border-top-right-radius: 8px;
-  }
+.checkBoxRight {
+  grid-area: checkBoxRight;
+  border-bottom-right-radius: 8px;
+  border-top-right-radius: 8px;
+}
 
-  .imgBox {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
+.imgBox {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
 
-    box-shadow: 0 9px 9px rgba(0, 0, 0, .12), 0 0 6px rgba(0, 0, 0, .04);
-    border-radius: 8px;
-    grid-template-areas: "imgBoxLeft imgBoxRight";
-  }
+  box-shadow: 0 9px 9px rgba(0, 0, 0, .12), 0 0 6px rgba(0, 0, 0, .04);
+  border-radius: 8px;
+  grid-template-areas: "imgBoxLeft imgBoxRight";
+}
 
-  .imgBoxLeft {
-    grid-area: imgBoxLeft;
-    border-bottom-left-radius: 8px;
-  }
+.imgBoxLeft {
+  grid-area: imgBoxLeft;
+  border-bottom-left-radius: 8px;
+}
 
-  .imgBoxRight {
-    grid-area: imgBoxRight;
-    border-bottom-right-radius: 8px;
-  }
+.imgBoxRight {
+  grid-area: imgBoxRight;
+  border-bottom-right-radius: 8px;
+}
 
-  .buttonBox {
-    grid-area: buttonBox;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
+.buttonBox {
+  grid-area: buttonBox;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
 
-    grid-template-areas: "buttonBoxLeft buttonBoxRight";
-    column-gap: 50px;
-  }
+  grid-template-areas: "buttonBoxLeft buttonBoxRight";
+  column-gap: 50px;
+}
 
-  .buttonBoxLeft {
-    grid-area: buttonBoxLeft;
-  }
+.buttonBoxLeft {
+  grid-area: buttonBoxLeft;
+}
 
-  .buttonBoxRight {
-    grid-area: buttonBoxRight;
-  }
+.buttonBoxRight {
+  grid-area: buttonBoxRight;
+}
 
-  .yearIn {
-    grid-area: yearIn;
+.yearIn {
+  grid-area: yearIn;
 
-  }
+}
 
-  .grade {
-    grid-area: grade;
-  }
+.grade {
+  grid-area: grade;
+}
 
-  .scale {
-    grid-area: scale;
-  }
+.scale {
+  grid-area: scale;
+}
 
-  .isRecommend {
-    grid-area: isRecommend;
-  }
+.isRecommend {
+  grid-area: isRecommend;
+}
 
-  .subTitle {
-    background-color: #0488D1;
-    box-shadow: 0 9px 9px rgba(0, 0, 0, .12), 0 0 6px rgba(0, 0, 0, .04);
-    border-top-left-radius: 8px;
-    border-top-right-radius: 8px;
-    text-align: center;
-  }
+.subTitle {
+  background-color: #0488D1;
+  box-shadow: 0 9px 9px rgba(0, 0, 0, .12), 0 0 6px rgba(0, 0, 0, .04);
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+  text-align: center;
+}
 
 </style>

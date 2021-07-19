@@ -15,6 +15,7 @@
 <script>
 import Header from "@/components/homeheader";
 import Footer from "@/components/homefooter";
+
 export default {
   name: "home",
   components: {
@@ -45,7 +46,7 @@ export default {
   height: 90px;
 }
 
-.homecontent{
+.homecontent {
   /*grid-area: content;*/
   /*border: #222222 solid 2px;*/
   height: auto;
@@ -67,8 +68,9 @@ export default {
   left: 0;
   overflow: auto;
 }
+
 .box {
-  color: #222222;    /*字体颜色*/
+  color: #222222; /*字体颜色*/
   border-radius: 5px;
   font-size: 150%;
 }

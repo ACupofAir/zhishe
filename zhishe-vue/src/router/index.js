@@ -17,85 +17,85 @@ import AdminMain from "@/pages/admin/adminMain";
 Vue.use(VueRouter)
 
 const routes = [
-  {
-    path: '/',
-    name: 'Welcome',
-    component: Welcome
-  },
-  {
-    path: '/adminHome',
-    name: 'AdminHome',
-    component: AdminHome,
-    children: [
-      {
-        path: '/adminList',
-        name: 'AdminList',
-        component: AdminList
-      },
-      {
-        path: '/check',
-        name: 'Check',
-        component: Check
-      },
-      {
-        path: '/collegeManage/',
-        name: 'CollegeManage',
-        component: CollegeManage
-      },
-      {
-        path: '/log',
-        name: 'Log',
-        component: Log
-      },
-      {
-        path: '/adminMain',
-        name: 'AdminMain',
-        component: AdminMain,
-      },
-    ]
+    {
+        path: '/',
+        name: 'Welcome',
+        component: Welcome
+    },
+    {
+        path: '/adminHome',
+        name: 'AdminHome',
+        component: AdminHome,
+        children: [
+            {
+                path: '/adminList',
+                name: 'AdminList',
+                component: AdminList
+            },
+            {
+                path: '/check',
+                name: 'Check',
+                component: Check
+            },
+            {
+                path: '/collegeManage/',
+                name: 'CollegeManage',
+                component: CollegeManage
+            },
+            {
+                path: '/log',
+                name: 'Log',
+                component: Log
+            },
+            {
+                path: '/adminMain',
+                name: 'AdminMain',
+                component: AdminMain,
+            },
+        ]
 
-  },
+    },
 
-  {
-    path: '/adminLogin',
-    name: 'AdminLogin',
-    component: AdminLogin
-  },
-  {
-    path:'/comDetails',
-    name:'ComDetails',
-    component:ComDetails
-  },
+    {
+        path: '/adminLogin',
+        name: 'AdminLogin',
+        component: AdminLogin
+    },
+    {
+        path: '/comDetails',
+        name: 'ComDetails',
+        component: ComDetails
+    },
 
-  {
-    path: '/home',
-    name: 'Home',
-    component: Home,
-    children: [
-      {
-        path: '/college/:collegeName',
-        name: 'College',
-        component: College,
-      },
-      {
-        path: '/campus/:campusName',
-        name: 'Campus',
-        component: Campus
-      },
-      {
-        path: '/comment',
-        name: 'Comment',
-        component: Comment
-      }
+    {
+        path: '/home',
+        name: 'Home',
+        component: Home,
+        children: [
+            {
+                path: '/college/:collegeName',
+                name: 'College',
+                component: College,
+            },
+            {
+                path: '/campus/:campusName',
+                name: 'Campus',
+                component: Campus
+            },
+            {
+                path: '/comment',
+                name: 'Comment',
+                component: Comment
+            }
 
-    ]
-  }
+        ]
+    }
 ]
 
 const router = new VueRouter({
-  mode: 'history',
-  base: process.env.BASE_URL,
-  routes
+    mode: 'history',
+    base: process.env.BASE_URL,
+    routes
 })
 
 export default router

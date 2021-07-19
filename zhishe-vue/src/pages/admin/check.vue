@@ -43,7 +43,7 @@
         </el-table-column>
         <el-table-column fixed="right" label="操作" width="170">
           <template slot-scope="scope">
-            <el-button size="mini" @click="handleEdit(scope.$index, scope.row)" >Edit</el-button>
+            <el-button size="mini" @click="handleEdit(scope.$index, scope.row)">Edit</el-button>
             <el-button size="mini" type="danger" @click="handleDelete(scope.$index, scope.row)">Delete</el-button>
           </template>
         </el-table-column>
@@ -53,29 +53,28 @@
   </div>
 
 
-
 </template>
 
 <script>
-  export default {
-    name: "check",
-    methods: {
-      handleClick(row) {
-        console.log(row);
-      }
-    },
-    data() {
-      return {
-        input: '',
-        select: '',
-        tableData: [{
-          id: '000001',
-          college: '东南大学',
-          campus: '九龙湖校区',
-          isNew: '是',
-          email: '123456789@qq.com',
-          state: '审核通过',
-        },
+export default {
+  name: "check",
+  methods: {
+    handleClick(row) {
+      console.log(row);
+    }
+  },
+  data() {
+    return {
+      input: '',
+      select: '',
+      tableData: [{
+        id: '000001',
+        college: '东南大学',
+        campus: '九龙湖校区',
+        isNew: '是',
+        email: '123456789@qq.com',
+        state: '审核通过',
+      },
         {
           id: '000001',
           college: '东南大学',
@@ -157,30 +156,30 @@
           state: '审核通过',
         },
       ]
-      }
     }
   }
+}
 </script>
 
 <style scoped>
-  .searchHeader {
-    box-shadow: 0 0 20px #cac6c6;
-    height: 150px;
-    margin-top: 0px;
+.searchHeader {
+  box-shadow: 0 0 20px #cac6c6;
+  height: 150px;
+  margin-top: 0px;
 
-  }
+}
 
-  .checkList {
-    margin-top: 15px;
-    box-shadow: 0 0 20px #cac6c6;
-    height: 500px;
-  }
+.checkList {
+  margin-top: 15px;
+  box-shadow: 0 0 20px #cac6c6;
+  height: 500px;
+}
 
-  .el-select .el-input {
-    width: 130px;
-  }
+.el-select .el-input {
+  width: 130px;
+}
 
-  .input-with-select .el-input-group__prepend {
-    background-color: #fff;
-  }
+.input-with-select .el-input-group__prepend {
+  background-color: #fff;
+}
 </style>

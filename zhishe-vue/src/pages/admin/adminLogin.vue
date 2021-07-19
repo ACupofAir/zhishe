@@ -5,23 +5,23 @@
       <div id="middleSpace">
         <div id="loginText">登录</div>
         <div style="text-align: center">
-        <div id="account">
-          <el-input
-            placeholder="管理员账号"
-            prefix-icon="el-icon-user-solid"
-            v-model="input1"
-            class="inputAccount"
-          >
-          </el-input>
+          <div id="account">
+            <el-input
+                placeholder="管理员账号"
+                prefix-icon="el-icon-user-solid"
+                v-model="input1"
+                class="inputAccount"
+            >
+            </el-input>
           </div>
         </div>
         <div id="password">
           <el-input
-            placeholder="管理员密码"
-            prefix-icon="el-icon-key"
-            v-model="input2"
-            show-password
-            class="inputPassword"
+              placeholder="管理员密码"
+              prefix-icon="el-icon-key"
+              v-model="input2"
+              show-password
+              class="inputPassword"
           >
           </el-input>
         </div>
@@ -42,10 +42,10 @@
             <el-dialog title="注册" :visible.sync="registerForm">
               <el-form :model="form">
                 <el-form-item label="账户名称" :label-width="formLabelWidth">
-                  <el-input v-model="form.name" autocomplete="off"> </el-input>
+                  <el-input v-model="form.name" autocomplete="off"></el-input>
                 </el-form-item>
                 <el-form-item label="账户密码" :label-width="formLabelWidth">
-                  <el-input v-model="form.code" autocomplete="off"> </el-input>
+                  <el-input v-model="form.code" autocomplete="off"></el-input>
                 </el-form-item>
                 <el-form-item label="邀请码" :label-width="formLabelWidth">
                   <el-input v-model="form.lisence" autocomplete="off">
@@ -66,13 +66,13 @@
               找到我们
             </el-button>
             <el-dialog
-              title="我们的家"
-              :visible.sync="openForm"
-              width="580px"
-              top="8px"
+                title="我们的家"
+                :visible.sync="openForm"
+                width="580px"
+                top="8px"
             >
               <p style="font-size: 25px">河底摸鱼工作室(qq群)</p>
-              <img src="../../assets/publicity.jpg" alt="mark" />
+              <img src="../../assets/publicity.jpg" alt="mark"/>
             </el-dialog>
           </div>
         </div>
@@ -120,12 +120,12 @@ export default {
       //   return;
       // }
       // if (this.input1 === "rains" && this.input2 === "123") {
-        // this.$message({
-        //   message: "登录成功！",
-        //   type: "success",
-        // });
-        location.href = "/adminMain";
-        // console.log(0);
+      // this.$message({
+      //   message: "登录成功！",
+      //   type: "success",
+      // });
+      location.href = "/adminMain";
+      // console.log(0);
       // }
     },
     open() {
@@ -176,10 +176,12 @@ export default {
   background: url("../../assets/bg02.jpg");
   background-size: cover;
 }
+
 #upSpace {
   grid-area: upSpace;
   /* position: absolute; */
 }
+
 #middle {
   grid-area: middle;
   /* position: absolute; */
@@ -196,13 +198,14 @@ export default {
     "password"
     "buttonArea"
     "loginService";
-  position: absolute; 
+  position: absolute;
   top: 0px;
   bottom: 0px;
   left: 0px;
   right: 0px;
   border: wheat solid 2px; */
 }
+
 #middleSpace {
   display: grid;
   grid-template-columns: 100%;
@@ -220,6 +223,7 @@ export default {
   right: 0px;
   /* border: black solid 2px; */
 }
+
 #loginText {
   grid-area: loginText;
   color: white;
@@ -234,6 +238,7 @@ export default {
   /* border: wheat solid 2px; */
   font-size: 30px;
 }
+
 /* #texts{
   border: wheat solid 2px;
   position: absolute ;
@@ -251,15 +256,16 @@ export default {
   /* position: absolute; */
   top: 0px;
   bottom: 0px;
-  
+
   margin-left: 33%;
   margin-right: 33%;
   /* width:30%; */
   /* border: wheat solid 2px; */
   /* width: 600px; */
 }
+
 /* .inputAccount >>> input {
-  background-color: rgb(238, 230, 228); 
+  background-color: rgb(238, 230, 228);
   color: rgb(245, 245, 245);
 } */
 #password {
@@ -275,6 +281,7 @@ export default {
   /* width:600px; */
   /* border: wheat solid 2px; */
 }
+
 /* .inputPassword >>> input {
   background-color: rgb(238, 230, 228);
 } */
@@ -310,9 +317,10 @@ export default {
   margin-bottom: 0px;
   margin-left: 61%;
   margin-right: 10px;
-  width:100px;
+  width: 100px;
   /* border: wheat solid 2px; */
 }
+
 #loginService {
   grid-area: loginService;
   /* border: wheat solid 2px; */
@@ -322,13 +330,14 @@ export default {
   margin-left: 40%;
   margin-right: 0px;
   /* width:600px;  */
-  height:50px;
+  height: 50px;
   /* left:500px;
   top:20px; */
   /* color:white;
   box-shadow: 30 0 40px black;
   font-size: 16px; */
 }
+
 #serveText {
   color: white;
   text-shadow: 0 0 2px black;
@@ -341,6 +350,7 @@ export default {
   margin-right: 30%;
   /* border: wheat solid 2px; */
 }
+
 #textButton {
   /* position: absolute; */
   height: 50px;
@@ -350,6 +360,7 @@ export default {
   margin-right: 30%;
   /* border: wheat solid 2px; */
 }
+
 #downSpace {
   grid-area: downSpace;
   /* position: absolute; */

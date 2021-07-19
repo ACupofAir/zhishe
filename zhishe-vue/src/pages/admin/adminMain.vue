@@ -5,7 +5,7 @@
         <el-row :gutter="10">
           <el-card shadow="hover" style="height: 200px">
             <div class="user-info">
-              <img :src="admin_icon" class="user-avator" alt />
+              <img :src="admin_icon" class="user-avator" alt/>
               <span>
                 <div class="user-info-name">{{ admin_id }}</div>
                 <div class="user-info-cont">{{ role }}</div>
@@ -25,19 +25,19 @@
             </template>
             <el-col :span="5">
               <div
-                v-for="(item, index) in labelCons"
-                :key="index"
-                class="labelPro"
+                  v-for="(item, index) in labelCons"
+                  :key="index"
+                  class="labelPro"
               >
                 {{ item.name }}
               </div>
             </el-col>
             <el-col :span="18">
               <el-progress
-                v-for="(item, index) in labelPros"
-                :key="index"
-                :percentage="item.num"
-                :stroke-width= 8
+                  v-for="(item, index) in labelPros"
+                  :key="index"
+                  :percentage="item.num"
+                  :stroke-width=8
               ></el-progress>
             </el-col>
           </el-card>
@@ -64,39 +64,41 @@
             <div style="text-align: left">
               <span> 待办事项 </span>
               <el-button
-                style="float: right; padding: 3px 0"
-                type="text"
-                v-on:click="addList"
+                  style="float: right; padding: 3px 0"
+                  type="text"
+                  v-on:click="addList"
               >
                 添加
               </el-button>
             </div>
             <el-dialog
-              title="添加事项"
-              :visible.sync="visible"
-              style="margin-top: 200px"
+                title="添加事项"
+                :visible.sync="visible"
+                style="margin-top: 200px"
             >
               <el-input v-model="input" placeholder="请输入内容"
-              v-on:keyup.enter.native="edit">
+                        v-on:keyup.enter.native="edit">
               </el-input>
               <div style="text-align: right">
                 <el-button
-                  size="mini"
-                  type="text"
-                  @click="visible = false"
-                  style="margin-top: 30px"
-                  >取消</el-button
+                    size="mini"
+                    type="text"
+                    @click="visible = false"
+                    style="margin-top: 30px"
+                >取消
+                </el-button
                 >
                 <el-button type="primary" size="mini" v-on:click="edit"
-                  >确定</el-button
+                >确定
+                </el-button
                 >
               </div>
             </el-dialog>
           </template>
           <el-table
-            :show-header="false"
-            :data="todoList"
-            style="width: 100%; height: 283px"
+              :show-header="false"
+              :data="todoList"
+              style="width: 100%; height: 283px"
           >
             <el-table-column width="40">
               <template #default="scope">
@@ -106,8 +108,8 @@
             <el-table-column>
               <template #default="scope">
                 <div
-                  class="todo-item"
-                  :class="{
+                    class="todo-item"
+                    :class="{
                     'todo-item-del': scope.row.status,
                   }"
                 >
@@ -120,14 +122,14 @@
                 <span>
                   <template>
                     <el-popconfirm
-                      title="确定删除这个事项吗？"
-                      @confirm="remove(scope.$index)"
+                        title="确定删除这个事项吗？"
+                        @confirm="remove(scope.$index)"
                     >
                       <el-button
-                        size="small"
-                        icon="el-icon-delete"
-                        circle
-                        slot="reference"
+                          size="small"
+                          icon="el-icon-delete"
+                          circle
+                          slot="reference"
                       >
                       </el-button>
                     </el-popconfirm>
@@ -144,8 +146,8 @@
         <el-card shadow="hover" style="height: 120px">
           <template>
             <div>
-              <div >青春是一个短暂的美梦, 当你醒来时, 它早已消失无踪</div>
-              <el-divider ></el-divider>
+              <div>青春是一个短暂的美梦, 当你醒来时, 它早已消失无踪</div>
+              <el-divider></el-divider>
               <div style="margin-top: -7px">希望风雨过后，发量依旧如初</div>
             </div>
           </template>
@@ -181,32 +183,32 @@ export default {
       admin_id: "rains",
       role: "超级管理员",
       scanMsg: [
-        { name: "浏览总数", icon: "el-icon-user-solid", num: 1234 },
-        { name: "学校总数", icon: "el-icon-school", num: 25 },
-        { name: "评论总数", icon: "el-icon-edit-outline", num: 999 },
+        {name: "浏览总数", icon: "el-icon-user-solid", num: 1234},
+        {name: "学校总数", icon: "el-icon-school", num: 25},
+        {name: "评论总数", icon: "el-icon-edit-outline", num: 999},
       ],
       todoList: [
-        { title: "看看今天的首页", status: true },
-        { title: "看看今天的审核请求", status: false },
-        { title: "我要审核100条评论！", status: false },
+        {title: "看看今天的首页", status: true},
+        {title: "看看今天的审核请求", status: false},
+        {title: "我要审核100条评论！", status: false},
         // { title: "再看看有多少管理员", status: false },
-        { title: "学校是不是有点少", status: true },
+        {title: "学校是不是有点少", status: true},
         // { title: "日志里面有内容吗", status: true },
       ],
       listNum: 4,
       labelCons: [
-        { name: "批小将" },
-        { name: "社畜" },
-        { name: "二刺螈" },
-        { name: "拳师" },
-        { name: "大学生" },
+        {name: "批小将"},
+        {name: "社畜"},
+        {name: "二刺螈"},
+        {name: "拳师"},
+        {name: "大学生"},
       ],
       labelPros: [
-        { num: 50 },
-        { num: 5 },
-        { num: 60 },
-        { num: 10 },
-        { num: 80 },
+        {num: 50},
+        {num: 5},
+        {num: 60},
+        {num: 10},
+        {num: 80},
       ],
     };
   },
@@ -216,7 +218,7 @@ export default {
         const h = this.$createElement;
         this.$notify({
           title: "添加失败",
-          message: h("e", { style: "color: #3c85cb" }, "待办事件数达上限"),
+          message: h("e", {style: "color: #3c85cb"}, "待办事件数达上限"),
         });
       } else {
         this.visible = true;
@@ -225,7 +227,7 @@ export default {
     },
     edit() {
       this.visible = false;
-      this.listNum = this.todoList.push({ title: this.input, status: false });
+      this.listNum = this.todoList.push({title: this.input, status: false});
       this.input = "";
     },
     remove(line) {
@@ -282,9 +284,11 @@ export default {
   line-height: 80px;
   color: #fff;
 }
+
 .grid-con-1 .grid-con-icon {
   background: #3c85cb;
 }
+
 .todo-item {
   font-size: 14px;
 }
@@ -293,10 +297,12 @@ export default {
   text-decoration: line-through;
   color: #999;
 }
+
 .schart {
   width: 100%;
   height: 300px;
 }
+
 .user-info {
   /* display: flex; */
   /* position: absolute; */

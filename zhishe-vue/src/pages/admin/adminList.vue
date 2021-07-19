@@ -6,7 +6,7 @@
       <el-table v-loading="loading" :data="tableData" style="width: 100%" height="600">
         <el-table-column fixed prop="icon" label="头像" width="120">
           <template slot-scope="scope">
-            <img :src="scope.row.icon" style="height: 50px" />
+            <img :src="scope.row.icon" style="height: 50px"/>
           </template>
         </el-table-column>
         <el-table-column prop="id" label="名称" width="140">
@@ -30,21 +30,21 @@
 </template>
 
 <script>
-  export default {
-    name: "adminLog",
-    data() {
-      return {
-        loading: false,
-        tableData: [{
-          icon: "https://gitee.com/thisisbadBao/imgrepo/raw/master/imgrepo1/20210715214908.jpeg",
-          id: '靠子',
-          setTime: '2021.07.09 17:33:25',
-          sex: '男',
-          approvedQuantity: 120,
-          failedQuantity: 2,
-          realName: '铁山靠',
-          phone: '#########',
-        },
+export default {
+  name: "adminLog",
+  data() {
+    return {
+      loading: false,
+      tableData: [{
+        icon: "https://gitee.com/thisisbadBao/imgrepo/raw/master/imgrepo1/20210715214908.jpeg",
+        id: '靠子',
+        setTime: '2021.07.09 17:33:25',
+        sex: '男',
+        approvedQuantity: 120,
+        failedQuantity: 2,
+        realName: '铁山靠',
+        phone: '#########',
+      },
         {
           icon: "https://gitee.com/thisisbadBao/imgrepo/raw/master/imgrepo1/20210715214908.jpeg",
           id: '靠子',
@@ -105,15 +105,15 @@
           realName: '铁山靠',
           phone: '#########',
         },
-        ]
-      }
+      ]
     }
-
   }
+
+}
 </script>
 
 <style scoped>
-  body {
-    margin: 0;
-  }
+body {
+  margin: 0;
+}
 </style>
