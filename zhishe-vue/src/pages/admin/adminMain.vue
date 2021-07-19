@@ -5,7 +5,7 @@
         <el-row :gutter="10">
           <el-card shadow="hover" style="height: 200px">
             <div class="user-info">
-              <img src="../../assets/bg02.jpg" class="user-avator" alt />
+              <img :src="admin_icon" class="user-avator" alt />
               <span>
                 <div class="user-info-name">{{ admin_id }}</div>
                 <div class="user-info-cont">{{ role }}</div>
@@ -37,7 +37,7 @@
                 v-for="(item, index) in labelPros"
                 :key="index"
                 :percentage="item.num"
-                stroke-width="8"
+                :stroke-width= 8
               ></el-progress>
             </el-col>
           </el-card>
@@ -76,7 +76,9 @@
               :visible.sync="visible"
               style="margin-top: 200px"
             >
-              <el-input v-model="input" placeholder="请输入内容"></el-input>
+              <el-input v-model="input" placeholder="请输入内容"
+              v-on:keyup.enter.native="edit">
+              </el-input>
               <div style="text-align: right">
                 <el-button
                   size="mini"
@@ -118,7 +120,7 @@
                 <span>
                   <template>
                     <el-popconfirm
-                      title="这是一段内容确定删除吗？"
+                      title="确定删除这个事项吗？"
                       @confirm="remove(scope.$index)"
                     >
                       <el-button
@@ -173,6 +175,7 @@ export default {
   name: "adminMain",
   data() {
     return {
+      admin_icon: require("../../assets/bg02.jpg"),
       input: "",
       visible: false,
       admin_id: "rains",
@@ -199,11 +202,11 @@ export default {
         { name: "大学生" },
       ],
       labelPros: [
-        { num: "50" },
-        { num: "5" },
-        { num: "60" },
-        { num: "10" },
-        { num: "80" },
+        { num: 50 },
+        { num: 5 },
+        { num: 60 },
+        { num: 10 },
+        { num: 80 },
       ],
     };
   },
