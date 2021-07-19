@@ -5,7 +5,7 @@
           <router-link to="/">
             <div class="logoWrapper">
               <img src="../../assets/logo.png" id="logo" style="display:inline-block; margin-top: 10px">
-              <img src="../../assets/zhishelogo.png" id="zhishelogo" style="display:inline-block">
+              <img src="../../assets/zhishelogo.png"  height="42" width="92" id="zhishelogo" style="display:inline-block">
             </div>
           </router-link>
         </span>
