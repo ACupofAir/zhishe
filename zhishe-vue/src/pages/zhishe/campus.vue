@@ -105,7 +105,6 @@ export default {
 ::v-deep .el-rate__icon{
   font-size: 28px;
 }
-
 /*简评*/
 .briefCommentArea{
   /*border: #3c85cb solid 2px;*/
