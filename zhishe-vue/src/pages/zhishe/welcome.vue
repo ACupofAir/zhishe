@@ -80,11 +80,11 @@ export default {
       input: "",
       checkboxGroup: [],
       collegeAndRate: [
-        { college: "东南大学", rate: "3.9" },
-        { college: "南京大学", rate: "3.8" },
-        { college: "哈尔滨工业大学", rate: "1.8" },
-        { college: "华中科技大学", rate: "4.0" },
-        { college: "天津大学", rate: "3.7" },
+        { college: "东南大学", rate: 3.9 },
+        { college: "南京大学", rate: 3.8 },
+        { college: "哈尔滨工业大学", rate: 1.8 },
+        { college: "华中科技大学", rate: 4.0 },
+        { college: "天津大学", rate: 3.7 },
       ],
       labelNames: [
         { name: "健身房" },

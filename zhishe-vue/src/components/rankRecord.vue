@@ -24,7 +24,7 @@
 export default {
     props:{
         msg:String,
-        value: String,
+        value: Number,
     },
     data(){
         return{
@@ -33,7 +33,7 @@ export default {
     },
     methods:{
         enter(){
-            location.href = "/college";
+            location.href = "/college/" + this.msg;
         }
     }
 }
