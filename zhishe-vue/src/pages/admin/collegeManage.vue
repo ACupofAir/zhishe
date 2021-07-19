@@ -13,7 +13,7 @@
           </el-menu-item>
         </el-menu>
       </el-col>
-      </el-row>
+
     </div>
 
     <div class="collegeDetail">
@@ -51,7 +51,7 @@
               </el-menu-item>
             </el-menu>
           </el-col>
-          </el-row>
+
         </div>
         <!-- TODO: Here need a v-for to display all the comments  -->
         <div class="commentList">
