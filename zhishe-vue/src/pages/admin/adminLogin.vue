@@ -124,7 +124,7 @@ export default {
         //   message: "登录成功！",
         //   type: "success",
         // });
-        location.href = "/adminHome";
+        location.href = "/adminMain";
         // console.log(0);
       // }
     },
