@@ -9,7 +9,8 @@
 
           <!-- <img src="../../assets/logo.png" alt="mark"/> -->
           <div id="markMark">
-            <img src="../../assets/mark.png" alt="mark" />
+            <img src="../../assets/zhishelogo.png" alt="mark" height="42" width="92"
+            />
           </div>
           <!-- <img src="../../assets/mark.png" alt="mark"/> -->
         </div>
@@ -40,7 +41,7 @@
         <div id="downerLabel">
           <div id="labelText">选择你喜欢的宿舍特点</div>
           <div id="labelContent">
-            <el-checkbox-group v-model="checkboxGroup" v-on:click="change()">
+            <el-checkbox-group v-model="checkboxGroup" @change="updateRank">
               <Label
                 v-for="(item, index) in labelNames"
                 :key="index"
@@ -69,6 +70,7 @@
 <script>
 import Label from "../../components/searchLabel.vue";
 import Record from "../../components/rankRecord.vue";
+// import axios from "axios"
 export default {
   name: "welcome",
   components: {
@@ -79,6 +81,7 @@ export default {
     return {
       input: "",
       checkboxGroup: [],
+      test: null,
       collegeAndRate: [
         { college: "东南大学", rate: 3.9 },
         { college: "南京大学", rate: 3.8 },
@@ -98,7 +101,27 @@ export default {
     };
   },
   methods: {
-    change() {},
+    updateRank() {
+      if(this.checkboxGroup.length != 0)
+      {
+        this.collegeAndRate = [
+        { college: "北京大学", rate: 5.0 },
+        { college: "清华大学", rate: 4.0 },
+        { college: "东北大学", rate: 3.0 },
+        { college: "武汉大学", rate: 2.0 },
+        { college: "南开大学", rate: 1.0 },
+      ];
+      }
+      else{
+        this.collegeAndRate = [
+        { college: "东南大学", rate: 3.9 },
+        { college: "南京大学", rate: 3.8 },
+        { college: "哈尔滨工业大学", rate: 1.8 },
+        { college: "华中科技大学", rate: 4.0 },
+        { college: "天津大学", rate: 3.7 },
+      ]
+      }
+    },
     submit() {
       // console.log(this.input);
       if(this.input != ''){
@@ -109,12 +132,14 @@ export default {
           message: "请输入内容",
           type: "warning",
         });
+        console.log(this.test);
       }
     },
     toLogin() {
       location.href = "/adminLogin";
     },
   },
+  
 };
 </script>
 
@@ -219,9 +244,9 @@ export default {
 #markMark {
   position: absolute;
   bottom: 0px;
-  top: 15px;
+  top: 8px;
   right: 150px;
-  left: 50px;
+  left: 42px;
   width: 80px;
   /* background-color: aqua; */
 }
@@ -264,8 +289,8 @@ export default {
   position: absolute;
   bottom: 0px;
   top: 60px;
-  right: 325px;
-  left: 325px;
+  right: 25%;
+  left: 25%;
   /* background-color: black ; */
 }
 

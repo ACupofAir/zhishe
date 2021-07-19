@@ -91,6 +91,22 @@ data() {
 
 <style scoped>
 
+.detailRate{
+/*border: #3c85cb solid 2px;*/
+}
+
+.detailName{
+  /*border: #3c85cb solid 2px;*/
+
+}
+
+.detailComment{
+  /*border: #3c85cb solid 2px;*/
+
+}
+
+
+
 ::v-deep .el-rate__icon{
   font-size: 35px;
 }
