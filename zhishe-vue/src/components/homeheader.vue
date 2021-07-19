@@ -130,7 +130,7 @@ export default {
 @media screen and (max-width: 590px){
   .iconWrapper{
     grid-area: icon;
-    border: black solid 3px;
+    /*border: black solid 3px;*/
     width: 200px;
     position: absolute;
     right: 2px;

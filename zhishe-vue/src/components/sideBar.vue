@@ -10,7 +10,7 @@
         active-text-color="#ffd04b"
         style="height: 100%">
       <router-link v-for="(item, ind) in sideItems" :key="ind" :to="item.routerIndex">
-        <el-menu-item :index="ind" style="margin-right: 100%;">
+        <el-menu-item :index="ind.toString()" style="margin-right: 100%;">
             <i :class="item.icon"></i>
             <span>{{item.title}}</span>
         </el-menu-item>
