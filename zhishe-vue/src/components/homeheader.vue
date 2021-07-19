@@ -4,7 +4,7 @@
       <router-link to="/">
         <div class="logoWrapper">
           <img src="../assets/logo.png" id="logo">
-          <img src="../assets/zhishelogo.png" id="zhishelogo">
+          <img src="../assets/zhishelogo.png" height="42" width="92" id="zhishelogo">
         </div>
       </router-link>
 
@@ -77,8 +77,8 @@ export default {
 }
 #zhishelogo{
   position: absolute;
-  top: 5px;
-  left: 57px;
+  top: -1px;
+  left: 55px;
 }
 .searchItem{
   width: 400px;

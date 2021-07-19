@@ -87,7 +87,6 @@ export default {
       briefComment: [{id: 1},{id:2},{id: 1},{id:2}],
 
 
-
       campusList: [{ id: "九龙湖校区" }, { id: "四牌楼校区" }],
       currentCampus: null,
     }
@@ -103,7 +102,7 @@ export default {
 
 <style scoped>
 
-/deep/ .el-rate__icon{
+::v-deep .el-rate__icon{
   font-size: 28px;
 }
 
