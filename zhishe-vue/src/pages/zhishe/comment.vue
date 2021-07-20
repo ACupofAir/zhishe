@@ -2,7 +2,7 @@
   <div class="commentPage">
     <!-- Three score items -->
     <div class="threeScores">
-      <el-row :gutter="60">
+      <el-row class="rowStyle" :gutter="60">
         <el-col :span="8">
           <div class="">宿舍基础情况</div>
         </el-col>
@@ -13,7 +13,7 @@
           </div>
         </el-col>
       </el-row>
-      <el-row :gutter="60">
+      <el-row class="rowStyle" :gutter="60">
         <el-col :span="8">
           <div class="">宿舍建筑情况</div>
         </el-col>
@@ -24,7 +24,7 @@
           </div>
         </el-col>
       </el-row>
-      <el-row :gutter="60">
+      <el-row class="rowStyle" :gutter="60">
         <el-col :span="8">
           <div class="">宿舍位置情况</div>
         </el-col>
@@ -356,6 +356,11 @@
 
   }
 
+  .rowStyle {
+    box-shadow: 0 9px 9px rgba(0, 0, 0, .12), 0 0 6px rgba(0, 0, 0, .04);
+    border-radius: 8px;
+  }
+
   .fourChecks {
     grid-area: fourChecks;
     display: grid;
@@ -490,6 +495,9 @@
   .checkBox {
     display: grid;
     grid-template-columns: 1fr 1fr;
+
+    height: 40px;
+    width: 350px;
 
     box-shadow: 0 9px 9px rgba(0, 0, 0, .12), 0 0 6px rgba(0, 0, 0, .04);
     border-radius: 8px;

@@ -1,6 +1,5 @@
 <template>
   <div class="colManagePage">
-
     <div class="collegeBar">
       <el-col :span="24">
         <h5 style="text-align: center;">学校列表</h5>
@@ -13,7 +12,6 @@
           </el-menu-item>
         </el-menu>
       </el-col>
-      </el-row>
     </div>
 
     <div class="collegeDetail">
@@ -26,14 +24,14 @@
               <span style="font-size: 30px; font-weight: bold;">
                 {{curCollege}}
               </span>
+              <el-row style="margin-bottom: 20px;">
+                <i class="el-icon-location-outline" style="font-weight: bold;">校区数量 {{curCollegeCampusNum}}</i>
+              </el-row>
+              <el-row>
+                <i class="el-icon-chat-dot-round" style="font-weight: bold;">评论数量 {{curCollegeCommentNum}}</i>
+              </el-row>
             </el-row>
-            <el-row style="margin-bottom: 20px;">
-              <i class="el-icon-location-outline" style="font-weight: bold;">校区数量 {{curCollegeCampusNum}}</i>
-            </el-row>
-            <el-row>
-              <i class="el-icon-chat-dot-round" style="font-weight: bold;">评论数量 {{curCollegeCommentNum}}</i>
-            </el-row>
-          </span>
+            </span>
         </span>
 
       </div>

@@ -75,23 +75,23 @@ data() {
 
 <style scoped>
 
-.detailRate{
-/*border: #3c85cb solid 2px;*/
+/* .detailRate{
+border: #3c85cb solid 2px;
 }
 
 .detailName{
-  /*border: #3c85cb solid 2px;*/
+  border: #3c85cb solid 2px;
 
 }
 
 .detailComment{
-  /*border: #3c85cb solid 2px;*/
+  border: #3c85cb solid 2px;
 
-}
+} */
 
 
 
-/deep/ .el-rate__icon{
+::deep .el-rate__icon{
   font-size: 35px;
 }
 </style>
