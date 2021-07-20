@@ -3,12 +3,11 @@ package com.zhisheserver.controller;
 
 import com.zhisheserver.entity.College;
 import com.zhisheserver.service.CollegeService;
+import org.apache.ibatis.annotations.Update;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
@@ -31,5 +30,12 @@ public class CollegeController {
     public List<College> list(){
         return this.collegeService.list();
     }
+
+    @GetMapping("/find/{name}")
+    public College getByName(@PathVariable("name") String name){
+        return this.collegeService.getByName(name);
+    }
+
+
 }
 

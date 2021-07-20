@@ -41,26 +41,24 @@
       </div>
     </div>
     <div class="statisticWrapper">
-      <div class="campusScore">
-        各项得分
-        <div v-for="(item, index) in rate" :key="index" class="basicScore">
-          <span id="basicScoreTitle">{{item.rateTitle}}</span>
-          <el-rate
-              v-model="item.rateScore"
-              disabled
-              id="basicStar">
-          </el-rate>
+      <div class="sort">
+        <div style="font-weight: bold; margin-bottom: 5px; margin-top: 5px;">排序</div>
+        <el-radio-group v-model="radio1">
+          <div class="rankItem" v-for="(item, index) in rankName" :key="index">
+          <el-radio :label="index">{{item.name}}</el-radio>
         </div>
+        </el-radio-group>
       </div>
-      <div class="campusLabel">
-        <div>特色标签</div>
-        <div v-for="(item , index) in label" :key="index" class="LabelItem">
-          <i class="el-icon-collection-tag"></i>
-          {{item.labelName}}
-        </div>
-      </div>
-      <div class="gradeDistribution">
-        <div style="border: #3c85cb solid 2px; border-radius: 10px">年级分布</div>
+
+      <el-divider class="titleDivider"><i class="el-icon-price-tag"></i></el-divider>
+
+      <div class="grade">
+        <div style="font-weight: bold; margin-bottom: 5px; margin-top: 5px">匹配的年级</div>
+        <el-radio-group v-model="radio2">
+          <div class="gradeItem" v-for="(item, index) in gradeName" :key="index">
+          <el-radio :label="index">{{item.name}}</el-radio>
+          </div>
+        </el-radio-group>
       </div>
     </div>
     <div class="campusCommentWrapper">
@@ -82,13 +80,12 @@ export default {
 
 
       campusRate: 3.7,
-      rate: [{rateTitle: "基础情况", rateScore: 3.8}, {rateTitle: "建筑情况", rateScore: 4.5}, {
-        rateTitle: "位置情况",
-        rateScore: 3.1
-      }],
-      label: [{labelName: "独立卫浴"}, {labelName: "自习室"}, {labelName: "WIFI"},
-        {labelName: "冰箱"}, {labelName: "沙发"}, {labelName: "洗衣机",},
-        {labelName: "空调"}, {labelName: "烹饪"}, {labelName: "阳台"}],
+      radio1: 0,
+      radio2: 0,
+
+      rankName: [{name: "校区名称"}, {name: "最多评价"}, {name: "最高评分"}],
+      gradeName: [{name: "所有年级"}, {name: "大一"}, {name: "大二"}, {name: "大三"},
+        {name: "大四"}, {name: "大五"}, {name: "研究生"}],
       briefComment: [{id: 1}, {id: 2}, {id: 1}, {id: 2}],
 
 
@@ -118,29 +115,16 @@ export default {
 }
 
 
-/*---年级分布----*/
-.gradeDistribution {
-  margin-top: 20px;
-  height: 200px;
-  /*border: #2c3e50 solid 2px;*/
+
+
+.gradeItem {
+  margin-top: 15px;
 }
 
-
-/*----------*/
-
-/*----标签---*/
-.campusLabel {
-  margin-top: 30px;
+.rankItem {
+  margin-top: 15px;
 }
 
-.LabelItem {
-  display: inline-block;
-  margin-top: 10px;
-  margin-left: 20px;
-  margin-bottom: 10px;
-}
-
-/*----------*/
 
 /*----统计-----*/
 
@@ -148,18 +132,6 @@ export default {
   font-size: 17px;
 }
 
-.basicScore {
-  margin-top: 20px;
-}
-
-#basicScoreTitle {
-  display: inline-block;
-}
-
-#basicStar {
-  display: inline-block;
-  margin-left: 16px;
-}
 
 /*---------*/
 

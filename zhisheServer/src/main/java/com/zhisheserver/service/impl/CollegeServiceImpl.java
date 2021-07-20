@@ -4,6 +4,7 @@ import com.zhisheserver.entity.College;
 import com.zhisheserver.mapper.CollegeMapper;
 import com.zhisheserver.service.CollegeService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 /**
@@ -17,4 +18,10 @@ import org.springframework.stereotype.Service;
 @Service
 public class CollegeServiceImpl extends ServiceImpl<CollegeMapper, College> implements CollegeService {
 
+    @Autowired
+    private CollegeMapper collegeMapper;
+
+    public College getByName(String name){
+        return this.collegeMapper.getByName(name);
+    }
 }
