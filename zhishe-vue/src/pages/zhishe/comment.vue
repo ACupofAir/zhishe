@@ -2,7 +2,7 @@
   <div class="commentPage">
     <!-- Three score items -->
     <div class="threeScores">
-      <el-row :gutter="60">
+      <el-row class="rowStyle" :gutter="60">
         <el-col :span="8">
           <div class="">宿舍基础情况</div>
         </el-col>
@@ -13,7 +13,7 @@
           </div>
         </el-col>
       </el-row>
-      <el-row :gutter="60">
+      <el-row class="rowStyle" :gutter="60">
         <el-col :span="8">
           <div class="">宿舍建筑情况</div>
         </el-col>
@@ -24,7 +24,7 @@
           </div>
         </el-col>
       </el-row>
-      <el-row :gutter="60">
+      <el-row class="rowStyle" :gutter="60">
         <el-col :span="8">
           <div class="">宿舍位置情况</div>
         </el-col>
@@ -352,11 +352,24 @@ export default {
 
 }
 
+<<<<<<< HEAD
 .fourChecks {
   grid-area: fourChecks;
   display: grid;
   grid-template-columns: 1fr 1fr;
   grid-template-rows: 1fr 1fr;
+=======
+  .rowStyle {
+    box-shadow: 0 9px 9px rgba(0, 0, 0, .12), 0 0 6px rgba(0, 0, 0, .04);
+    border-radius: 8px;
+  }
+
+  .fourChecks {
+    grid-area: fourChecks;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+>>>>>>> air
 
   grid-template-areas:
       "yearIn grade"
@@ -377,6 +390,7 @@ export default {
       "airConditionor cooker balcony"
       "wifi bathroom toilet";
 
+<<<<<<< HEAD
   row-gap: 20px;
   column-gap: 60px;
 
@@ -567,3 +581,198 @@ export default {
 }
 
 </style>
+=======
+    row-gap: 20px;
+    column-gap: 60px;
+
+  }
+
+  .tag {
+    display: grid;
+
+    grid-template-columns: 1fr 1fr;
+    border-radius: 8px;
+
+    column-gap: 80px;
+
+    grid-template-areas: "tagLeft tagRight";
+  }
+
+  .tagLeft {
+    grid-area: tagLeft;
+    border-radius: 8px;
+  }
+
+  .tagRight {
+    grid-area: tagRight;
+    border-radius: 8px;
+  }
+
+  .refrigerator {
+    grid-area: refrigerator;
+    box-shadow: 0 9px 9px rgba(0, 0, 0, .12), 0 0 6px rgba(0, 0, 0, .04);
+    border-radius: 8px;
+  }
+
+  .sofa {
+    grid-area: sofa;
+    box-shadow: 0 9px 9px rgba(0, 0, 0, .12), 0 0 6px rgba(0, 0, 0, .04);
+    border-radius: 8px;
+  }
+
+  .washer {
+    grid-area: washer;
+    box-shadow: 0 9px 9px rgba(0, 0, 0, .12), 0 0 6px rgba(0, 0, 0, .04);
+    border-radius: 8px;
+  }
+
+  .airConditionor {
+    grid-area: airConditionor;
+    box-shadow: 0 9px 9px rgba(0, 0, 0, .12), 0 0 6px rgba(0, 0, 0, .04);
+    border-radius: 8px;
+  }
+
+  .cooker {
+    grid-area: cooker;
+    box-shadow: 0 9px 9px rgba(0, 0, 0, .12), 0 0 6px rgba(0, 0, 0, .04);
+    border-radius: 8px;
+  }
+
+  .balcony {
+    grid-area: balcony;
+    box-shadow: 0 9px 9px rgba(0, 0, 0, .12), 0 0 6px rgba(0, 0, 0, .04);
+    border-radius: 8px;
+  }
+
+  .wifi {
+    grid-area: wifi;
+    box-shadow: 0 9px 9px rgba(0, 0, 0, .12), 0 0 6px rgba(0, 0, 0, .04);
+    border-radius: 8px;
+  }
+
+  .bathroom {
+    grid-area: bathroom;
+    box-shadow: 0 9px 9px rgba(0, 0, 0, .12), 0 0 6px rgba(0, 0, 0, .04);
+    border-radius: 8px;
+  }
+
+  .toilet {
+    grid-area: toilet;
+    box-shadow: 0 9px 9px rgba(0, 0, 0, .12), 0 0 6px rgba(0, 0, 0, .04);
+    border-radius: 8px;
+  }
+
+  .shortComment {
+    grid-area: shortComment;
+
+    box-shadow: 0 9px 9px rgba(0, 0, 0, .12), 0 0 6px rgba(0, 0, 0, .04);
+    border-radius: 8px;
+  }
+
+  .photo {
+    grid-area: photo;
+
+    box-shadow: 0 9px 9px rgba(0, 0, 0, .12), 0 0 6px rgba(0, 0, 0, .04);
+    border-radius: 8px;
+    grid-template-areas: "uploadImg submitEmail";
+    column-gap: 70px;
+
+  }
+
+  .email {
+    grid-area: email;
+
+    box-shadow: 0 9px 9px rgba(0, 0, 0, .12), 0 0 6px rgba(0, 0, 0, .04);
+    border-radius: 8px;
+    row-gap: 0px;
+    column-gap: 0px;
+  }
+
+  .checkBox {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+
+    height: 40px;
+    width: 350px;
+
+    box-shadow: 0 9px 9px rgba(0, 0, 0, .12), 0 0 6px rgba(0, 0, 0, .04);
+    border-radius: 8px;
+    grid-template-areas: "checkBoxLeft checkBoxRight";
+  }
+
+  .checkBoxLeft {
+    grid-area: checkBoxLeft;
+    border-bottom-left-radius: 8px;
+    border-top-left-radius: 8px;
+    background-color: #0488D1;
+  }
+
+  .checkBoxRight {
+    grid-area: checkBoxRight;
+    border-bottom-right-radius: 8px;
+    border-top-right-radius: 8px;
+  }
+
+  .imgBox {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+
+    box-shadow: 0 9px 9px rgba(0, 0, 0, .12), 0 0 6px rgba(0, 0, 0, .04);
+    border-radius: 8px;
+    grid-template-areas: "imgBoxLeft imgBoxRight";
+  }
+
+  .imgBoxLeft {
+    grid-area: imgBoxLeft;
+    border-bottom-left-radius: 8px;
+  }
+
+  .imgBoxRight {
+    grid-area: imgBoxRight;
+    border-bottom-right-radius: 8px;
+  }
+
+  .buttonBox {
+    grid-area: buttonBox;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+
+    grid-template-areas: "buttonBoxLeft buttonBoxRight";
+    column-gap: 50px;
+  }
+
+  .buttonBoxLeft {
+    grid-area: buttonBoxLeft;
+  }
+
+  .buttonBoxRight {
+    grid-area: buttonBoxRight;
+  }
+
+  .yearIn {
+    grid-area: yearIn;
+
+  }
+
+  .grade {
+    grid-area: grade;
+  }
+
+  .scale {
+    grid-area: scale;
+  }
+
+  .isRecommend {
+    grid-area: isRecommend;
+  }
+
+  .subTitle {
+    background-color: #0488D1;
+    box-shadow: 0 9px 9px rgba(0, 0, 0, .12), 0 0 6px rgba(0, 0, 0, .04);
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+    text-align: center;
+  }
+
+</style>
+>>>>>>> air

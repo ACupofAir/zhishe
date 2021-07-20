@@ -97,6 +97,7 @@ export default {
 
 <style scoped>
 
+<<<<<<< HEAD
 .detailRate {
   /*border: #3c85cb solid 2px;*/
 }
@@ -108,11 +109,29 @@ export default {
 
 .detailComment {
   /*border: #3c85cb solid 2px;*/
+=======
+/* .detailRate{
+border: #3c85cb solid 2px;
+}
+
+.detailName{
+  border: #3c85cb solid 2px;
 
 }
 
+.detailComment{
+  border: #3c85cb solid 2px;
+>>>>>>> air
 
+} */
+
+
+<<<<<<< HEAD
 ::v-deep .el-rate__icon {
+=======
+
+::deep .el-rate__icon{
+>>>>>>> air
   font-size: 35px;
 }
 </style>
