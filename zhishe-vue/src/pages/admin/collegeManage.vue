@@ -31,7 +31,7 @@
                 <i class="el-icon-chat-dot-round" style="font-weight: bold;">评论数量 {{curCollegeCommentNum}}</i>
               </el-row>
             </el-row>
-            </span>
+          </span>
         </span>
 
       </div>
