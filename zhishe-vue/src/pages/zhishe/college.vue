@@ -101,12 +101,13 @@ export default {
 
 
       pictureURL: "https://gitee.com/thisisbadBao/imgrepo/raw/master/imgrepo1/20210715214908.jpeg",
-      collegeName: "东南大学",
-      collegeAddress: "江苏,南京",
-      totalComment: "793",
-      totalCampus: "2",
+      collegeName: "",
+      collegeAddress: "",
+      totalComment: "",
+      totalCampus: "",
       campus: [{campusName: "东南大学"}],
-      briefCampus: [{
+      briefCampus: [
+          {
         id: "九龙湖校区",
         rate: 3.9,
         comNum: 302,
@@ -119,7 +120,8 @@ export default {
           comNum: 491,
           routerUrl: '/campus/四牌楼校区',
           url: "https://gitee.com/thisisbadBao/imgrepo/raw/master/imgrepo1/20210716160403.svg"
-        }],
+        }
+        ],
       campusId: "",
 
 
@@ -133,13 +135,25 @@ export default {
     this.currentCollege = this.$route.params.collegeName;
 
     //去后端请求数据，查询学校存不存在
+    let responseData = null
+    let _this = this
+    this.$axios.get('/college/list').then(function (response) {
+      responseData = response.data
+      console.log(response.data)
+      _this.collegeName = response.data[0].name
+      _this.collegeAddress = response.data[0].address
+      _this.totalComment = response.data[0].commentNum
+      _this.totalCampus = response.data[0].campusNum
+      _this.isCollegeFind = true
+    })
 
 
-    for (let college of this.collegeList) {
-      if (this.currentCollege === college.id) {
-        this.isCollegeFind = true
-      }
-    }
+
+    // for (let college of this.collegeList) {
+    //   if (this.currentCollege === college.id) {
+    //     this.isCollegeFind = true
+    //   }
+    // }
   }
 
 };

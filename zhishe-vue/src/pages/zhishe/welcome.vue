@@ -153,6 +153,8 @@ export default {
   width: 100%;
   height: 1350px;
   /* background-color: #ffffff; */
+  /* background: url("../../assets/bg06.jpg");
+    background-size: cover; */
   position: absolute;
   bottom: 0px;
   top: 0px;
@@ -165,8 +167,8 @@ export default {
   /* width: 100%;
   height: 600px; */
   /* background-color: aquamarine;  */
-  background: url("../../assets/arch.jpg");
-  background-size: cover;
+  background: url("../../assets/bg05.jpg");
+  background-size:35%;
   position: absolute;
   bottom: 0px;
   top: 0px;
