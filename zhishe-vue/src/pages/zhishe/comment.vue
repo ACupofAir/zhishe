@@ -1,5 +1,51 @@
 <template>
   <div class="commentPage">
+<!--basic info-->
+    <div class="basicInfo">
+
+      <div class="yearIn checkBox">
+        <span class="checkBoxLeft">
+          <font color="white">你的学校</font>
+        </span>
+        <div class="checkBoxRight">
+          <el-input v-model="collegeName" placeholder="请输入内容"></el-input>
+        </div>
+      </div>
+
+      <div class="grade checkBox">
+        <span class="checkBoxLeft">
+          <font color="white">所在校区</font>
+        </span>
+        <div class="checkBoxRight">
+          <el-select v-model="campusName" placeholder="请选择">
+            <el-option v-for="item in campusList" :key="item.value" :label="item.label" :value="item.value">
+            </el-option>
+          </el-select>
+        </div>
+      </div>
+
+      <div class="scale checkBox">
+        <span class="checkBoxLeft">
+          <font color="white">校区地址</font>
+        </span>
+        <div class="checkBoxRight">
+          <el-input v-model="campusAddr" placeholder="请输入内容"></el-input>
+        </div>
+      </div>
+
+      <div class="isRecommend checkBox">
+        <span class="checkBoxLeft">
+          <font color="white">宿舍区</font>
+        </span>
+        <div class="checkBoxRight">
+          <el-select v-model="dormArea" placeholder="请选择">
+            <el-option v-for="dorm in dormList" :key="item.value" :label="item.label" :value="item.value">
+            </el-option>
+          </el-select>
+        </div>
+      </div>
+    </div>
+
     <!-- Three score items -->
     <div class="threeScores">
       <el-row class="rowStyle" :gutter="60">
@@ -240,6 +286,10 @@
     name: "comment",
     data: () => {
       return {
+        collegeName: "",
+        campusName: "",
+        campusAddr: "",
+        dormArea: "",
         basicInfoScore: 3,
         buildingScore: 3,
         locationScore: 3,
@@ -264,6 +314,10 @@
           value: '选项6',
           label: '博士生'
           }],
+        campusList: [
+          ],
+        dormList: [
+          ],
         gradeValue: '',
         scale: 0,
         isRecommend: true,
@@ -336,9 +390,10 @@
     padding-left: 22%;
     padding-right: 22%;
     padding-bottom: 120px;
-    row-gap: 120px;
+    row-gap: 100px;
 
     grid-template-areas:
+      "basicInfo"
       "threeScores"
       "fourChecks"
       "specialTags"
@@ -348,6 +403,20 @@
       "buttonBox";
 
 
+  }
+
+  .basicInfo {
+    grid-area: basicInfo;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+
+    grid-template-areas:
+      "yearIn grade"
+      "scale isRecommend";
+
+    row-gap: 20px;
+    column-gap: 80px;
   }
 
 
