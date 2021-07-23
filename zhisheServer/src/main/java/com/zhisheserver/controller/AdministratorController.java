@@ -24,11 +24,6 @@ import org.springframework.stereotype.Controller;
 public class AdministratorController {
 
     @Autowired
-<<<<<<< HEAD
-    public AdministratorService administratorService;
-
-
-=======
     private AdministratorService administratorService;
 
     @PostMapping("/login")
@@ -38,6 +33,5 @@ public class AdministratorController {
     ){
         return administratorService.LoginUser(login);
     }
->>>>>>> 048a851755f83d62347b87a885c653863ddb9bf4
 }
 
