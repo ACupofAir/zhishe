@@ -118,6 +118,7 @@ export default {
       isCollegeFind: false,
     }
   },
+
   created() {
     this.currentCollege = this.$route.params.collegeName;
 

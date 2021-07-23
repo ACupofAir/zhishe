@@ -8,7 +8,7 @@
           <font color="white">你的学校</font>
         </span>
         <div class="checkBoxRight">
-          <el-input v-model="collegeName" placeholder="请输入内容"></el-input>
+          <el-input v-model="collegeName" placeholder="请输入内容" :disabled="collegeFixed"></el-input>
         </div>
       </div>
 
@@ -17,7 +17,7 @@
           <font color="white">所在校区</font>
         </span>
         <div class="checkBoxRight">
-          <el-input v-model="campusName" placeholder="请输入内容"></el-input>
+          <el-input v-model="campusName" placeholder="请输入内容" :disabled="campusFixed"></el-input>
         </div>
       </div>
 
@@ -26,7 +26,7 @@
           <font color="white">校区地址</font>
         </span>
         <div class="checkBoxRight">
-          <el-input v-model="campusAddr" placeholder="请输入内容"></el-input>
+          <el-input v-model="campusAddr" placeholder="请输入内容" :disabled="campusFixed"></el-input>
         </div>
       </div>
 
@@ -35,7 +35,7 @@
           <font color="white">宿舍区</font>
         </span>
         <div class="checkBoxRight">
-          <el-input v-model="dormArea" placeholder="请输入内容"></el-input>
+          <el-input v-model="dormArea" placeholder="请输入内容" :disabled="dormFixed"></el-input>
         </div>
       </div>
     </div>
@@ -317,7 +317,21 @@
         hasBathroom: false,
         hasToilet: false,
         shortComment: "",
-        email: ''
+        email: '',
+
+
+        collegeFixed: false,
+        campusFixed: false,
+        dormFixed: false,
+      }
+    },
+    beforeRouteEnter (to, from, next){
+      console.log(to, from)
+      next(vm => vm.setData())
+    },
+    methods: {
+      setData () {
+        console.log('hh')
       }
     },
     resetForm(formName) {

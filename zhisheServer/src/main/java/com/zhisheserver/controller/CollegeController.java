@@ -36,6 +36,5 @@ public class CollegeController {
         return this.collegeService.getByName(name);
     }
 
-
 }
 
