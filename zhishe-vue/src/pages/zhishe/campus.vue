@@ -123,7 +123,7 @@ export default {
               detailName: com.campus,
               isRecommend: com.recommend,
               admissionTime: com.year,
-              grade: "大" + com.grade,
+              grade: '大' + com.grade,
               dormArea: com.dorm,
               dormScale: com.scale + "人间",
               rate: [{rateTitle: "基础情况(桌椅床铺门窗等)", rateScore: com.facilities},
