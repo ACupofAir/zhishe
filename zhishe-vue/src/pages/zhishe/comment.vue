@@ -1,5 +1,45 @@
 <template>
   <div class="commentPage">
+    <!--basic info-->
+    <div class="basicInfo">
+
+      <div class="yearIn checkBox">
+        <span class="checkBoxLeft">
+          <font color="white">你的学校</font>
+        </span>
+        <div class="checkBoxRight">
+          <el-input v-model="collegeName" placeholder="请输入内容"></el-input>
+        </div>
+      </div>
+
+      <div class="grade checkBox">
+        <span class="checkBoxLeft">
+          <font color="white">所在校区</font>
+        </span>
+        <div class="checkBoxRight">
+          <el-input v-model="campusName" placeholder="请输入内容"></el-input>
+        </div>
+      </div>
+
+      <div class="scale checkBox">
+        <span class="checkBoxLeft">
+          <font color="white">校区地址</font>
+        </span>
+        <div class="checkBoxRight">
+          <el-input v-model="campusAddr" placeholder="请输入内容"></el-input>
+        </div>
+      </div>
+
+      <div class="isRecommend checkBox">
+        <span class="checkBoxLeft">
+          <font color="white">宿舍区</font>
+        </span>
+        <div class="checkBoxRight">
+          <el-input v-model="dormArea" placeholder="请输入内容"></el-input>
+        </div>
+      </div>
+    </div>
+
     <!-- Three score items -->
     <div class="threeScores">
       <el-row class="rowStyle" :gutter="60">
@@ -232,109 +272,102 @@
 </template>
 
 <script>
-export default {
-  name: "comment",
-  data: () => {
-    return {
-      basicInfoScore: 3,
-      buildingScore: 3,
-      locationScore: 3,
-      yearIn: "",
-      gradeNum: 0,
-      gradeOptions: [{
-        value: '选项1',
-        label: '大一'
-      }, {
-        value: '选项2',
-        label: '大二'
-      }, {
-        value: '选项3',
-        label: '大三'
-      }, {
-        value: '选项4',
-        label: '大四'
-      }, {
-        value: '选项5',
-        label: '研究生'
-      }, {
-        value: '选项6',
-        label: '博士生'
-      }],
-      gradeValue: '',
-      scale: 0,
-      isRecommend: true,
-      hasRefrigerator: false,
-      hasSofa: false,
-      hasWasher: false,
-      hasAirCool: false,
-      hasCooker: false,
-      hasBalcony: false,
-      hasWifi: false,
-      hasBathroom: false,
-      hasToilet: false,
-      shortComment: "",
-      email: ''
-    }
-  },
-  methods: {
-    submitForm(formName) {
-      this.$refs[formName].validate((valid) => {
-        if (valid) {
-          alert('submit!');
-        } else {
-          console.log('error submit!!');
-          return false;
-        }
-      });
+  export default {
+    name: "comment",
+    data: () => {
+      return {
+        collegeName: "",
+        campusName: "",
+        campusAddr: "",
+        dormArea: "",
+        basicInfoScore: 3,
+        buildingScore: 3,
+        locationScore: 3,
+        yearIn: "",
+        gradeNum: 0,
+        gradeOptions: [{
+          value: '选项1',
+          label: '大一'
+        }, {
+          value: '选项2',
+          label: '大二'
+        }, {
+          value: '选项3',
+          label: '大三'
+        }, {
+          value: '选项4',
+          label: '大四'
+        }, {
+          value: '选项5',
+          label: '研究生'
+        }, {
+          value: '选项6',
+          label: '博士生'
+        }],
+        gradeValue: '',
+        scale: 0,
+        isRecommend: true,
+        hasRefrigerator: false,
+        hasSofa: false,
+        hasWasher: false,
+        hasAirCool: false,
+        hasCooker: false,
+        hasBalcony: false,
+        hasWifi: false,
+        hasBathroom: false,
+        hasToilet: false,
+        shortComment: "",
+        email: ''
+      }
     },
     resetForm(formName) {
       this.$refs[formName].resetFields();
     }
   }
-}
 </script>
 
 <style scoped>
-.el-row {
-  margin-bottom: 20px;
-  /* box-shadow: 0 2px 4px rgba(0, 0, 0, .12), 0 0 6px rgba(0, 0, 0, .04) */
-}
+  .el-row {
+    margin-bottom: 20px;
+    /* box-shadow: 0 2px 4px rgba(0, 0, 0, .12), 0 0 6px rgba(0, 0, 0, .04) */
+  }
 
-.el-col {
-  border-radius: 4px;
-}
+  .el-col {
+    border-radius: 4px;
+  }
 
-.bg-purple-dark {
-  background: #99a9bf;
-}
+  .bg-purple-dark {
+    background: #99a9bf;
+  }
 
-.bg-purple {
-  background: #d3dce6;
-}
+  .bg-purple {
+    background: #d3dce6;
+  }
 
-.bg-purple-light {
-  background: #e5e9f2;
-}
+  .bg-purple-light {
+    background: #e5e9f2;
+  }
 
-.grid-content {
-  border-radius: 4px;
-  min-height: 36px;
-}
+  .grid-content {
+    border-radius: 4px;
+    min-height: 36px;
+  }
 
-.row-bg {
-  padding: 10px 0;
-  background-color: #f9fafc;
-}
+  .row-bg {
+    padding: 10px 0;
+    background-color: #f9fafc;
+  }
 
-.commentPage {
-  display: grid;
-  padding-top: 120px;
-  padding-left: 22%;
-  padding-right: 22%;
-  padding-bottom: 120px;
-  row-gap: 120px;
+  .commentPage {
+    display: grid;
+    padding-top: 120px;
+    padding-left: 22%;
+    padding-right: 22%;
+    padding-bottom: 120px;
+    row-gap: 100px;
 
-  grid-template-areas:
+    grid-template-areas:
+      "basicInfo"
       "threeScores"
       "fourChecks"
       "specialTags"
@@ -344,13 +377,27 @@ export default {
       "buttonBox";
 
 
-}
+  }
+
+  .basicInfo {
+    grid-area: basicInfo;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+
+    grid-template-areas:
+      "yearIn grade"
+      "scale isRecommend";
+
+    row-gap: 20px;
+    column-gap: 80px;
+  }
 
 
-.threeScores {
-  grid-area: threeScores;
+  .threeScores {
+    grid-area: threeScores;
 
-}
+  }
 
   .rowStyle {
     box-shadow: 0 9px 9px rgba(0, 0, 0, .12), 0 0 6px rgba(0, 0, 0, .04);
@@ -363,21 +410,21 @@ export default {
     grid-template-columns: 1fr 1fr;
     grid-template-rows: 1fr 1fr;
 
-  grid-template-areas:
+    grid-template-areas:
       "yearIn grade"
       "scale isRecommend";
 
-  row-gap: 20px;
-  column-gap: 80px;
-}
+    row-gap: 20px;
+    column-gap: 80px;
+  }
 
-.specialTags {
-  grid-area: specialTags;
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-  grid-template-rows: 1fr 1fr 1fr;
+  .specialTags {
+    grid-area: specialTags;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr;
 
-  grid-template-areas:
+    grid-template-areas:
       "refrigerator sofa washer"
       "airConditionor cooker balcony"
       "wifi bathroom toilet";
@@ -573,5 +620,4 @@ export default {
     border-top-right-radius: 8px;
     text-align: center;
   }
-
 </style>
