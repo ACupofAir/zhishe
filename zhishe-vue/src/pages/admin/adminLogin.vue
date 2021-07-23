@@ -101,6 +101,19 @@ export default {
   },
   methods: {
     log_in() {
+      let _this = this;
+      console.log(this.input1);
+      this.$axios
+        .post('/administrator/login', {
+          adminID: _this.input1,
+          password: _this.input2
+        })
+        .then(successResponse => {
+            console.log(successResponse.data);
+        })
+        .catch(failResponse => {
+          console.log(failResponse.data)
+        })
       // if (!this.input1) {
       //   const h1 = this.$createElement;
 
@@ -124,7 +137,7 @@ export default {
       //   message: "登录成功！",
       //   type: "success",
       // });
-      location.href = "/adminMain";
+      // location.href = "/adminMain";
       // console.log(0);
       // }
     },

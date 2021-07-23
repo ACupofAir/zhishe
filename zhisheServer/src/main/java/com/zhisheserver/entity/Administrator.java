@@ -18,7 +18,7 @@ import lombok.EqualsAndHashCode;
 
     private static final long serialVersionUID=1L;
 
-      private String adminId;
+    private String adminId;
 
     private String password;
 

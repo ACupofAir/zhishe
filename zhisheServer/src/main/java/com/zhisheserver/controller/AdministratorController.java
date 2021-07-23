@@ -1,10 +1,12 @@
 package com.zhisheserver.controller;
 
 
-import org.springframework.web.bind.annotation.RequestMapping;
+import com.zhisheserver.dto.Login;
+import com.zhisheserver.service.AdministratorService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.*;
 
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RestController;
 
 /**
  * <p>
@@ -16,7 +18,20 @@ import org.springframework.web.bind.annotation.RestController;
  */
 @RestController
 @RequestMapping("//administrator")
+@Controller
+@CrossOrigin
+
 public class AdministratorController {
 
+    @Autowired
+    private AdministratorService administratorService;
+
+    @PostMapping("/login")
+    @ResponseBody
+    public Object login(
+            @RequestBody Login login
+    ){
+        return administratorService.LoginUser(login);
+    }
 }
 
