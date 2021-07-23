@@ -93,14 +93,14 @@ export default {
 
 /*布局*/
 .iconWrapper {
-  grid-area: icon;
-  /*border: aqua solid 3px;*/
-  width: 200px;
-  position: absolute;
-  right: 2px;
-  left: 2px;
-  top: 1px;
-  bottom: 1px;
+                grid-area: icon;
+                /*border: aqua solid 3px;*/
+                width: 200px;
+                position: absolute;
+                right: 2px;
+                left: 2px;
+                top: 1px;
+                bottom: 1px;
 }
 
 .searchWrapper {

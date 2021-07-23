@@ -55,7 +55,7 @@
       </div>
       <div style="text-align: left;font-weight: bolder; margin-top: 15px">简评</div>
       <div
-          style="box-shadow: 0 0 12px #cac6c6; text-align: left; padding: 10px;margin-left: 36px;margin-right: 36px;font-size: 15px">
+          style="text-align: left; padding: 10px;margin-left: 36px;margin-right: 36px;font-size: 15px">
         {{comment}}
       </div>
       <div style="text-align: left;font-weight: bolder; margin-top: 15px">照片</div>
@@ -113,7 +113,7 @@ border: #3c85cb solid 2px;
 
 
 
-::deep .el-rate__icon{
+::v-deep .el-rate__icon{
   font-size: 35px;
 }
 </style>

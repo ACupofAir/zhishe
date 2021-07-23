@@ -62,7 +62,14 @@
       </div>
     </div>
     <div class="campusCommentWrapper">
-      <briefComment v-for="(comItem, index) in briefComment" :key="index" class="briefCommentArea"></briefComment>
+      <briefComment v-for="(comItem, index) in briefComment" :key="index" class="briefCommentArea"
+                    :rate="comItem.rate"
+                    :is-recommend="comItem.isRecommend"
+                    :date="comItem.date"
+                    :brief-com="comItem.briefCom"
+                    :dorm-area="comItem.dormArea"
+                    :comment-details="comItem.commentDetails"
+      ></briefComment>
     </div>
   </div>
 
@@ -86,16 +93,50 @@ export default {
       rankName: [{name: "校区名称"}, {name: "最多评价"}, {name: "最高评分"}],
       gradeName: [{name: "所有年级"}, {name: "大一"}, {name: "大二"}, {name: "大三"},
         {name: "大四"}, {name: "大五"}, {name: "研究生"}],
-      briefComment: [{id: 1}, {id: 2}, {id: 1}, {id: 2}],
+      briefComment: [],
 
-
-      campusList: [{id: "九龙湖校区"}, {id: "四牌楼校区"}],
       currentCampus: null,
     }
   },
   methods: {},
   created() {
-    this.currentCampus = this.$route.params.campusName;
+    let campus = this.$route.params.campusName
+    let _campus = campus.split('-')
+    this.currentCampus = _campus[1]   //显示的校区名
+
+    //根据 '学校-校区' 去请求评价
+    let _this = this
+    this.$axios
+      .get('/comment/' + campus)
+      .then(response => {
+        let allComment =  response.data
+        for(let com of allComment){
+          console.log(com)
+          _this.briefComment.push({
+            rate: com.score,
+            isRecommend: com.recommend,
+            date: com.timeStamp,
+            briefCom: com.briefComment,
+            dormArea: com.dorm,
+            commentDetails: {
+              detailRate: com.score,
+              detailName: com.campus,
+              isRecommend: com.recommend,
+              admissionTime: com.year,
+              grade: "大" + com.grade,
+              dormArea: com.dorm,
+              dormScale: com.scale + "人间",
+              rate: [{rateTitle: "基础情况(桌椅床铺门窗等)", rateScore: com.facilities},
+                {rateTitle: "建筑情况(新旧和楼层布局)", rateScore: com.architecture},
+                {rateTitle: "位置情况(周边环境和位置)", rateScore: com.surrounding}],
+              label: ["空调", "洗衣机", "WIFI", "独立卫浴",],
+              comment: com.briefComment,
+              dormPicture: ["https://gitee.com/thisisbadBao/imgrepo/raw/master/imgrepo1/20210715214908.jpeg"]
+            },
+          });
+        }
+      })
+
   }
 }
 </script>

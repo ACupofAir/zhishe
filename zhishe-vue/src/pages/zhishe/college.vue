@@ -24,7 +24,7 @@
 
         <div class="statisticWrapper">
           <div class="campusScore">
-            各项得分
+            <div style="text-align: center; font-weight: bold">各项得分</div>
             <div v-for="(item, index) in rate" :key="index" class="basicScore">
               <span id="basicScoreTitle">{{item.rateTitle}}</span>
               <el-rate
@@ -35,7 +35,7 @@
             </div>
           </div>
           <div class="campusLabel">
-            <div>特色标签</div>
+            <div style="text-align: center; font-weight: bold">特色标签</div>
             <div v-for="(item , index) in label" :key="index" class="LabelItem">
               <i class="el-icon-collection-tag"></i>
               {{item.labelName}}
@@ -111,26 +111,8 @@ export default {
       collegeAddress: "",
       totalComment: "",
       totalCampus: "",
-      briefCampus: [
-      //     {
-      //   id: "九龙湖校区",
-      //   rate: 3.9,
-      //   comNum: 302,
-      //   routerUrl: '/campus/九龙湖校区',
-      //   url: "https://gitee.com/thisisbadBao/imgrepo/raw/master/imgrepo1/20210716160403.svg"
-      // },
-      //   {
-      //     id: "四牌楼校区",
-      //     rate: 4.5,
-      //     comNum: 491,
-      //     routerUrl: '/campus/四牌楼校区',
-      //     url: "https://gitee.com/thisisbadBao/imgrepo/raw/master/imgrepo1/20210716160403.svg"
-      //   }
-        ],
+      briefCampus: [],
       campusId: "",
-
-
-      // collegeList: [{id: "东南大学"}, {id: "南京大学"}],
       currentCollege: "",
 
       isCollegeFind: false,
@@ -140,38 +122,63 @@ export default {
     this.currentCollege = this.$route.params.collegeName;
 
 
-
-
     //去后端请求数据，查询学校存不存在
     let responseData = null
     let _this = this
     this.$axios
         .get('/college/find/' + this.currentCollege)
         .then(function (response) {
-        responseData = response.data
+          responseData = response.data
           console.log(responseData)
 
-
-          console.log(response.data)
-          _this.collegeName = response.data.name
-          _this.collegeAddress = response.data.address
-          _this.totalComment = response.data.commentNum
-          _this.totalCampus = response.data.campusNum
-          _this.briefCampus.push({
-            id: responseData.campus1,
-            rate: 3.6,
-            comNum: responseData.commentNum,
-            routerUrl: '/campus/' + responseData.campus1,
-            url: 'https://gitee.com/thisisbadBao/imgrepo/raw/master/imgrepo1/20210716160403.svg'
-          })
-          _this.isCollegeFind = true
-          if (responseData.name === "") {
-            console.log("ff")
+          if (responseData.address === undefined) {
+            console.log("college not found")
           }
+          else {
+            _this.collegeName = responseData.name
+            _this.collegeAddress = responseData.address
+            _this.totalComment = responseData.commentNum
+            _this.totalCampus = responseData.campusNum
+            _this.isCollegeFind = true
+            let basicScore = 0
+            let buildingScore = 0
+            let locationScore = 0
+            let campusList = []
+            campusList.push(responseData.campus1)
+            campusList.push(responseData.campus2)
+            campusList.push(responseData.campus3)
+            campusList.push(responseData.campus4)
+            campusList.push(responseData.campus5)
+            for(let item of campusList){
+              if(item !== null){
+                _this.$axios
+                    .get('/campus/find/' + _this.currentCollege + '-' + item)
+                .then(response =>{
+                  console.log(response.data)
+                  if(response.data.schoolName === _this.currentCollege){
+                    let campusName = response.data.name.split('-')
+                    basicScore += response.data.facilitiesScore
+                    buildingScore += response.data.architectureScore
+                    locationScore += response.data.surroundingScore
+                    _this.briefCampus.push({
+                      id: campusName[1],
+                      rate: response.data.score,
+                      comNum: response.data.commentNum,
+                      routerUrl: '/campus/' + response.data.name,
+                      url: 'https://gitee.com/thisisbadBao/imgrepo/raw/master/imgrepo1/20210716160403.svg'
+                    })
+                  }
+                })
+              }
+            }
+          }
+
+
 
     })
     .catch(failRes => {
       console.log(failRes.data)
+      console.log("12321")
     })
 
 

@@ -28,7 +28,7 @@
       <div class="briefComment">
         <div style="text-align: left;font-weight: bolder;  font-size: 18px">简评：</div>
         <div
-            style="box-shadow: 0 0 12px #cac6c6; text-align: left; padding: 10px;margin-left: 36px;margin-right: 36px;font-size: 15px">
+            style=" text-align: left; padding: 10px;margin-left: 36px;margin-right: 36px;font-size: 15px">
           {{briefCom}}
         </div>
       </div>
@@ -54,31 +54,31 @@ import comDetails from "@/components/comDetails";
 export default {
   name: "briefComment",
   components: {comDetails},
-  props: [],
+  props: ['rate', 'isRecommend', 'date', 'briefCom', 'dormArea', 'commentDetails'],
   data() {
     return {
-      dialogVisible: false,
+        dialogVisible: false,
 
-      rate: 3.6,
-      isRecommend: false,
-      date: "2021 7.19 16:04",
-      briefCom: "赶紧跑赶紧跑赶紧跑赶紧跑赶紧跑赶紧跑赶紧跑赶紧跑赶紧跑赶紧跑",
-      dormArea: "梅园",
-      commentDetails: {
-        detailRate: 3.6,
-        detailName: "东南大学(九龙湖校区)",
-        isRecommend: false,
-        admissionTime: "2019",
-        grade: "大三",
-        dormArea: "梅园",
-        dormScale: "四人间",
-        rate: [{rateTitle: "基础情况(桌椅床铺门窗等)", rateScore: 3.8},
-          {rateTitle: "建筑情况(新旧和楼层布局)", rateScore: 2.5},
-          {rateTitle: "位置情况(周边环境和位置)", rateScore: 3.1}],
-        label: ["空调", "洗衣机", "WIFI", "独立卫浴",],
-        comment: "赶紧跑赶紧跑赶紧跑赶紧跑赶紧跑赶紧跑赶紧跑赶紧跑赶紧跑赶紧跑",
-        dormPicture: ["https://gitee.com/thisisbadBao/imgrepo/raw/master/imgrepo1/20210715214908.jpeg"]
-      },
+      // rate: 3.6,
+      // isRecommend: false,
+      // date: "2021 7.19 16:04",
+      // briefCom: "赶紧跑赶紧跑赶紧跑赶紧跑赶紧跑赶紧跑赶紧跑赶紧跑赶紧跑赶紧跑",
+      // dormArea: "梅园",
+      // commentDetails: {
+      //   detailRate: 3.6,
+      //   detailName: "东南大学(九龙湖校区)",
+      //   isRecommend: false,
+      //   admissionTime: "2019",
+      //   grade: "大三",
+      //   dormArea: "梅园",
+      //   dormScale: "四人间",
+      //   rate: [{rateTitle: "基础情况(桌椅床铺门窗等)", rateScore: 3.8},
+      //     {rateTitle: "建筑情况(新旧和楼层布局)", rateScore: 2.5},
+      //     {rateTitle: "位置情况(周边环境和位置)", rateScore: 3.1}],
+      //   label: ["空调", "洗衣机", "WIFI", "独立卫浴",],
+      //   comment: "赶紧跑赶紧跑赶紧跑赶紧跑赶紧跑赶紧跑赶紧跑赶紧跑赶紧跑赶紧跑",
+      //   dormPicture: ["https://gitee.com/thisisbadBao/imgrepo/raw/master/imgrepo1/20210715214908.jpeg"]
+      // },
     }
   },
   methods: {
