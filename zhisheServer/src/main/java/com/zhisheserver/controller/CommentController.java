@@ -11,7 +11,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * <p>
@@ -31,6 +33,17 @@ public class CommentController {
     @GetMapping("/{campus}")
     public List<Comment> getCommentByCampus(@PathVariable("campus") String campus){
         return this.commentService.getCommentByName(campus);
+    }
+
+
+    public String queryByName(String name){
+        Map<String, Object> result = new HashMap<String, Object>();
+        List<Comment> commentList = this.commentService.getCommentByName(name);
+        try {
+
+        }catch (Exception ex){
+            result.put("status", 500);
+        }
     }
 
 }

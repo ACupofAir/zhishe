@@ -119,9 +119,10 @@ export default {
     }
   },
 
+
+
   created() {
     this.currentCollege = this.$route.params.collegeName;
-
 
     //去后端请求数据，查询学校存不存在
     let responseData = null
@@ -134,6 +135,7 @@ export default {
 
           if (responseData.address === undefined) {
             console.log("college not found")
+            _this.$router.push('/college/notFound')
           }
           else {
             _this.collegeName = responseData.name

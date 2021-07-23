@@ -326,13 +326,44 @@
       }
     },
     beforeRouteEnter (to, from, next){
-      console.log(to, from)
-      next(vm => vm.setData())
+      console.log(from.name)
+      console.log(from)
+      if(from.name === 'Campus'){
+        let camp = from.params.campusName.split('-')
+        next(vm => vm.setDataFromCamp(camp))
+      } else if (from.name === 'College') {
+        if (from.params.campusName === 'notFound'){
+          next(vm => vm.setDataFromNotfound())
+        }
+        else {
+          next(vm => vm.setDataFromCollege(from.params.collegeName))
+        }
+      }
+
+
+
     },
     methods: {
-      setData () {
-        console.log('hh')
+      setDataFromCamp (camp) {
+        console.log('从校区页面到评价')
+        this.collegeFixed = true
+        this.collegeName = camp[0]
+        this.campusFixed = true
+        this.campusName = camp[1]
+        // console.log(this.campusName)
+      },
+
+      setDataFromCollege (college) {
+        console.log('从学校页面到评价')
+        this.collegeFixed = true
+        this.collegeName = college
+        // console.log(this.campusName)
+      },
+
+      setDataFromNotfound () {
+
       }
+
     },
     resetForm(formName) {
       this.$refs[formName].resetFields();
