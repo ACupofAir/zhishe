@@ -13,6 +13,7 @@ import Log from "@/pages/admin/adminLog";
 import Welcome from "@/pages/zhishe/welcome";
 import ComDetails from "@/components/comDetails";
 import AdminMain from "@/pages/admin/adminMain";
+import About from "@/pages/zhishe/about";
 
 Vue.use(VueRouter)
 
@@ -86,6 +87,11 @@ const routes = [
                 path: '/comment',
                 name: 'Comment',
                 component: Comment
+            },
+            {
+                path: '/about',
+                name: 'About',
+                component: About
             }
 
         ]
