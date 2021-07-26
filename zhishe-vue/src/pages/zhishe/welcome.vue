@@ -123,7 +123,6 @@ export default {
     submit() {
       // console.log(this.input);
       if (this.input != '') {
-
         location.href = '/college/' + this.input;
       } else {
         this.$message({

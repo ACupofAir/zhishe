@@ -4,6 +4,7 @@
       <el-rate
           v-model="detailRate"
           disabled
+          show-score
           text-color="#ff9900"
           score-template="{value}">
       </el-rate>
@@ -39,6 +40,7 @@
           <div style="display: inline-block">
             <el-rate v-model="item.rateScore"
                      disabled
+                     show-score
                      text-color="#ff9900"
                      score-template="{value}">
             </el-rate>
@@ -47,7 +49,7 @@
       </div>
       <div style="margin-top: 20px"><span>宿舍特色：</span>
         <span v-for="(item , index) in label" :key="index" class="LabelItem"
-              style="border: #99a9bf solid 1px; border-radius: 10px; margin-left: 10px; padding: 5px">
+              style="border: #99a9bf solid 1px; border-radius: 10px; margin-left: 10px">
         <i class="el-icon-collection-tag" style="margin-top: 20px">{{item}}</i>
       </span>
       </div>

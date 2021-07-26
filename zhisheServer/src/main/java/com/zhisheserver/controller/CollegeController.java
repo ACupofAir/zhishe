@@ -3,8 +3,11 @@ package com.zhisheserver.controller;
 
 import com.zhisheserver.entity.College;
 import com.zhisheserver.service.CollegeService;
+import org.apache.ibatis.annotations.Update;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+
+import org.springframework.stereotype.Controller;
 
 import java.util.List;
 

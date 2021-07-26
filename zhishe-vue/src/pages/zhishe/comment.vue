@@ -261,7 +261,7 @@
     <!-- submit button -->
     <div class="buttonBox">
       <span class="buttonBoxLeft">
-        <el-button type="primary" v-on:click="submit">提交<i class="el-icon-upload el-icon--right"></i></el-button>
+        <el-button type="primary">提交<i class="el-icon-upload el-icon--right"></i></el-button>
       </span>
       <span class="buttonBoxRight">
         <el-button type="primary">重置<i class="el-icon-refresh-right el-icon--right"></i></el-button>
@@ -326,77 +326,14 @@
       }
     },
     beforeRouteEnter (to, from, next){
-      console.log(from.name)
-      console.log(from)
-      if(from.name === 'Campus'){
-        let camp = from.params.campusName.split('-')
-        next(vm => vm.setDataFromCamp(camp))
-      } else if (from.name === 'College') {
-        if (from.params.collegeName === 'notFound'){
-          next(vm => vm.setDataFromNotfound())
-        }
-        else {
-          next(vm => vm.setDataFromCollege(from.params.collegeName))
-        }
-      }
+      console.log(to, from)
       next(vm => vm.setData())
-
-
-
     },
     methods: {
-      setDataFromCamp (camp) {
-        console.log('从校区页面到评价')
-        this.collegeFixed = true
-        this.collegeName = camp[0]
-        this.campusFixed = true
-        this.campusName = camp[1]
-        // console.log(this.campusName)
-      },
-
-      setDataFromCollege (college) {
-        console.log('从学校页面到评价')
-        this.collegeFixed = true
-        this.collegeName = college
-        // console.log(this.campusName)
-      },
-
-      setDataFromNotfound () {
-
-      },
-
-      setData() {
-
-      },
-      submit() {
-        let _campus = this.collegeName + '-' + this.campusName
-        this.$axios
-            .post('/comment/post', {
-              id: 1111,
-
-              campus: _campus,
-
-              dorm: this.dormArea,
-
-              location: this.campusAddr,
-
-              year: this.yearIn,
-
-              grade: Number(this.gradeValue),
-
-            })
-            .then(successResponse => {
-              console.log(successResponse.data);
-            })
-            .catch(failResponse => {
-              console.log(failResponse.data)
-            })
-      },
-
+      setData () {
+        console.log('hh')
+      }
     },
-
-
-
     resetForm(formName) {
       this.$refs[formName].resetFields();
     }

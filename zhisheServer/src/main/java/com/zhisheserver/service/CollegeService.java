@@ -9,8 +9,9 @@ import com.baomidou.mybatisplus.extension.service.IService;
  * </p>
  *
  * @author admin
- * @since 2021-07-26
+ * @since 2021-07-20
  */
 public interface CollegeService extends IService<College> {
+
     College getByName(String name);
 }
