@@ -101,6 +101,9 @@ export default {
   },
 
   methods: {
+    changeComments () {
+      console.log(this.campusRate)
+    }
   },
 
   created() {

@@ -2,11 +2,7 @@ package com.zhisheserver.service;
 
 import com.zhisheserver.entity.Campus;
 import com.baomidou.mybatisplus.extension.service.IService;
-import com.zhisheserver.mapper.CampusMapper;
-import org.apache.ibatis.annotations.Select;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
+import com.zhisheserver.entity.College;
 
 /**
  * <p>
@@ -14,10 +10,8 @@ import org.springframework.web.bind.annotation.PathVariable;
  * </p>
  *
  * @author admin
- * @since 2021-07-26
+ * @since 2021-07-21
  */
 public interface CampusService extends IService<Campus> {
     Campus getByName(String name);
 }
-
-

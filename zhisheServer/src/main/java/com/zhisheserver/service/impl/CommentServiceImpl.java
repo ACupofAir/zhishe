@@ -15,18 +15,15 @@ import java.util.List;
  * </p>
  *
  * @author admin
- * @since 2021-07-26
+ * @since 2021-07-23
  */
 @Service
 public class CommentServiceImpl extends ServiceImpl<CommentMapper, Comment> implements CommentService {
 
-
-    @Autowired
-    CommentMapper commentMapper;
+    @Autowired CommentMapper commentMapper;
 
     public List<Comment> getCommentByName(String name){
         return this.commentMapper.getCommentByName(name);
     }
-
 
 }
