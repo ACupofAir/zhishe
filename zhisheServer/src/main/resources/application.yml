@@ -1,0 +1,12 @@
+spring:
+  datasource:
+    url: jdbc:mysql://rm-uf60a20t44x469mehuo.mysql.rds.aliyuncs.com:3306/zhishe
+    username: zhishe
+    password: Hedimoyu666
+    driver-class-name: com.mysql.cj.jdbc.Driver
+mybatis-plus:
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+  mapper-locations: classpath:com/zhisheserver/mapper/xml/*.xml
+server:
+  port: 8181
