@@ -261,7 +261,7 @@
     <!-- submit button -->
     <div class="buttonBox">
       <span class="buttonBoxLeft">
-        <el-button type="primary">提交<i class="el-icon-upload el-icon--right"></i></el-button>
+        <el-button type="primary" v-on:click="submit">提交<i class="el-icon-upload el-icon--right"></i></el-button>
       </span>
       <span class="buttonBoxRight">
         <el-button type="primary">重置<i class="el-icon-refresh-right el-icon--right"></i></el-button>
@@ -332,13 +332,14 @@
         let camp = from.params.campusName.split('-')
         next(vm => vm.setDataFromCamp(camp))
       } else if (from.name === 'College') {
-        if (from.params.campusName === 'notFound'){
+        if (from.params.collegeName === 'notFound'){
           next(vm => vm.setDataFromNotfound())
         }
         else {
           next(vm => vm.setDataFromCollege(from.params.collegeName))
         }
       }
+      next(vm => vm.setData())
 
 
 
@@ -362,9 +363,40 @@
 
       setDataFromNotfound () {
 
-      }
+      },
+
+      setData() {
+
+      },
+      submit() {
+        let _campus = this.collegeName + '-' + this.campusName
+        this.$axios
+            .post('/comment/post', {
+              id: 1111,
+
+              campus: _campus,
+
+              dorm: this.dormArea,
+
+              location: this.campusAddr,
+
+              year: this.yearIn,
+
+              grade: Number(this.gradeValue),
+
+            })
+            .then(successResponse => {
+              console.log(successResponse.data);
+            })
+            .catch(failResponse => {
+              console.log(failResponse.data)
+            })
+      },
 
     },
+
+
+
     resetForm(formName) {
       this.$refs[formName].resetFields();
     }

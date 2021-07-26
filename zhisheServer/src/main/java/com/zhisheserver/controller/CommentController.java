@@ -36,15 +36,7 @@ public class CommentController {
     }
 
 
-    public String queryByName(String name){
-        Map<String, Object> result = new HashMap<String, Object>();
-        List<Comment> commentList = this.commentService.getCommentByName(name);
-        try {
 
-        }catch (Exception ex){
-            result.put("status", 500);
-        }
-    }
 
 }
 
