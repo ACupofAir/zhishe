@@ -3,7 +3,6 @@ package com.zhisheserver.service;
 import com.zhisheserver.dto.Login;
 import com.zhisheserver.entity.Administrator;
 import com.baomidou.mybatisplus.extension.service.IService;
-import org.springframework.validation.annotation.Validated;
 
 /**
  * <p>
@@ -11,9 +10,8 @@ import org.springframework.validation.annotation.Validated;
  * </p>
  *
  * @author admin
- * @since 2021-07-20
+ * @since 2021-07-26
  */
-@Validated
 public interface AdministratorService extends IService<Administrator> {
     Object LoginUser(Login login);
 }

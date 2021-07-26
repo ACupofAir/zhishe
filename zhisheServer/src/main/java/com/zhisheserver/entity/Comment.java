@@ -1,6 +1,7 @@
 package com.zhisheserver.entity;
 
 import java.time.LocalDateTime;
+import com.baomidou.mybatisplus.annotation.TableField;
 import java.io.Serializable;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -11,7 +12,7 @@ import lombok.EqualsAndHashCode;
  * </p>
  *
  * @author admin
- * @since 2021-07-23
+ * @since 2021-07-26
  */
 @Data
   @EqualsAndHashCode(callSuper = false)
@@ -65,13 +66,20 @@ import lombok.EqualsAndHashCode;
 
     private Boolean restroom;
 
-    private Boolean studyroom;
-
     private LocalDateTime timeStamp;
+
+    private Boolean studyroom;
 
     private Boolean state;
 
-    private Boolean check;
+    @TableField("isNewSchool")
+    private Boolean isNewSchool;
+
+    @TableField("isNewCampus")
+    private Boolean isNewCampus;
+
+    @TableField("isChecked")
+    private Boolean isChecked;
 
 
 }

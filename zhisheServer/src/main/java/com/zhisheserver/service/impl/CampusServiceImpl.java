@@ -1,13 +1,14 @@
 package com.zhisheserver.service.impl;
 
 import com.zhisheserver.entity.Campus;
-import com.zhisheserver.entity.College;
 import com.zhisheserver.mapper.CampusMapper;
-import com.zhisheserver.mapper.CollegeMapper;
 import com.zhisheserver.service.CampusService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import org.apache.ibatis.annotations.Select;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 
 /**
  * <p>
@@ -15,7 +16,7 @@ import org.springframework.stereotype.Service;
  * </p>
  *
  * @author admin
- * @since 2021-07-21
+ * @since 2021-07-26
  */
 @Service
 public class CampusServiceImpl extends ServiceImpl<CampusMapper, Campus> implements CampusService {
@@ -26,3 +27,10 @@ public class CampusServiceImpl extends ServiceImpl<CampusMapper, Campus> impleme
         return this.campusMapper.getByName(name);
     }
 }
+
+
+
+
+
+
+

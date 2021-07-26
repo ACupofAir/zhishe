@@ -54,7 +54,7 @@
 
       <div class="grade">
         <div style="font-weight: bold; margin-bottom: 5px; margin-top: 5px; font-size: 20px">匹配的年级</div>
-        <el-radio-group v-model="radio2">
+        <el-radio-group v-model="radio2" @change="changeComments">
           <div class="gradeItem" v-for="(item, index) in gradeName" :key="index">
           <el-radio :label="index">{{item.name}}</el-radio>
           </div>
@@ -63,6 +63,7 @@
     </div>
     <div class="campusCommentWrapper">
       <briefComment v-for="(comItem, index) in briefComment" :key="index" class="briefCommentArea"
+                    
                     :rate="comItem.rate"
                     :is-recommend="comItem.isRecommend"
                     :date="comItem.date"
@@ -98,9 +99,12 @@ export default {
       currentCampus: null,
     }
   },
-  methods: {},
+
+  methods: {
+  },
+
   created() {
-    let campus = this.$route.params.campusName
+    let campus = this.$route.params.campusName  
     let _campus = campus.split('-')
     this.currentCampus = _campus[1]   //显示的校区名
 
@@ -112,7 +116,6 @@ export default {
         let allComment =  response.data
         for(let com of allComment){
           if (com.state === true) {
-            console.log(com)
             let toGrade = ""
             switch (com.grade){
               case 1: toGrade = "大一";break;
@@ -147,8 +150,8 @@ export default {
           }
         }
       })
-
   }
+  
 }
 </script>
 
