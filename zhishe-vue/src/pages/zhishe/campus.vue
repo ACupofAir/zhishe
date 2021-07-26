@@ -63,7 +63,7 @@
     </div>
     <div class="campusCommentWrapper">
       <briefComment v-for="(comItem, index) in briefComment" :key="index" class="briefCommentArea"
-                    
+
                     :rate="comItem.rate"
                     :is-recommend="comItem.isRecommend"
                     :date="comItem.date"
@@ -104,13 +104,12 @@ export default {
   },
 
   created() {
-    let campus = this.$route.params.campusName  
+    let campus = this.$route.params.campusName
     let _campus = campus.split('-')
     this.currentCampus = _campus[1]   //显示的校区名
 
-    //根据 '学校-校区' 去请求评价
-    let _this = this
-    this.$axios
+    //根据 '学校-校区' 去请求评价a a a a啊啊啊啊啊啊啊啊
+    let _this     this.$axios
       .get('/comment/' + campus)
       .then(response => {
         let allComment =  response.data
@@ -151,7 +150,7 @@ export default {
         }
       })
   }
-  
+
 }
 </script>
 
