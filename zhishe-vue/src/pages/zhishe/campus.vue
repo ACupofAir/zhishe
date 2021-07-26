@@ -42,7 +42,7 @@
     </div>
     <div class="statisticWrapper">
       <div class="sort">
-        <div style="font-weight: bold; margin-bottom: 5px; margin-top: 5px; font-size: 20px">排序</div>
+        <div style="font-weight: bold; margin-bottom: 5px; margin-top: 5px;">排序</div>
         <el-radio-group v-model="radio1">
           <div class="rankItem" v-for="(item, index) in rankName" :key="index">
           <el-radio :label="index">{{item.name}}</el-radio>
@@ -50,11 +50,11 @@
         </el-radio-group>
       </div>
 
-      <el-divider><i class="el-icon-price-tag"></i></el-divider>
+      <el-divider class="titleDivider"><i class="el-icon-price-tag"></i></el-divider>
 
       <div class="grade">
-        <div style="font-weight: bold; margin-bottom: 5px; margin-top: 5px; font-size: 20px">匹配的年级</div>
-        <el-radio-group v-model="radio2" @change="changeComments">
+        <div style="font-weight: bold; margin-bottom: 5px; margin-top: 5px">匹配的年级</div>
+        <el-radio-group v-model="radio2">
           <div class="gradeItem" v-for="(item, index) in gradeName" :key="index">
           <el-radio :label="index">{{item.name}}</el-radio>
           </div>
@@ -63,7 +63,6 @@
     </div>
     <div class="campusCommentWrapper">
       <briefComment v-for="(comItem, index) in briefComment" :key="index" class="briefCommentArea"
-                    
                     :rate="comItem.rate"
                     :is-recommend="comItem.isRecommend"
                     :date="comItem.date"
@@ -99,12 +98,9 @@ export default {
       currentCampus: null,
     }
   },
-
-  methods: {
-  },
-
+  methods: {},
   created() {
-    let campus = this.$route.params.campusName  
+    let campus = this.$route.params.campusName
     let _campus = campus.split('-')
     this.currentCampus = _campus[1]   //显示的校区名
 
@@ -115,55 +111,37 @@ export default {
       .then(response => {
         let allComment =  response.data
         for(let com of allComment){
-          if (com.state === true) {
-            let toGrade = ""
-            switch (com.grade){
-              case 1: toGrade = "大一";break;
-              case 2: toGrade = "大二";break;
-              case 3: toGrade = "大三";break;
-              case 4: toGrade = "大四";break;
-              case 5: toGrade = "大五";break;
-              case 6: toGrade = "研究生";break;
-            }
-            _this.briefComment.push({
-              rate: com.score,
+          console.log(com)
+          _this.briefComment.push({
+            rate: com.score,
+            isRecommend: com.recommend,
+            date: com.timeStamp,
+            briefCom: com.briefComment,
+            dormArea: com.dorm,
+            commentDetails: {
+              detailRate: com.score,
+              detailName: com.campus,
               isRecommend: com.recommend,
-              date: com.timeStamp,
-              briefCom: com.briefComment,
+              admissionTime: com.year,
+              grade: "大" + com.grade,
               dormArea: com.dorm,
-              commentDetails: {
-                detailRate: com.score,
-                detailName: com.campus,
-                isRecommend: com.recommend,
-                admissionTime: com.year,
-                grade: toGrade,
-                dormArea: com.dorm,
-                dormScale: com.scale + "人间",
-                rate: [{rateTitle: "基础情况(桌椅床铺门窗等)", rateScore: com.facilities},
-                  {rateTitle: "建筑情况(新旧和楼层布局)", rateScore: com.architecture},
-                  {rateTitle: "位置情况(周边环境和位置)", rateScore: com.surrounding}],
-                label: ["空调", "洗衣机", "WIFI", "独立卫浴",],
-                comment: com.briefComment,
-                dormPicture: ["https://gitee.com/thisisbadBao/imgrepo/raw/master/imgrepo1/20210715214908.jpeg"]
-              },
-            });
-          }
+              dormScale: com.scale + "人间",
+              rate: [{rateTitle: "基础情况(桌椅床铺门窗等)", rateScore: com.facilities},
+                {rateTitle: "建筑情况(新旧和楼层布局)", rateScore: com.architecture},
+                {rateTitle: "位置情况(周边环境和位置)", rateScore: com.surrounding}],
+              label: ["空调", "洗衣机", "WIFI", "独立卫浴",],
+              comment: com.briefComment,
+              dormPicture: ["https://gitee.com/thisisbadBao/imgrepo/raw/master/imgrepo1/20210715214908.jpeg"]
+            },
+          });
         }
       })
+
   }
-  
 }
 </script>
 
 <style scoped>
-
-
-
-.el-radio ::v-deep .el-radio__label{
-
-  font-size:20px !important;
-
-}
 
 ::v-deep .el-rate__icon {
   font-size: 28px;
@@ -227,7 +205,7 @@ export default {
 }
 
 .titleDivider {
-  margin-top: 115px;
+  margin-top: 110px;
 }
 
 

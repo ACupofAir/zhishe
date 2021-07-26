@@ -2,9 +2,7 @@ package com.zhisheserver.controller;
 
 
 import com.zhisheserver.entity.Comment;
-import com.zhisheserver.mapper.CommentMapper;
 import com.zhisheserver.service.CommentService;
-import org.apache.ibatis.annotations.Select;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -21,7 +19,7 @@ import java.util.List;
  * </p>
  *
  * @author admin
- * @since 2021-07-26
+ * @since 2021-07-23
  */
 @RestController
 @RequestMapping("//comment")
@@ -34,8 +32,6 @@ public class CommentController {
     public List<Comment> getCommentByCampus(@PathVariable("campus") String campus){
         return this.commentService.getCommentByName(campus);
     }
-
-
 
 }
 
