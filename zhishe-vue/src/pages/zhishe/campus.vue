@@ -85,7 +85,7 @@ export default {
 
       rankName: [{name: "校区名称"}, {name: "最多评价"}, {name: "最高评分"}],
       gradeName: [{name: "所有年级"}, {name: "大一"}, {name: "大二"}, {name: "大三"},
-        {name: "大四"}, {name: "大五"}, {name: "研究生"}],
+        {name: "大四"}, {name: "大五"}, {name: "研究生"},{name: "博士生"}],
       briefComment: [{id: 1}, {id: 2}, {id: 1}, {id: 2}],
 
 
