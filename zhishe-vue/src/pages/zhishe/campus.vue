@@ -86,6 +86,7 @@
         console.log(this.briefComment[0].commentDetails.grade)
         let toGrade = ""
         switch (value) {
+          case 0: toGrade = "所有年级"; break;
           case 1: toGrade = "大一"; break;
           case 2: toGrade = "大二"; break;
           case 3: toGrade = "大三"; break;
@@ -100,7 +101,7 @@
         for(let comment of this.briefComment)
         {
           console.log(comment.commentDetails.grade)
-          if (toGrade == comment.commentDetails.grade) {
+          if (toGrade == comment.commentDetails.grade || toGrade == "所有年级") {
             tempComments.push(comment)
           }
         }
