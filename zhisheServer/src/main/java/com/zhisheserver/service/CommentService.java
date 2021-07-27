@@ -1,5 +1,6 @@
 package com.zhisheserver.service;
 
+import com.zhisheserver.dto.Labels;
 import com.zhisheserver.entity.Comment;
 import com.baomidou.mybatisplus.extension.service.IService;
 
@@ -16,4 +17,9 @@ import java.util.List;
 public interface CommentService extends IService<Comment> {
 
     List<Comment> getCommentByName(String name);
+
+    List<String> PartByLabels(Labels la);
+
+    List<String> getBoth(List<String> f, List<String> s);
+
 }

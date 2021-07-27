@@ -49,7 +49,8 @@
                   <el-input v-model="form.code" autocomplete="off"></el-input>
                 </el-form-item>
                 <el-form-item label="邀请码" :label-width="formLabelWidth">
-                  <el-input v-model="form.lisence" autocomplete="off">
+                  <el-input v-model="form.lisence" autocomplete="off"
+                  @keypress.native.enter = "formOK">
                   </el-input>
                 </el-form-item>
               </el-form>
@@ -105,14 +106,14 @@ export default {
     };
   },
   methods: {
-    goPay(account) {
-  this.$router.push({
-    path: '/adminMain',
-    query: {
-      acc:account,
-    }
-  })
-    },
+  //   goPay(account) {
+  // this.$router.push({
+  //   path: '/adminMain',
+  //   query: {
+  //     acc:account,
+  //   }
+  // })
+  //   },
     log_in() {
       let _this = this;
       // console.log(this.input1);

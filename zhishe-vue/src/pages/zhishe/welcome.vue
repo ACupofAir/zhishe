@@ -54,6 +54,7 @@
         <div id="downerRank">
           <div id="rankText">最符合条件的学校</div>
           <div id="rankContent">
+            <!-- <el-empty :image-size="200"></el-empty> -->
             <record
                 v-for="(item, index) in collegeAndRate"
                 :key="index"
@@ -89,27 +90,77 @@ export default {
         {college: "华中科技大学", rate: 4.0},
         {college: "天津大学", rate: 3.7},
       ],
+      colleges:[],
+      rates:[],
       labelNames: [
-        {name: "健身房"},
+        {name: "冰箱"},
         {name: "空调"},
         {name: "洗衣机"},
         {name: "可烹饪"},
         {name: "室外阳台"},
         {name: "独立卫浴"},
         {name: "自习室"},
+        {name: "沙发"},
+        {name: "无线网络"},
       ],
     };
   },
   methods: {
-    updateRank() {
+    async updateRank() {
+      var co = new Array;
+      let _this = this;
+      await this.$axios
+      .post('/comment/labels',{
+        labels: _this.checkboxGroup
+      })
+      .then(successResponse=>{
+        var t = successResponse.data;
+
+        for(let i = 0; i < t.length;i++)
+        {
+        //   // console.log(t[i]);
+          var temp = t[i].split("-");
+          
+          co.push(temp[0]);
+        //   console.log(co);
+        }
+        // console.log(new Set(co));
+        _this.colleges = Array.from(new Set(co));
+      })
+      .catch(failResponse=>{
+        console.log(failResponse.data);
+      })
+      await this.$axios
+      .post('/campus/scores',{
+        labels: _this.checkboxGroup,
+      })
+      .then(successResponse=>{
+        // console.log(successResponse.data);
+        _this.rates = successResponse.data;
+      })
+      .catch(failResponse=>{
+        console.log(failResponse.data);
+      })
+
+
+
       if (this.checkboxGroup.length != 0) {
-        this.collegeAndRate = [
-          {college: "北京大学", rate: 5.0},
-          {college: "清华大学", rate: 4.0},
-          {college: "东北大学", rate: 3.0},
-          {college: "武汉大学", rate: 2.0},
-          {college: "南开大学", rate: 1.0},
-        ];
+        // console.log(this.colleges.length);
+        // console.log(this.rates);
+        if(this.colleges.length != 0)
+        {
+          this.collegeAndRate = [];
+          var n = this.colleges.length < 5?this.colleges.length:5;
+          for(let i = 0; i < n; i++)
+          {
+            this.collegeAndRate.push({college:this.colleges[i],
+             rate:this.rates[i]});
+          }
+        }
+        else
+        {
+          this.collegeAndRate = [];
+        }
       } else {
         this.collegeAndRate = [
           {college: "东南大学", rate: 3.9},
