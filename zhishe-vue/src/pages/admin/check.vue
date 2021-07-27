@@ -31,8 +31,6 @@
       <el-table :data="tableData" border style="width: 100%; height:600">
         <el-table-column fixed prop="id" label="评论编号" width="155">
         </el-table-column>
-        <el-table-column prop="college" label="学校" width="165">
-        </el-table-column>
         <el-table-column prop="campus" label="校区" width="165">
         </el-table-column>
         <el-table-column prop="isNewCampus" label="是否新添加" width="135">
@@ -56,59 +54,59 @@
 </template>
 
 <script>
-export default {
-  name: "check",
-  methods: {
-    handleClick(row) {
-      console.log(row);
-    }
-  },
-  data() {
-    return {
-      input: '',
-      select: '',
-      tableData: [],
-    }
-  },
+  export default {
+    name: "check",
+    methods: {
+      handleClick(row) {
+        console.log(row);
+      }
+    },
+    data() {
+      return {
+        input: '',
+        select: '',
+        tableData: [],
+      }
+    },
 
-  created() {
-    let responseData = null
-    let _this = this
-    this.$axios
-      .get('/comment/list/')
-      .then(function (response) {
-        responseData = response.data
-        console.log(responseData)
-        _this.tableData = responseData
-        // console.log(_this.tableData)
-      })
-      .catch(failRes => {
-        console.log(failRes.data)
-        console.log("12321")
-      })
+    created() {
+      let responseData = null
+      let _this = this
+      this.$axios
+        .get('/comment/list/')
+        .then(function (response) {
+          responseData = response.data
+          console.log(responseData)
+          _this.tableData = responseData
+          // console.log(_this.tableData)
+        })
+        .catch(failRes => {
+          console.log(failRes.data)
+          console.log("12321")
+        })
+    }
   }
-}
 </script>
 
 <style scoped>
-.searchHeader {
-  box-shadow: 0 0 20px #cac6c6;
-  height: 150px;
-  margin-top: 0px;
+  .searchHeader {
+    box-shadow: 0 0 20px #cac6c6;
+    height: 150px;
+    margin-top: 0px;
 
-}
+  }
 
-.checkList {
-  margin-top: 15px;
-  box-shadow: 0 0 20px #cac6c6;
-  height: 500px;
-}
+  .checkList {
+    margin-top: 15px;
+    box-shadow: 0 0 20px #cac6c6;
+    height: 500px;
+  }
 
-.el-select .el-input {
-  width: 130px;
-}
+  .el-select .el-input {
+    width: 130px;
+  }
 
-.input-with-select .el-input-group__prepend {
-  background-color: #fff;
-}
+  .input-with-select .el-input-group__prepend {
+    background-color: #fff;
+  }
 </style>
