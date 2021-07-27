@@ -21,9 +21,9 @@ public class GenerateTest {
         DataSourceConfig dataSourceConfig = new DataSourceConfig();
         dataSourceConfig.setDbType(DbType.MYSQL);
         dataSourceConfig.setDriverName("com.mysql.cj.jdbc.Driver");
-        dataSourceConfig.setUsername("zhishe");
+        dataSourceConfig.setUsername("root");
         dataSourceConfig.setPassword("Hedimoyu666");
-        dataSourceConfig.setUrl("jdbc:mysql://rm-uf60a20t44x469mehuo.mysql.rds.aliyuncs.com:3306/zhishe");
+        dataSourceConfig.setUrl("jdbc:mysql://sh-cdb-ai96ksa0.sql.tencentcdb.com:59793/zhishedata");
         autoGenerator.setDataSource(dataSourceConfig);
         //全局配置
         GlobalConfig globalConfig = new GlobalConfig();

@@ -18,21 +18,28 @@ import java.util.List;
  * </p>
  *
  * @author admin
- * @since 2021-07-26
+ * @since 2021-07-23
  */
 @Service
 public class CommentServiceImpl extends ServiceImpl<CommentMapper, Comment> implements CommentService {
 
+<<<<<<< HEAD
 
     @Autowired
     private CommentMapper commentMapper;
+=======
+    @Autowired CommentMapper commentMapper;
+>>>>>>> 7b199dcf1d86baf3e1a8b1d241db1ed7dea5c090
 
     public List<Comment> getCommentByName(String name){
         return this.commentMapper.getCommentByName(name);
     }
 
+<<<<<<< HEAD
     public Object saveComment(Comment comment){
         commentMapper.insert(comment);
         return comment;
     }
+=======
+>>>>>>> 7b199dcf1d86baf3e1a8b1d241db1ed7dea5c090
 }

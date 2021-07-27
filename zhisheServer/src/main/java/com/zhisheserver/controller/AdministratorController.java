@@ -1,19 +1,12 @@
 package com.zhisheserver.controller;
 
-
 import com.zhisheserver.dto.Login;
-import com.zhisheserver.entity.Administrator;
-import com.zhisheserver.mapper.AdministratorMapper;
-import com.zhisheserver.result.LoginResult;
 import com.zhisheserver.service.AdministratorService;
-import org.apache.ibatis.annotations.Select;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
+
 
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.ResponseBody;
 
 /**
  * <p>
@@ -21,10 +14,13 @@ import org.springframework.web.bind.annotation.ResponseBody;
  * </p>
  *
  * @author admin
- * @since 2021-07-26
+ * @since 2021-07-20
  */
-@Controller
+@RestController
 @RequestMapping("//administrator")
+@Controller
+@CrossOrigin
+
 public class AdministratorController {
 
     @Autowired
