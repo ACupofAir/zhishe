@@ -3,6 +3,7 @@ package com.zhisheserver.controller;
 
 import com.zhisheserver.entity.Campus;
 import com.zhisheserver.entity.College;
+import com.zhisheserver.mapper.CampusMapper;
 import com.zhisheserver.service.CampusService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -11,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import java.util.List;
 /**
  * <p>
@@ -35,6 +37,14 @@ public class CampusController {
     @GetMapping("/find/{name}")
     public Campus getByName(@PathVariable("name") String name){
         return this.campusService.getByName(name);
+    }
+
+    @PostMapping("/post")
+    @ResponseBody
+    public Object saveCampus(
+            @RequestBody Campus campus
+    ){
+        return campusService.saveCampus(campus);
     }
 }
 

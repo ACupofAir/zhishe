@@ -33,5 +33,12 @@ public class CollegeController {
         return this.collegeService.getByName(name);
     }
 
+    @PostMapping("/post")
+    @ResponseBody
+    public Object saveCollege(
+            @RequestBody College college
+    ){
+        return collegeService.saveCollege(college);
+    }
 }
 

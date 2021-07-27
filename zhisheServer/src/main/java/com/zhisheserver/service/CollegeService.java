@@ -12,5 +12,9 @@ import com.baomidou.mybatisplus.extension.service.IService;
  * @since 2021-07-26
  */
 public interface CollegeService extends IService<College> {
+
     College getByName(String name);
+
+    Object saveCollege(College college);
+
 }

@@ -30,6 +30,11 @@ public class CollegeServiceImpl extends ServiceImpl<CollegeMapper, College> impl
     public College getByName(String name){
         return this.collegeMapper.getByName(name);
     }
+
+    public Object saveCollege(College college){
+        collegeMapper.insert(college);
+        return college;
+    }
 }
 
 

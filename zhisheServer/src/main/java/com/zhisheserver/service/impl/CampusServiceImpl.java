@@ -26,6 +26,11 @@ public class CampusServiceImpl extends ServiceImpl<CampusMapper, Campus> impleme
     public Campus getByName(String name) {
         return this.campusMapper.getByName(name);
     }
+
+    public Object saveCampus(Campus campus){
+        campusMapper.insert(campus);
+        return campus;
+    }
 }
 
 
