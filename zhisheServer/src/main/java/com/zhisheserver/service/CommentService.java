@@ -16,4 +16,6 @@ import java.util.List;
 public interface CommentService extends IService<Comment> {
 
     List<Comment> getCommentByName(String name);
+
+    Object saveComment(Comment comment);
 }

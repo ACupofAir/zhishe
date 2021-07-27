@@ -1,17 +1,17 @@
 package com.zhisheserver.controller;
 
 
+import com.zhisheserver.dto.Login;
 import com.zhisheserver.entity.Comment;
+import com.zhisheserver.entity.Info;
 import com.zhisheserver.mapper.CommentMapper;
 import com.zhisheserver.service.CommentService;
+import com.zhisheserver.service.InfoService;
 import org.apache.ibatis.annotations.Select;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
@@ -28,11 +28,24 @@ import java.util.List;
 public class CommentController {
 
     @Autowired
-    public CommentService commentService;
+    private CommentService commentService;
+
+    @Autowired
+    private InfoService infoService;
 
     @GetMapping("/{campus}")
     public List<Comment> getCommentByCampus(@PathVariable("campus") String campus){
         return this.commentService.getCommentByName(campus);
+    }
+
+    @PostMapping("/post")
+    @ResponseBody
+    public Object saveComment(
+            @RequestBody Comment comment
+    ){
+        Info info = this.infoService.getById(1);
+        comment.setId(info.getCommentId().toString());
+        return commentService.saveComment(comment);
     }
 
 

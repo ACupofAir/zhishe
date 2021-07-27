@@ -26,7 +26,7 @@
           <font color="white">校区地址</font>
         </span>
         <div class="checkBoxRight">
-          <el-input v-model="campusAddr" placeholder="请输入内容" :disabled="campusFixed"></el-input>
+          <el-input v-model="campusAddr" placeholder="请输入内容" ></el-input>
         </div>
       </div>
 
@@ -42,6 +42,17 @@
 
     <!-- Three score items -->
     <div class="threeScores">
+      <el-row class="rowStyle" :gutter="60">
+        <el-col :span="8">
+          <div class="">宿舍总体情况</div>
+        </el-col>
+        <el-col :span="16">
+          <div class="">
+            <el-slider v-model="score" :step="1" :max='5' show-stops>
+            </el-slider>
+          </div>
+        </el-col>
+      </el-row>
       <el-row class="rowStyle" :gutter="60">
         <el-col :span="8">
           <div class="">宿舍基础情况</div>
@@ -211,7 +222,7 @@
           <img src="../../assets/comment/Toilet.svg" height="30" width="30" alt="" title="独立卫生间">
         </span>
         <span class="tagRight">
-          <el-switch v-model="hasToilet" active-color="#13ce66" inactive-color="#ff4949">
+          <el-switch v-model="hasStudyroom" active-color="#13ce66" inactive-color="#ff4949">
           </el-switch>
         </span>
       </div>
@@ -264,7 +275,7 @@
         <el-button type="primary" v-on:click="submit">提交<i class="el-icon-upload el-icon--right"></i></el-button>
       </span>
       <span class="buttonBoxRight">
-        <el-button type="primary">重置<i class="el-icon-refresh-right el-icon--right"></i></el-button>
+        <el-button type="primary" v-on:click="resetForm">重置<i class="el-icon-refresh-right el-icon--right"></i></el-button>
       </span>
     </div>
 
@@ -280,28 +291,29 @@
         campusName: "",
         campusAddr: "",
         dormArea: "",
+        score: 3,
         basicInfoScore: 3,
         buildingScore: 3,
         locationScore: 3,
         yearIn: "",
         gradeNum: 0,
         gradeOptions: [{
-          value: '选项1',
+          value: '1',
           label: '大一'
         }, {
-          value: '选项2',
+          value: '2',
           label: '大二'
         }, {
-          value: '选项3',
+          value: '3',
           label: '大三'
         }, {
-          value: '选项4',
+          value: '4',
           label: '大四'
         }, {
-          value: '选项5',
+          value: '5',
           label: '研究生'
         }, {
-          value: '选项6',
+          value: '6',
           label: '博士生'
         }],
         gradeValue: '',
@@ -315,9 +327,11 @@
         hasBalcony: false,
         hasWifi: false,
         hasBathroom: false,
-        hasToilet: false,
+        hasStudyroom: false,
         shortComment: "",
         email: '',
+        photo:"https://gitee.com/thisisbadBao/imgrepo/raw/master/imgrepo1/20210715214908.jpeg",
+
 
 
         collegeFixed: false,
@@ -370,19 +384,66 @@
       },
       submit() {
         let _campus = this.collegeName + '-' + this.campusName
+        let _this = this
         this.$axios
             .post('/comment/post', {
-              id: 1111,
+              id: "1",
 
               campus: _campus,
 
-              dorm: this.dormArea,
+              dorm: _this.dormArea,
 
-              location: this.campusAddr,
+              location: _this.campusAddr,
 
-              year: this.yearIn,
+              year: _this.yearIn.getFullYear(),
 
-              grade: Number(this.gradeValue),
+              grade: Number(_this.gradeValue),
+
+              scale: _this.scale,
+
+              recommend: _this.isRecommend,
+
+              email: _this.email,
+
+              facilities: _this.basicInfoScore,
+
+              architecture: _this.buildingScore,
+
+              surrounding: _this.locationScore,
+
+              score: _this.score,
+
+              photo: _this.photo,
+
+              briefComment: _this.shortComment,
+
+              airConditioner: _this.hasAirCool,
+
+              sofa: _this.hasSofa,
+
+              outdoorBalcony: _this.hasBalcony,
+
+              washingMachine: _this.hasWasher,
+
+              refrigerator: _this.hasRefrigerator,
+
+              cooking: _this.hasCooker,
+
+              wifi: _this.hasWifi,
+
+              restroom: _this.hasBathroom,
+
+              timeStamp: _this.getCurrentDate(),
+
+              studyroom: _this.hasStudyroom,
+
+              state: true,   //未发布
+
+              isNewSchool: !_this.collegeFixed,
+
+              isNewCampus: !_this.campusFixed,
+
+              isChecked: false,
 
             })
             .then(successResponse => {
@@ -393,13 +454,33 @@
             })
       },
 
+      getCurrentDate () {
+        let date = new Date()
+        let month = date.getMonth() + 1
+        let strDate = date.getDate()
+        if (month >= 1 && month <= 9) {
+          month = "0" + month
+        }
+        if (strDate >= 0 && strDate <= 9) {
+          strDate = "0" + strDate
+        }
+        let currentDate = date.getFullYear() + "-" + month + "-" + strDate
+            + "T" + date.getHours() + ":" + date.getMinutes() + ":" + date.getSeconds()
+        return currentDate
+      },
+
+
+
+      resetForm() {
+        alert(this.getCurrentDate())
+        // this.$refs[formName].resetFields();
+      }
     },
 
 
 
-    resetForm(formName) {
-      this.$refs[formName].resetFields();
-    }
+
+
   }
 </script>
 
