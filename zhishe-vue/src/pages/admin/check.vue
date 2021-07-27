@@ -60,29 +60,29 @@
 export default {
   name: "check",
   methods: {
-    editComment () {
+    editComment() {
 
     },
 
-    postComment (index) {
+    postComment(index) {
       let _this = this
       this.tableData[index].state = '已发布'
       console.log(this.tableData[index].id)
       this.$axios
           .post('/comment/updateState',
-          {
-            comment_id: _this.tableData[index].id,
-            comment_state: 1
+              {
+                comment_id: _this.tableData[index].id,
+                comment_state: 1
+              })
+          .then(response => {
+            console.log(response)
           })
-      .then(response =>{
-        console.log(response)
-      })
-      .catch(failResponse =>{
-        console.log(failResponse.data)
-      })
+          .catch(failResponse => {
+            console.log(failResponse.data)
+          })
     },
 
-    CancelPostComment (index) {
+    CancelPostComment(index) {
       this.tableData[index].state = '未发布'
     }
   },
@@ -100,101 +100,101 @@ export default {
     let responseData = null
     let _this = this
     this.$axios
-      .get('/comment/list/')
-      .then(function (response) {
-        responseData = response.data
-        console.log(responseData)
-        for(let item of responseData){
-          _this.tableData.push({
-            id: item.id,
+        .get('/comment/list/')
+        .then(function (response) {
+          responseData = response.data
+          console.log(responseData)
+          for (let item of responseData) {
+            _this.tableData.push({
+              id: item.id,
 
-            campus: item.campus,
+              campus: item.campus,
 
-            dorm: item.dorm,
+              dorm: item.dorm,
 
-            location: item.location,
+              location: item.location,
 
-            year: item.year,
+              year: item.year,
 
-            grade: item.grade,
+              grade: item.grade,
 
-            scale: item.scale,
+              scale: item.scale,
 
-            recommend: item.recommend,
+              recommend: item.recommend,
 
-            email: item.email,
+              email: item.email,
 
-            facilities: item.facilities,
+              facilities: item.facilities,
 
-            architecture: item.architecture,
+              architecture: item.architecture,
 
-            surrounding: item.surrounding,
+              surrounding: item.surrounding,
 
-            score: item.score,
+              score: item.score,
 
-            photo: item.photo,
+              photo: item.photo,
 
-            briefComment: item.briefComment,
+              briefComment: item.briefComment,
 
-            airConditioner: item.airConditioner,
+              airConditioner: item.airConditioner,
 
-            sofa: item.sofa,
+              sofa: item.sofa,
 
-            outdoorBalcony: item.outdoorBalcony,
+              outdoorBalcony: item.outdoorBalcony,
 
-            washingMachine: item.washingMachine,
+              washingMachine: item.washingMachine,
 
-            refrigerator: item.refrigerator,
+              refrigerator: item.refrigerator,
 
-            cooking: item.cooking,
+              cooking: item.cooking,
 
-            wifi: item.wifi,
+              wifi: item.wifi,
 
-            restroom: item.restroom,
+              restroom: item.restroom,
 
-            timeStamp: item.timeStamp,
+              timeStamp: item.timeStamp,
 
-            studyroom: item.studyroom,
+              studyroom: item.studyroom,
 
-            state: item.state? '已发布':'未发布',
+              state: item.state ? '已发布' : '未发布',
 
-            isNewSchool: item.isNewSchool? '是':'否',
+              isNewSchool: item.isNewSchool ? '是' : '否',
 
-            isNewCampus: item.isNewCampus? '是':'否',
+              isNewCampus: item.isNewCampus ? '是' : '否',
 
-            isChecked: item.isChecked,
-          })
-        }
-        _this.tableData = _this.tableData.reverse()
-        // console.log(_this.tableData)
-      })
-      .catch(failRes => {
-        console.log(failRes.data)
-        console.log("12321")
-      })
+              isChecked: item.isChecked,
+            })
+          }
+          _this.tableData = _this.tableData.reverse()
+          // console.log(_this.tableData)
+        })
+        .catch(failRes => {
+          console.log(failRes.data)
+          console.log("12321")
+        })
   }
 }
 </script>
 
 <style scoped>
-.searchHeader {
-  box-shadow: 0 0 20px #cac6c6;
-  height: 150px;
-  margin-top: 0px;
+  .searchHeader {
+    box-shadow: 0 0 20px #cac6c6;
+    height: 150px;
+    margin-top: 0px;
 
-}
+  }
 
-.checkList {
-  margin-top: 15px;
-  box-shadow: 0 0 20px #cac6c6;
-  height: 500px;
-}
+  .checkList {
+    margin-top: 15px;
+    box-shadow: 0 0 20px #cac6c6;
+    height: 500px;
+  }
 
-.el-select .el-input {
-  width: 130px;
-}
+  .el-select .el-input {
+    width: 130px;
+  }
 
-.input-with-select .el-input-group__prepend {
-  background-color: #fff;
-}
+  .input-with-select .el-input-group__prepend {
+    background-color: #fff;
+  }
 </style>
