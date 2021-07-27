@@ -3,7 +3,7 @@
 
     <div class="searchHeader">
 
-      <div class="searchtable" style="margin-top: 30px; margin-left:15%; width: 800px;">
+      <div class="searchtable" style="margin-top: 0px; margin-left:15%; width: 800px;">
         <el-input placeholder="请输入内容" v-model="searchInput" class="input-with-select" style="margin-top: 25px;">
           <el-select v-model="select" slot="prepend" placeholder="请选择">
             <el-option label="地址" value="1"></el-option>
@@ -19,7 +19,25 @@
           <div class="" style="margin-right:0%; margin-top: 30px;">
             <el-button type="primary" plain style="margin-right: 50px;">查询</el-button>
             <el-button type="info" plain style="margin-right: 50px;">重置</el-button>
-            <el-button type="primary" plain style="margin-right: 50px;">添加</el-button>
+            <el-button type="primary" @click="dialogFormVisible = true" plain style="margin-right: 50px;">添加</el-button>
+
+            <el-dialog title="新增学校" :visible.sync="dialogFormVisible">
+              <el-form :model="form">
+                <el-form-item label="学校名称" :label-width="formLabelWidth">
+                  <el-input v-model="form.schoolName" autocomplete="off"></el-input>
+                </el-form-item>
+                <el-form-item label="校区名称" :label-width="formLabelWidth">
+                  <el-input v-model="form.campusName" autocomplete="off"></el-input>
+                </el-form-item>
+                <el-form-item label="校区地址" :label-width="formLabelWidth">
+                  <el-input v-model="form.address" autocomplete="off"></el-input>
+                </el-form-item>
+              </el-form>
+              <div slot="footer" class="dialog-footer">
+                <el-button @click="dialogFormVisible = false">取 消</el-button>
+                <el-button type="primary" @click="addItem">确 定</el-button>
+              </div>
+            </el-dialog>
           </div>
         </el-row>
       </div>
@@ -50,17 +68,21 @@
 <script>
   export default {
     name: "check",
-    methods: {
-      handleClick(row) {
-        console.log(row);
-      }
-    },
 
     data() {
       return {
         searchInput: '',
         select: '',
         tableData: [],
+
+        dialogTableVisible: false,
+        dialogFormVisible: false,
+        form: {
+          schoolName: '',
+          campusName: '',
+          address: '',
+        },
+        formLabelWidth: '120px'
       }
     },
 
@@ -72,13 +94,60 @@
         .then(function (response) {
           responseData = response.data
           _this.tableData = responseData
-          console.log(_this.tableData)
         })
         .catch(failRes => {
           console.log(failRes.data)
           console.log("12321")
         })
+
+    },
+
+    methods: {
+      handleClick(row) {
+        console.log(row);
+      },
+
+      addItem() {
+        let _this = this
+        this.$axios
+          .post('/campus/post', {
+            name: _this.form.schoolName + "-" + _this.form.campusName,
+            address: _this.form.address,
+            schoolName: _this.form.schoolName,
+          })
+          .then(successResponse => {
+            console.log(successResponse.data);
+          })
+          .catch(failResponse => {
+            console.log(failResponse.data)
+          })
+        this.$axios
+          .post('/college/post', {
+            name: _this.form.schoolName,
+            address: _this.form.address,
+            campus1: _this.form.campusName,
+            image: '',
+            campusNum: 1,
+            commentNum: 0,
+            state: 1,
+            coord: 2,
+            scanNum: 0,
+          })
+          .then(successResponse => {
+            console.log(successResponse.data);
+          })
+          .catch(failResponse => {
+            console.log(failResponse.data)
+          })
+        console.log("add success!")
+        this.dialogFormVisible = false
+        this.dialogTableVisible = false
+        this.form = []
+
+      }
     }
+
+
 
   }
 </script>
