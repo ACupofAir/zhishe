@@ -28,6 +28,11 @@ public class CommentController {
     @Autowired
     public CommentService commentService;
 
+    @GetMapping("/list")
+    public List<Comment> list(){
+        return this.commentService.list();
+    }
+
     @GetMapping("/{campus}")
     public List<Comment> getCommentByCampus(@PathVariable("campus") String campus){
         return this.commentService.getCommentByName(campus);

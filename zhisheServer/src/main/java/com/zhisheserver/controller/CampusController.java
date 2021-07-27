@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RestController;
-
+import java.util.List;
 /**
  * <p>
  *  前端控制器
@@ -27,6 +27,10 @@ public class CampusController {
     @Autowired
     public CampusService campusService;
 
+    @GetMapping("/list")
+    public List<Campus> list(){
+        return this.campusService.list();
+    }
 
     @GetMapping("/find/{name}")
     public Campus getByName(@PathVariable("name") String name){
