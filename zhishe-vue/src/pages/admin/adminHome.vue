@@ -36,16 +36,17 @@ export default {
 
 <style scoped>
 .adminHeaderWrapper {
-  border: #3c85cb solid 2px;
+  /*border: #3c85cb solid 2px;*/
+  box-shadow: 0 0 20px #cac6c6;
 }
 
 .adminAsideWrapper {
-  border: #3c85cb solid 2px;
+  /*border: #3c85cb solid 2px;*/
 
 }
 
 .adminMainWrapper {
-  border: #3c85cb solid 2px;
+  /*border: #3c85cb solid 2px;*/
 
 }
 </style>

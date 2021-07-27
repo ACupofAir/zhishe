@@ -18,4 +18,6 @@ public interface CommentService extends IService<Comment> {
     List<Comment> getCommentByName(String name);
 
     Object saveComment(Comment comment);
+
+    Object updateCommentState(String comment_id, Integer new_state);
 }

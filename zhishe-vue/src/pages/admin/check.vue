@@ -3,7 +3,7 @@
 
     <div class="searchHeader">
 
-      <div class="searchtable" style="margin-top: 30px; margin-left:28px; width: 400px;">
+      <div class="searchtable" style="margin-left:28px; width: 400px;">
         <el-input placeholder="请输入内容" v-model="input" class="input-with-select" style="margin-top: 25px;">
           <el-select v-model="select" slot="prepend" placeholder="请选择">
             <el-option label="评论编号" value="1"></el-option>
@@ -28,14 +28,14 @@
     </div>
 
     <div class="checkList">
-      <el-table :data="tableData" border style="width: 100%; height:600">
+      <el-table :data="tableData" border style="width: 100%;" :stripe="isStripe">
         <el-table-column fixed prop="id" label="评论编号" width="155">
-        </el-table-column>
-        <el-table-column prop="college" label="学校" width="165">
         </el-table-column>
         <el-table-column prop="campus" label="校区" width="165">
         </el-table-column>
-        <el-table-column prop="isNewCampus" label="是否新添加" width="135">
+        <el-table-column prop="isNewCampus" label="是否新添加校区" width="135">
+        </el-table-column>
+        <el-table-column prop="isNewSchool" label="是否新添加学校" width="135">
         </el-table-column>
         <el-table-column prop="email" label="联系邮箱" width="245">
         </el-table-column>
@@ -43,8 +43,9 @@
         </el-table-column>
         <el-table-column fixed="right" label="操作" width="170">
           <template slot-scope="scope">
-            <el-button size="mini" @click="handleEdit(scope.$index, scope.row)">Edit</el-button>
-            <el-button size="mini" type="danger" @click="handleDelete(scope.$index, scope.row)">Delete</el-button>
+            <el-button size="mini" @click="editComment(scope.$index)">编辑</el-button>
+            <el-button size="mini" type="success"  @click="postComment(scope.$index)" v-if="tableData[scope.$index].state === '未发布'">发布</el-button>
+            <el-button size="mini" type="success"  @click="CancelPostComment(scope.$index)" v-if="tableData[scope.$index].state === '已发布'">取消发布</el-button>
           </template>
         </el-table-column>
       </el-table>
@@ -59,8 +60,30 @@
 export default {
   name: "check",
   methods: {
-    handleClick(row) {
-      console.log(row);
+    editComment () {
+
+    },
+
+    postComment (index) {
+      let _this = this
+      this.tableData[index].state = '已发布'
+      console.log(this.tableData[index].id)
+      this.$axios
+          .post('/comment/updateState',
+          {
+            comment_id: _this.tableData[index].id,
+            comment_state: 1
+          })
+      .then(response =>{
+        console.log(response)
+      })
+      .catch(failResponse =>{
+        console.log(failResponse.data)
+      })
+    },
+
+    CancelPostComment (index) {
+      this.tableData[index].state = '未发布'
     }
   },
   data() {
@@ -68,8 +91,10 @@ export default {
       input: '',
       select: '',
       tableData: [],
+      isStripe: true,
     }
   },
+
 
   created() {
     let responseData = null
@@ -79,7 +104,68 @@ export default {
       .then(function (response) {
         responseData = response.data
         console.log(responseData)
-        _this.tableData = responseData
+        for(let item of responseData){
+          _this.tableData.push({
+            id: item.id,
+
+            campus: item.campus,
+
+            dorm: item.dorm,
+
+            location: item.location,
+
+            year: item.year,
+
+            grade: item.grade,
+
+            scale: item.scale,
+
+            recommend: item.recommend,
+
+            email: item.email,
+
+            facilities: item.facilities,
+
+            architecture: item.architecture,
+
+            surrounding: item.surrounding,
+
+            score: item.score,
+
+            photo: item.photo,
+
+            briefComment: item.briefComment,
+
+            airConditioner: item.airConditioner,
+
+            sofa: item.sofa,
+
+            outdoorBalcony: item.outdoorBalcony,
+
+            washingMachine: item.washingMachine,
+
+            refrigerator: item.refrigerator,
+
+            cooking: item.cooking,
+
+            wifi: item.wifi,
+
+            restroom: item.restroom,
+
+            timeStamp: item.timeStamp,
+
+            studyroom: item.studyroom,
+
+            state: item.state? '已发布':'未发布',
+
+            isNewSchool: item.isNewSchool? '是':'否',
+
+            isNewCampus: item.isNewCampus? '是':'否',
+
+            isChecked: item.isChecked,
+          })
+        }
+        _this.tableData = _this.tableData.reverse()
         // console.log(_this.tableData)
       })
       .catch(failRes => {

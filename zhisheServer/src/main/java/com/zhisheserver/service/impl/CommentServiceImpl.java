@@ -24,7 +24,8 @@ import java.util.List;
 public class CommentServiceImpl extends ServiceImpl<CommentMapper, Comment> implements CommentService {
 
 
-    @Autowired CommentMapper commentMapper;
+    @Autowired
+    private CommentMapper commentMapper;
 
     public List<Comment> getCommentByName(String name){
         return this.commentMapper.getCommentByName(name);
@@ -32,8 +33,13 @@ public class CommentServiceImpl extends ServiceImpl<CommentMapper, Comment> impl
 
 
     public Object saveComment(Comment comment){
-        commentMapper.insert(comment);
+        this.commentMapper.insert(comment);
         return comment;
     }
 
+
+    public Object updateCommentState(String comment_id, Integer new_state){
+        this.commentMapper.updateCommentState(comment_id, new_state);
+        return new Result(1);
+    }
 }
