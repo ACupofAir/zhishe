@@ -5,30 +5,29 @@
         <span class="comRate">
           <el-rate v-model="rate"
                    disabled
-                   show-score
                    text-color="#ff9900"
                    score-template="{value}"
                    style="display: inline-block">
           </el-rate>
           <span style="height: 45px" v-if="isRecommend">
-            <img src="../assets/thumbYes.svg" height="45" width="45" style="margin-left: 70px">
-            <span style="font-size: 17px; margin-left: 10px;">推荐</span>
+            <img src="../assets/thumbYes.svg" height="45" width="45" style="margin-left: 20px">
+            <span style="font-size: 17px; margin-left: 1px; color:#747d8c ">推荐</span>
           </span>
            <span style="height: 45px" v-if="!isRecommend">
             <img src="../assets/thumbNo.svg" height="45" width="45"
-                 style=" transform: rotate(180deg); margin-left: 70px">
-            <span style="font-size: 17px; margin-left: 10px;">不推荐</span>
+                 style=" transform: rotate(180deg); margin-left: 20px">
+            <span style="font-size: 17px; margin-left: 1px; color:#747d8c ">不推荐</span>
           </span>
-          <span style="font-size: 17px;margin-left: 17px">宿舍区：{{dormArea}}</span>
-
-          <span style="font-size: 17px; margin-left: 100px; color: #99a9bf">{{date}}</span>
+          <span style="font-size: 17px;margin-left: 20px">宿舍区：<span style="color: #747d8c;">{{dormArea}}</span></span>
+          <span style="font-size: 17px;margin-left: 20px">年级：<span style="color: #747d8c;">{{commentDetails.grade}}</span></span>
+          <span style="font-size: 17px; margin-left: 50px; color: #99a9bf">{{date}}</span>
 
         </span>
       </div>
-      <div class="briefComment">
-        <div style="text-align: left;font-weight: bolder;  font-size: 18px">简评：</div>
+      <div class="briefComment" style="background-color: #ecf0f1">
+        <div style="text-align: left;font-weight: bolder;  font-size: 18px; margin-left: 9px">简评：</div>
         <div
-            style=" text-align: left; padding: 10px;margin-left: 36px;margin-right: 36px;font-size: 15px">
+            style=" text-align: left; padding: 1px;margin-left: 49px;margin-right: 36px;font-size: 15px">
           {{briefCom}}
         </div>
       </div>

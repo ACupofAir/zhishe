@@ -7,21 +7,22 @@
         <div style="text-align: center">
           <div id="account">
             <el-input
-              placeholder="管理员账号"
-              prefix-icon="el-icon-user-solid"
-              v-model="input1"
-              class="inputAccount"
+                placeholder="管理员账号"
+                prefix-icon="el-icon-user-solid"
+                v-model="input1"
+                class="inputAccount"
             >
             </el-input>
           </div>
         </div>
         <div id="password">
           <el-input
-            placeholder="管理员密码"
-            prefix-icon="el-icon-key"
-            v-model="input2"
-            show-password
-            class="inputPassword"
+              placeholder="管理员密码"
+              prefix-icon="el-icon-key"
+              v-model="input2"
+              show-password
+              class="inputPassword"
+              @keypress.native.enter = "log_in"
           >
           </el-input>
         </div>
@@ -66,13 +67,13 @@
               找到我们
             </el-button>
             <el-dialog
-              title="我们的家"
-              :visible.sync="openForm"
-              width="580px"
-              top="8px"
+                title="我们的家"
+                :visible.sync="openForm"
+                width="580px"
+                top="8px"
             >
               <p style="font-size: 25px">河底摸鱼工作室(qq群)</p>
-              <img src="../../assets/publicity.jpg" alt="mark" />
+              <img src="../../assets/publicity.jpg" alt="mark"/>
             </el-dialog>
           </div>
         </div>
@@ -97,41 +98,58 @@ export default {
         lisence: "",
       },
       formLabelWidth: "80px",
+      // list:{
+      //   id:"",
+      //   time:"",
+      // }
     };
   },
   methods: {
+    goPay(account) {
+  this.$router.push({
+    path: '/adminMain',
+    query: {
+      acc:account,
+    }
+  })
+    },
     log_in() {
       let _this = this;
-      console.log(this.input1);
+      // console.log(this.input1);
       this.$axios
-        .post("/administrator/login", {
+        .post('/administrator/login', {
           adminID: _this.input1,
-          password: _this.input2,
+          password: _this.input2
         })
-        .then((successResponse) => {
-          console.log(successResponse.data);
-          if (successResponse.data === 1) {
-            this.$message({
-              message: "账号不存在！",
-              type: "error",
-            });
-          } else if (successResponse.data === 2) {
-            this.$message({
-              message: "密码错误！",
-              type: "error",
-            });
-          }
-          else{
-            this.$message({
-              message: "登录成功！",
-              type: "success",
-            });
-            location.href = "/adminMain";
-          }
+        .then(successResponse => {
+            console.log(successResponse.data);
+            if(successResponse.data.code === 1)
+            {
+              this.$message.error("账号不存在！");
+            }
+            else if(successResponse.data.code === 2)
+            {
+              this.$message.error("密码错误！");
+            }
+            else{
+              this.$message({
+              message: '登录成功！',
+              type: 'success'
+              });
+                // id: successResponse.data["adminId"],
+                // time: new Date().getTime(),
+              // console.log(successResponse.data["adminId"]);
+              // this.goPay(successResponse.data["adminId"]);
+              window.sessionStorage.removeItem('data');
+              window.sessionStorage.removeItem('time');
+              window.sessionStorage.setItem('data', successResponse.data["adminId"]);
+              window.sessionStorage.setItem('time', new Date().getTime()),
+              location.href = "/adminMain";
+            }
         })
-        .catch((failResponse) => {
-          console.log(failResponse.data);
-        });
+        .catch(failResponse => {
+          console.log(failResponse.data)
+        })
       // if (!this.input1) {
       //   const h1 = this.$createElement;
 
@@ -173,15 +191,43 @@ export default {
     },
     formOK() {
       // this.registerForm = false;
-      if (this.form.lisence === "711191") {
-        this.$alert("注册成功", "", {
+      if(!this.form.name || !this.form.code)
+      {
+        this.$message.error("信息不能为空");
+        return;
+      }
+      let _this = this;
+      this.$axios
+      .post('/administrator/register',{
+        name: _this.form.name,
+        password: _this.form.code,
+        lisence: _this.form.lisence
+      })
+      .then(successResponse =>{
+        console.log(successResponse.data);
+        if(successResponse.data.code === 1)
+        {
+          this.$alert("注册成功", "", {
           confirmButtonText: "确认",
         });
-      }
-      if (this.form.lisence === "711191") this.registerForm = false;
-      else {
-        this.$message.error("邀请码错误");
-      }
+        this.registerForm = false;
+        }
+        else{
+          this.$message.error("邀请码错误");
+        }
+      })
+      .catch(failResponse => {
+          console.log(failResponse.data)
+        })
+      // if (this.form.lisence === "711191") {
+      //   this.$alert("注册成功", "", {
+      //     confirmButtonText: "确认",
+      //   });
+      // }
+      // if (this.form.lisence === "711191") this.registerForm = false;
+      // else {
+      //   this.$message.error("邀请码错误");
+      // }
     },
   },
 };

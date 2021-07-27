@@ -1,12 +1,20 @@
 package com.zhisheserver.controller;
 
-import com.zhisheserver.dto.Login;
-import com.zhisheserver.service.AdministratorService;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.*;
 
+import com.zhisheserver.dto.Login;
+import com.zhisheserver.dto.Reg;
+import com.zhisheserver.entity.Administrator;
+import com.zhisheserver.mapper.AdministratorMapper;
+import com.zhisheserver.result.LoginResult;
+import com.zhisheserver.service.AdministratorService;
+import org.apache.ibatis.annotations.Select;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 /**
  * <p>
@@ -14,13 +22,10 @@ import org.springframework.stereotype.Controller;
  * </p>
  *
  * @author admin
- * @since 2021-07-20
+ * @since 2021-07-26
  */
-@RestController
-@RequestMapping("//administrator")
 @Controller
-@CrossOrigin
-
+@RequestMapping("//administrator")
 public class AdministratorController {
 
     @Autowired
@@ -32,6 +37,14 @@ public class AdministratorController {
             @RequestBody Login login
     ){
         return administratorService.LoginUser(login);
+    }
+
+    @PostMapping("/register")
+    @ResponseBody
+    public Object reg(
+            @RequestBody Reg reg
+    ){
+        return administratorService.RegUser(reg);
     }
 }
 

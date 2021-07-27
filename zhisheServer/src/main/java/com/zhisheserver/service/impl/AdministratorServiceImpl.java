@@ -1,15 +1,14 @@
 package com.zhisheserver.service.impl;
 
 import com.zhisheserver.dto.Login;
-import com.zhisheserver.result.LoginResult;
+import com.zhisheserver.dto.Reg;
 import com.zhisheserver.entity.Administrator;
 import com.zhisheserver.mapper.AdministratorMapper;
+import com.zhisheserver.result.LoginResult;
 import com.zhisheserver.service.AdministratorService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-//import javax.xml.transform.Result;
 
 /**
  * <p>
@@ -17,10 +16,14 @@ import org.springframework.stereotype.Service;
  * </p>
  *
  * @author admin
- * @since 2021-07-20
+ * @since 2021-07-26
  */
 @Service
 public class AdministratorServiceImpl extends ServiceImpl<AdministratorMapper, Administrator> implements AdministratorService {
+
+
+
+
     @Autowired
     private AdministratorMapper administratorMapper;
 
@@ -45,6 +48,18 @@ public class AdministratorServiceImpl extends ServiceImpl<AdministratorMapper, A
         {
             System.out.println("登录成功");
             return administratorMapper.getAdminByID(id);
+        }
+    }
+
+    @Override
+    public Object RegUser(Reg reg) {
+        if(reg.getLisence().equals("711191"))
+        {
+            return new LoginResult(1);
+        }
+        else
+        {
+            return new LoginResult(2);
         }
     }
 }

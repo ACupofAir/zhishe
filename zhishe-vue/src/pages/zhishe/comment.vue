@@ -387,7 +387,7 @@
         let _this = this
         this.$axios
             .post('/comment/post', {
-              id: "1",
+              id: "3",
 
               campus: _campus,
 
@@ -437,7 +437,7 @@
 
               studyroom: _this.hasStudyroom,
 
-              state: true,   //未发布
+              state: false,   //未发布
 
               isNewSchool: !_this.collegeFixed,
 
@@ -779,3 +779,4 @@
     text-align: center;
   }
 </style>
+

@@ -21,10 +21,6 @@ import java.util.concurrent.CompletionException;
 public interface CommentMapper extends BaseMapper<Comment> {
     @Select("select * from comment where campus='${campus}'")
     List<Comment> getCommentByName(String campus);
-<<<<<<< HEAD
 
-
-
-=======
->>>>>>> 7b199dcf1d86baf3e1a8b1d241db1ed7dea5c090
 }
+

@@ -10,7 +10,7 @@ import lombok.EqualsAndHashCode;
  * </p>
  *
  * @author admin
- * @since 2021-07-20
+ * @since 2021-07-26
  */
 @Data
   @EqualsAndHashCode(callSuper = false)
@@ -18,7 +18,7 @@ import lombok.EqualsAndHashCode;
 
     private static final long serialVersionUID=1L;
 
-    private String adminId;
+      private String adminId;
 
     private String password;
 

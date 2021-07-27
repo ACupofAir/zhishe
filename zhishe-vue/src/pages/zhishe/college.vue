@@ -30,13 +30,16 @@
               <el-rate
                   v-model="item.rateScore"
                   disabled
+                  score-template="{value}"
+                  text-color="#ff9900"
+                  show-score
                   id="basicStar">
               </el-rate>
             </div>
           </div>
           <div class="campusLabel">
             <div style="text-align: center; font-weight: bold">特色标签</div>
-            <div v-for="(item , index) in label" :key="index" class="LabelItem">
+            <div v-for="(item , index) in label" :key="index" class="LabelItem" style="border: #99a9bf solid 1px; border-radius: 10px; margin-left: 10px; padding: 5px">
               <i class="el-icon-collection-tag"></i>
               {{item.labelName}}
             </div>
@@ -97,10 +100,7 @@ export default {
   components: {campusInfo},
   data() {
     return {
-      rate: [{rateTitle: "基础情况", rateScore: 3.8}, {rateTitle: "建筑情况", rateScore: 4.5}, {
-        rateTitle: "位置情况",
-        rateScore: 3.1
-      }],
+      rate: [{rateTitle: "基础情况", rateScore: 0}, {rateTitle: "建筑情况", rateScore: 0}, {rateTitle: "位置情况", rateScore: 0}],
       label: [{labelName: "独立卫浴"}, {labelName: "自习室"}, {labelName: "WIFI"},
         {labelName: "冰箱"}, {labelName: "沙发"}, {labelName: "洗衣机",},
         {labelName: "空调"}, {labelName: "烹饪"}, {labelName: "阳台"}],
@@ -119,21 +119,23 @@ export default {
     }
   },
 
+
+
   created() {
     this.currentCollege = this.$route.params.collegeName;
-
 
     //去后端请求数据，查询学校存不存在
     let responseData = null
     let _this = this
     this.$axios
         .get('/college/find/' + this.currentCollege)
-        .then(function (response) {
+        .then(async function (response) {
           responseData = response.data
           console.log(responseData)
 
           if (responseData.address === undefined) {
             console.log("college not found")
+            _this.$router.push('/college/notFound')
           }
           else {
             _this.collegeName = responseData.name
@@ -141,55 +143,63 @@ export default {
             _this.totalComment = responseData.commentNum
             _this.totalCampus = responseData.campusNum
             _this.isCollegeFind = true
-            let basicScore = 0
-            let buildingScore = 0
-            let locationScore = 0
             let campusList = []
             campusList.push(responseData.campus1)
             campusList.push(responseData.campus2)
             campusList.push(responseData.campus3)
             campusList.push(responseData.campus4)
             campusList.push(responseData.campus5)
-            for(let item of campusList){
-              if(item !== null){
-                _this.$axios
-                    .get('/campus/find/' + _this.currentCollege + '-' + item)
-                .then(response =>{
-                  console.log(response.data)
-                  if(response.data.schoolName === _this.currentCollege){
-                    let campusName = response.data.name.split('-')
-                    basicScore += response.data.facilitiesScore
-                    buildingScore += response.data.architectureScore
-                    locationScore += response.data.surroundingScore
-                    _this.briefCampus.push({
-                      id: campusName[1],
-                      rate: response.data.score,
-                      comNum: response.data.commentNum,
-                      routerUrl: '/campus/' + response.data.name,
-                      url: 'https://gitee.com/thisisbadBao/imgrepo/raw/master/imgrepo1/20210716160403.svg'
-                    })
-                  }
-                })
-              }
-            }
+            await _this.findCampus(campusList)
+            _this.rate[0].rateScore = _this.rate[0].rateScore  *1000 / Number(_this.totalCampus) /1000
+            _this.rate[1].rateScore = _this.rate[1].rateScore  / Number(_this.totalCampus)
+            _this.rate[2].rateScore = _this.rate[2].rateScore  / Number(_this.totalCampus)
+            _this.rate[0].rateScore = Number(_this.rate[0].rateScore.toFixed(1))
+            _this.rate[1].rateScore = Number(_this.rate[1].rateScore.toFixed(1))
+            _this.rate[2].rateScore = Number(_this.rate[2].rateScore.toFixed(1))
           }
-
-
-
     })
     .catch(failRes => {
       console.log(failRes.data)
       console.log("12321")
     })
+  },
 
+  methods: {
+    async findCampus (campusList) {
+      let _this = this
+      for(let item of campusList){
+        if(item !== null){
+          await _this.$axios
+              .get('/campus/find/' + _this.currentCollege + '-' + item)
+              .then(response =>{
+                console.log(response.data)
+                if(response.data.schoolName === _this.currentCollege){
+                  let campusName = response.data.name.split('-')
+                  _this.rate[0].rateScore  = _this.rate[0].rateScore  + response.data.facilitiesScore
+                  _this.rate[1].rateScore  = _this.rate[1].rateScore  + response.data.architectureScore
+                  _this.rate[2].rateScore  = _this.rate[2].rateScore  +response.data.surroundingScore
 
-
+                  _this.briefCampus.push({
+                    id: campusName[1],
+                    rate: response.data.score,
+                    comNum: response.data.commentNum,
+                    routerUrl: '/campus/' + response.data.name,
+                    url: 'https://gitee.com/thisisbadBao/imgrepo/raw/master/imgrepo1/20210716160403.svg'
+                  })
+                }
+              })
+        }
+      }
+    }
   }
-
 };
 </script>
 
 <style scoped>
+::v-deep .el-rate__icon {
+  font-size: 28px;
+}
+
 .campusList {
   margin-left: 50px;
 
