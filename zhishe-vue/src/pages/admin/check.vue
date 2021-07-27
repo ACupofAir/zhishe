@@ -35,7 +35,7 @@
         </el-table-column>
         <el-table-column prop="campus" label="校区" width="165">
         </el-table-column>
-        <el-table-column prop="isNew" label="是否新添加" width="135">
+        <el-table-column prop="isNewCampus" label="是否新添加" width="135">
         </el-table-column>
         <el-table-column prop="email" label="联系邮箱" width="245">
         </el-table-column>
@@ -67,96 +67,25 @@ export default {
     return {
       input: '',
       select: '',
-      tableData: [{
-        id: '000001',
-        college: '东南大学',
-        campus: '九龙湖校区',
-        isNew: '是',
-        email: '123456789@qq.com',
-        state: '审核通过',
-      },
-        {
-          id: '000001',
-          college: '东南大学',
-          campus: '九龙湖校区',
-          isNew: '是',
-          email: '123456789@qq.com',
-          state: '审核通过',
-        },
-        {
-          id: '000001',
-          college: '东南大学',
-          campus: '九龙湖校区',
-          isNew: '是',
-          email: '123456789@qq.com',
-          state: '审核通过',
-        },
-        {
-          id: '000001',
-          college: '东南大学',
-          campus: '九龙湖校区',
-          isNew: '是',
-          email: '123456789@qq.com',
-          state: '审核通过',
-        },
-        {
-          id: '000001',
-          college: '东南大学',
-          campus: '九龙湖校区',
-          isNew: '是',
-          email: '123456789@qq.com',
-          state: '审核通过',
-        },
-        {
-          id: '000001',
-          college: '东南大学',
-          campus: '九龙湖校区',
-          isNew: '是',
-          email: '123456789@qq.com',
-          state: '审核通过',
-        },
-        {
-          id: '000001',
-          college: '东南大学',
-          campus: '九龙湖校区',
-          isNew: '是',
-          email: '123456789@qq.com',
-          state: '审核通过',
-        },
-        {
-          id: '000001',
-          college: '东南大学',
-          campus: '九龙湖校区',
-          isNew: '是',
-          email: '123456789@qq.com',
-          state: '审核通过',
-        },
-        {
-          id: '000001',
-          college: '东南大学',
-          campus: '九龙湖校区',
-          isNew: '是',
-          email: '123456789@qq.com',
-          state: '审核通过',
-        },
-        {
-          id: '000001',
-          college: '东南大学',
-          campus: '九龙湖校区',
-          isNew: '是',
-          email: '123456789@qq.com',
-          state: '审核通过',
-        },
-        {
-          id: '000001',
-          college: '东南大学',
-          campus: '九龙湖校区',
-          isNew: '是',
-          email: '123456789@qq.com',
-          state: '审核通过',
-        },
-      ]
+      tableData: [],
     }
+  },
+
+  created() {
+    let responseData = null
+    let _this = this
+    this.$axios
+      .get('/comment/list/')
+      .then(function (response) {
+        responseData = response.data
+        console.log(responseData)
+        _this.tableData = responseData
+        // console.log(_this.tableData)
+      })
+      .catch(failRes => {
+        console.log(failRes.data)
+        console.log("12321")
+      })
   }
 }
 </script>
