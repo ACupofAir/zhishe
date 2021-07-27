@@ -5,7 +5,7 @@
         <el-row :gutter="10">
           <el-card shadow="hover" style="height: 200px">
             <div class="user-info">
-              <img :src="admin_icon" class="user-avator" alt/>
+              <el-image :src="admin_icon" class="user-avator"></el-image>
               <span>
                 <div class="user-info-name">{{ admin_id }}</div>
                 <div class="user-info-cont">{{ role }}</div>
@@ -169,6 +169,17 @@
         </el-card>
       </el-col>
     </el-row>
+    <el-dialog
+  title="提示"
+  :visible.sync="dialogVisible"
+  width="30%"
+  >
+  <span>登录已过期，请重新登录</span>
+  <span slot="footer" class="dialog-footer">
+    <el-button @click="back">取 消</el-button>
+    <el-button type="primary" @click="back">确 定</el-button>
+  </span>
+</el-dialog>
   </div>
 </template>
 
@@ -180,7 +191,8 @@ export default {
       admin_icon: require("../../assets/bg02.jpg"),
       input: "",
       visible: false,
-      admin_id: "rains",
+      dialogVisible: false,
+      admin_id : "",
       role: "超级管理员",
       scanMsg: [
         {name: "浏览总数", icon: "el-icon-user-solid", num: 1234},
@@ -210,9 +222,30 @@ export default {
         {num: 10},
         {num: 80},
       ],
+      id:"",
+      time: 0,
+      
     };
   },
+  created(){
+    this.time = window.sessionStorage.getItem('time');
+    if(new Date().getTime() - this.time < 100000)
+    {
+      this.admin_id = window.sessionStorage.getItem('data');
+    }
+    else
+    {
+      window.sessionStorage.removeItem('data');
+      window.sessionStorage.removeItem('time');
+      this.dialogVisible = true;
+    }
+    // console.log(new Date().getTime());
+  },
   methods: {
+    back(){
+      this.dialogVisible = false;
+      location.href = "/adminLogin"; 
+    },
     addList() {
       if (this.listNum === 5) {
         const h = this.$createElement;

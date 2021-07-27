@@ -2,6 +2,7 @@ package com.zhisheserver.controller;
 
 
 import com.zhisheserver.dto.Login;
+import com.zhisheserver.dto.Reg;
 import com.zhisheserver.entity.Administrator;
 import com.zhisheserver.mapper.AdministratorMapper;
 import com.zhisheserver.result.LoginResult;
@@ -36,6 +37,14 @@ public class AdministratorController {
             @RequestBody Login login
     ){
         return administratorService.LoginUser(login);
+    }
+
+    @PostMapping("/register")
+    @ResponseBody
+    public Object reg(
+            @RequestBody Reg reg
+    ){
+        return administratorService.RegUser(reg);
     }
 }
 

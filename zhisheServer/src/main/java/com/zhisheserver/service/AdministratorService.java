@@ -1,6 +1,7 @@
 package com.zhisheserver.service;
 
 import com.zhisheserver.dto.Login;
+import com.zhisheserver.dto.Reg;
 import com.zhisheserver.entity.Administrator;
 import com.baomidou.mybatisplus.extension.service.IService;
 
@@ -14,4 +15,6 @@ import com.baomidou.mybatisplus.extension.service.IService;
  */
 public interface AdministratorService extends IService<Administrator> {
     Object LoginUser(Login login);
+
+    Object RegUser(Reg reg);
 }

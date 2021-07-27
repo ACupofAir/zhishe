@@ -1,6 +1,7 @@
 package com.zhisheserver.service.impl;
 
 import com.zhisheserver.dto.Login;
+import com.zhisheserver.dto.Reg;
 import com.zhisheserver.entity.Administrator;
 import com.zhisheserver.mapper.AdministratorMapper;
 import com.zhisheserver.result.LoginResult;
@@ -50,4 +51,15 @@ public class AdministratorServiceImpl extends ServiceImpl<AdministratorMapper, A
         }
     }
 
+    @Override
+    public Object RegUser(Reg reg) {
+        if(reg.getLisence().equals("711191"))
+        {
+            return new LoginResult(1);
+        }
+        else
+        {
+            return new LoginResult(2);
+        }
+    }
 }

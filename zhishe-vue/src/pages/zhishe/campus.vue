@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 <template>
   <div class="campusWrapper">
     <div class="titleWrapper">

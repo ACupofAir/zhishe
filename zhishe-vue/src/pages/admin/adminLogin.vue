@@ -22,6 +22,7 @@
               v-model="input2"
               show-password
               class="inputPassword"
+              @keypress.native.enter = "log_in"
           >
           </el-input>
         </div>
@@ -97,12 +98,24 @@ export default {
         lisence: "",
       },
       formLabelWidth: "80px",
+      // list:{
+      //   id:"",
+      //   time:"",
+      // }
     };
   },
   methods: {
+    goPay(account) {
+  this.$router.push({
+    path: '/adminMain',
+    query: {
+      acc:account,
+    }
+  })
+    },
     log_in() {
       let _this = this;
-      console.log(this.input1);
+      // console.log(this.input1);
       this.$axios
         .post('/administrator/login', {
           adminID: _this.input1,
@@ -110,6 +123,29 @@ export default {
         })
         .then(successResponse => {
             console.log(successResponse.data);
+            if(successResponse.data.code === 1)
+            {
+              this.$message.error("账号不存在！");
+            }
+            else if(successResponse.data.code === 2)
+            {
+              this.$message.error("密码错误！");
+            }
+            else{
+              this.$message({
+              message: '登录成功！',
+              type: 'success'
+              });
+                // id: successResponse.data["adminId"],
+                // time: new Date().getTime(),
+              // console.log(successResponse.data["adminId"]);
+              // this.goPay(successResponse.data["adminId"]);
+              window.sessionStorage.removeItem('data');
+              window.sessionStorage.removeItem('time');
+              window.sessionStorage.setItem('data', successResponse.data["adminId"]);
+              window.sessionStorage.setItem('time', new Date().getTime()),
+              location.href = "/adminMain";
+            }
         })
         .catch(failResponse => {
           console.log(failResponse.data)
@@ -155,15 +191,43 @@ export default {
     },
     formOK() {
       // this.registerForm = false;
-      if (this.form.lisence === "711191") {
-        this.$alert("注册成功", "", {
+      if(!this.form.name || !this.form.code)
+      {
+        this.$message.error("信息不能为空");
+        return;
+      }
+      let _this = this;
+      this.$axios
+      .post('/administrator/register',{
+        name: _this.form.name,
+        password: _this.form.code,
+        lisence: _this.form.lisence
+      })
+      .then(successResponse =>{
+        console.log(successResponse.data);
+        if(successResponse.data.code === 1)
+        {
+          this.$alert("注册成功", "", {
           confirmButtonText: "确认",
         });
-      }
-      if (this.form.lisence === "711191") this.registerForm = false;
-      else {
-        this.$message.error("邀请码错误");
-      }
+        this.registerForm = false;
+        }
+        else{
+          this.$message.error("邀请码错误");
+        }
+      })
+      .catch(failResponse => {
+          console.log(failResponse.data)
+        })
+      // if (this.form.lisence === "711191") {
+      //   this.$alert("注册成功", "", {
+      //     confirmButtonText: "确认",
+      //   });
+      // }
+      // if (this.form.lisence === "711191") this.registerForm = false;
+      // else {
+      //   this.$message.error("邀请码错误");
+      // }
     },
   },
 };
