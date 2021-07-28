@@ -52,4 +52,9 @@ public class InfoServiceImpl extends ServiceImpl<InfoMapper, Info> implements In
     public void updateInfoCommentPosted(Integer new_commentPosted){
         this.infoMapper.updateInfoCommentPosted(new_commentPosted);
     }
+
+    @Override
+    public Info getAllInfo() {
+        return infoMapper.getAllInfoData();
+    }
 }

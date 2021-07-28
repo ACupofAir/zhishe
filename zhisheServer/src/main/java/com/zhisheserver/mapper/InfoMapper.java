@@ -42,4 +42,6 @@ public interface InfoMapper extends BaseMapper<Info> {
     @Update("UPDATE info SET commentPosted='${new_commentNotPosted}' WHERE id=1")
     void updateInfoCommentPosted(Integer new_commentPosted);
 
+    @Select("SELECT * from info WHERE id = 1")
+    Info getAllInfoData();
 }
