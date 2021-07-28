@@ -31,6 +31,9 @@ export default {
   components: {
     Side,
   },
+  mounted() {
+    document.title='知舍后台管理'
+  }
 }
 </script>
 

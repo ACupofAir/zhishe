@@ -120,7 +120,7 @@ export default {
         {
         //   // console.log(t[i]);
           var temp = t[i].split("-");
-          
+
           co.push(temp[0]);
         //   console.log(co);
         }
@@ -188,6 +188,10 @@ export default {
       location.href = "/adminLogin";
     },
   },
+
+  mounted() {
+    document.title='知舍|寻所想之舍'
+  }
 
 };
 </script>

@@ -3,6 +3,7 @@ package com.zhisheserver.controller;
 
 import com.zhisheserver.dto.ComState;
 import com.zhisheserver.dto.Labels;
+import com.zhisheserver.entity.Campus;
 import com.zhisheserver.entity.Comment;
 import com.zhisheserver.entity.Info;
 import com.zhisheserver.mapper.CampusMapper;
@@ -16,6 +17,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.SortedMap;
 
 /**
  * <p>
@@ -84,6 +86,21 @@ public class CommentController {
             this.campusService.updateCampusComment_num(this.campusService.getCampusComment_num(comment.getCampus()) + 1, comment.getCampus());
             String collegeName = comment.getCampus().split("-")[0];
             this.collegeService.updateCollegeComment_num(this.collegeService.getCollegeComment_num(collegeName) + 1, collegeName);
+
+            //更新校区评分
+            List<Comment> allComment = this.commentService.getCommentByName(comment.getCampus());
+            Double score1 = 0.0,score2 = 0.0,score3 = 0.0, score4 = 0.0;
+            for(int i = 0; i < allComment.size(); i++){
+                score1 += allComment.get(i).getFacilities().doubleValue();
+                score2 +=allComment.get(i).getArchitecture().doubleValue();
+                score3 += allComment.get(i).getSurrounding().doubleValue();
+                score4 += allComment.get(i).getScore().doubleValue();
+            }
+            score1 = score1 / allComment.size();
+            score2 = score2 / allComment.size();
+            score3 = score3 / allComment.size();
+            score4 = score4 / allComment.size();
+            this.campusService.updateCampusScore(score1,score2,score3,score4,comment.getCampus());
         }
         else {
             this.infoService.updateInfoCommentNotPosted(this.infoService.getInfoCommentNotPost() + 1);

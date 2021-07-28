@@ -43,6 +43,15 @@ public class CollegeServiceImpl extends ServiceImpl<CollegeMapper, College> impl
     public void updateCollegeComment_num(Integer new_comment_num, String name){
         this.collegeMapper.updateCollegeComment_num(new_comment_num, name);
     }
+
+
+    public Integer getCollegeCampus_num(String name){
+        return this.collegeMapper.getCollegeCampus_num(name);
+    }
+
+    public void updateCollegeCampusNum(Integer campus_num, String name){
+        this.collegeMapper.updateCollegeCampusNum(campus_num, name);
+    }
 }
 
 

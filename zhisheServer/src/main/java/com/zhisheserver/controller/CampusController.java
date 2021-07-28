@@ -8,6 +8,7 @@ import com.zhisheserver.entity.Campus;
 import com.zhisheserver.entity.College;
 import com.zhisheserver.mapper.CampusMapper;
 import com.zhisheserver.service.CampusService;
+import com.zhisheserver.service.CollegeService;
 import com.zhisheserver.service.CommentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -36,6 +37,9 @@ public class CampusController {
     @Autowired
     private CommentService commentService;
 
+    @Autowired
+    private CollegeService collegeService;
+
     @GetMapping("/list")
     public List<Campus> list(){
         return this.campusService.list();
@@ -51,6 +55,7 @@ public class CampusController {
     public Object saveCampus(
             @RequestBody Campus campus
     ){
+        this.collegeService.updateCollegeCampusNum(this.collegeService.getCollegeCampus_num(campus.getSchoolName()) + 1, campus.getSchoolName());
         return campusService.saveCampus(campus);
     }
 
@@ -79,6 +84,11 @@ public class CampusController {
             @RequestBody CampusState campusState
     ){
         return this.campusService.updateCampusState(campusState.getCampusState(), campusState.getEditName());
+    }
+
+    @GetMapping("/findList/{name}")
+    public List<Campus> getCampusList(@PathVariable("name") String name){
+        return this.campusService.getCampusList(name);
     }
 }
 

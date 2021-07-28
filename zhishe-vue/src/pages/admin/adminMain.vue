@@ -286,8 +286,10 @@ export default {
     },
   },
   mounted() {
+    document.title='首页'
+
     var echarts = require("echarts");
-    
+
     var myChart = echarts.init(document.getElementById("mychart"));
 
     // 指定图表的配置项和数据
@@ -332,7 +334,7 @@ export default {
           // },
           label: {
             show: true,
-          }, 
+          },
           labelLine: {
               show: true,
             },
@@ -351,7 +353,7 @@ export default {
             { value: 22, name: "博士生" },
             // { value: 18, name: "rose 8" },
           ],
-          color: ["rgb(254, 67, 101)", 
+          color: ["rgb(254, 67, 101)",
           "rgb(252,157,154)", "rgb(249,205,173)",
            "rgb(220,220,189)", "rgb(181,225,205)",
            "#70a1ff", "#daadf7"],
@@ -597,7 +599,7 @@ export default {
 }
 
 .grid-con-1 .grid-con-icon {
-  background: #3c85cb;
+  background: #3498db;
 }
 
 .todo-item {

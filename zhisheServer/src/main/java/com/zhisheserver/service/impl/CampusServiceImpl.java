@@ -94,6 +94,14 @@ public class CampusServiceImpl extends ServiceImpl<CampusMapper, Campus> impleme
     public void updateCampusComment_num(Integer new_comment_num, String name){
         this.campusMapper.updateCampusComment_num(new_comment_num, name);
     }
+
+    public List<Campus> getCampusList(String name){
+        return this.campusMapper.getCampusLIst(name);
+    }
+
+    public void updateCampusScore(Double score1, Double score2, Double score3,Double score4, String edit_name){
+        this.campusMapper.updateCampusScore(score1, score2, score3, score4, edit_name);
+    }
 }
 
 

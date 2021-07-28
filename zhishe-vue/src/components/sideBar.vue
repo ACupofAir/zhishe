@@ -3,11 +3,11 @@
     <el-row class="tac" style="height: 100%">
       <el-col :span="23" class="sideBar">
         <el-menu
-            default-active="1"
+            default-active="0"
             class="el-menu-vertical-demo"
-            background-color="#3c85cb"
+            background-color="#a5d8ff"
             text-color="#fff"
-            active-text-color="#ffd04b"
+            active-text-color="#1c7ed6"
             style="height: 100%">
           <router-link v-for="(item, ind) in sideItems" :key="ind" :to="item.routerIndex">
             <el-menu-item :index="ind.toString()" style="text-align: left;">
@@ -47,5 +47,13 @@ export default {
 
 .sideBar {
   height: 100%;
+}
+
+a {
+  text-decoration:none;
+}
+
+.router-link-active {
+  text-decoration:none;
 }
 </style>

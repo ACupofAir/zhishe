@@ -41,7 +41,12 @@ export default {
   width: 800px;
   padding: 10px;
   /*border: #3c85cb solid 3px;*/
-  box-shadow: 0 0 20px #cac6c6;
+  box-shadow: 0 0 30px #cac6c6;
+}
+
+.campusInfoWrapper:hover{
+  width: 820px;
+  box-shadow: 0 0 10px #cac6c6;
 }
 
 .campusBriefPhoto {

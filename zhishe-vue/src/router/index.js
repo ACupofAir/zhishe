@@ -21,7 +21,7 @@ const routes = [
     {
         path: '/',
         name: 'Welcome',
-        component: Welcome
+        component: Welcome,
     },
     {
         path: '/adminHome',
@@ -101,7 +101,11 @@ const routes = [
 const router = new VueRouter({
     mode: 'history',
     base: process.env.BASE_URL,
-    routes
+    routes,
+    scrollBehavior (to, from, savedPosition) {
+        return { x: 0, y: 0 }
+    },
+
 })
 
 export default router

@@ -2,6 +2,7 @@ package com.zhisheserver.controller;
 
 
 import com.zhisheserver.entity.College;
+import com.zhisheserver.result.Result;
 import com.zhisheserver.service.CollegeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -38,6 +39,9 @@ public class CollegeController {
     public Object saveCollege(
             @RequestBody College college
     ){
+        if (this.collegeService.getByName(college.getName()) != null){
+            return new Result(2);
+        }
         return collegeService.saveCollege(college);
     }
 }

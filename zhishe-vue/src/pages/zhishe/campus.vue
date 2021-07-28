@@ -1,6 +1,6 @@
 <template>
   <div class="campusWrapper">
-    <div class="titleWrapper">
+    <div class="titleWrapper" id="titleWrapper">
       <div class="campusNameWrapper">
         <div class="campusName">{{currentCampus}}</div>
         <div style="font-size: 16px">{{campusAddress}}</div>
@@ -53,6 +53,11 @@
         :is-recommend="comItem.isRecommend" :date="comItem.date" :brief-com="comItem.briefCom"
         :dorm-area="comItem.dormArea" :comment-details="comItem.commentDetails"></briefComment>
     </div>
+
+    <el-button type="success"
+               style="position: fixed;left: 1295px;top: 650px;  box-shadow: 0 0 10px #cac6c6;"
+               icon="el-icon-arrow-up"
+               circle v-on:click="toTop"></el-button>
   </div>
 
 </template>
@@ -79,6 +84,10 @@
 
         currentCampus: null,
       }
+    },
+
+    mounted() {
+      document.title=this.currentCampus
     },
 
     methods: {
@@ -108,6 +117,14 @@
         }
         this.currentComment = tempComments
       },
+
+      toTop () {
+        let el=document.getElementById("titleWrapper");
+        console.log(el.offsetTop);
+        this.$nextTick(function () {
+          el.scrollIntoView({behavior: "smooth"})
+        })
+      }
     },
 
     created() {

@@ -8,8 +8,8 @@
         <el-image :src="pictureURL" fit="cover" class="collegePic"></el-image>
       </div>
 
-      <div class="selection" v-if="isCollegeFind">
-        <div class="collegeName" style="font-weight: bolder; font-size: 40px; margin-top: 30px; text-align: center;">
+      <div class="selection" id="collegeName" v-if="isCollegeFind">
+        <div class="collegeName"  style="font-weight: bolder; font-size: 40px; margin-top: 30px; text-align: center;">
           {{currentCollege}}
         </div>
         <div class="collegeAddress"
@@ -39,18 +39,17 @@
           </div>
           <div class="campusLabel">
             <div style="text-align: center; font-weight: bold">特色标签</div>
-            <div v-for="(item , index) in label" :key="index" class="LabelItem" style="border: #99a9bf solid 1px; border-radius: 10px; margin-left: 10px; padding: 5px">
+            <div v-for="(item , index) in label" :key="index" class="LabelItem" style="border: #339af0 solid 1px; border-radius: 10px; margin-left: 10px; padding: 5px;box-shadow: 0 0 10px #cac6c6;">
               <i class="el-icon-collection-tag"></i>
               {{item}}
             </div>
           </div>
           <div class="gradeDistribution">
             <div style="text-align: center; font-weight: bold">年级分布</div>
+
           </div>
         </div>
 
-
-        <el-divider class="titleDivider"><i class="el-icon-price-tag"></i></el-divider>
       </div>
 
       <div class="views" v-if="isCollegeFind">
@@ -71,6 +70,8 @@
       </div>
 
     </div>
+    <div id="gradeChart" :style="{ width: '550px', height: '400px' }"
+    style="position: absolute; top: 1000px" v-show="isCollegeFind"></div>
 
     <div class="cannotFindCampus" style="font-size:25px; margin-top: 20px; margin-bottom: 20px;" v-if="isCollegeFind">
       找不到你想要的校区?
@@ -112,11 +113,52 @@ export default {
       briefCampus: [],
       campusId: "",
       currentCollege: "",
-
       isCollegeFind: false,
     }
   },
 
+  mounted() {
+
+    document.title=this.currentCollege
+
+
+    let echarts = require("echarts");
+
+    let myChart = echarts.init(document.getElementById("gradeChart"));
+    myChart.setOption({
+      legend: {
+        top: 'bottom'
+      },
+
+      series: [
+        {
+          name: '面积模式',
+          type: 'pie',
+          radius: [12, 110],
+          center: ['45%', '50%'],
+          roseType: 'area',
+          itemStyle: {
+            borderRadius: 8
+          },
+          data: [
+            {value: 40, name: '大一'},
+            {value: 38, name: '大二'},
+            {value: 32, name: '大三'},
+            {value: 30, name: '大四'},
+            {value: 28, name: '大五'},
+            {value: 26, name: '研究生'},
+            {value: 22, name: '博士生'},
+          ],
+          color: ["rgb(254, 67, 101)",
+            "rgb(252,157,154)", "rgb(249,205,173)",
+            "rgb(220,220,189)", "rgb(181,225,205)",
+            "#70a1ff", "#daadf7"],
+        },
+      ],
+    })
+
+
+  },
 
 
   created() {
@@ -141,11 +183,13 @@ export default {
             _this.totalCampus = responseData.campusNum
             _this.isCollegeFind = true
             let campusList = []
-            campusList.push(responseData.campus1)
-            campusList.push(responseData.campus2)
-            campusList.push(responseData.campus3)
-            campusList.push(responseData.campus4)
-            campusList.push(responseData.campus5)
+            await _this.$axios
+                .get('/campus/findList/' + _this.currentCollege)
+                .then(async response =>{
+                  for (let item of response.data){
+                    campusList.push(item.name.split('-')[1])
+                  }
+                })
             await _this.findCampus(campusList)
             _this.rate[0].rateScore = _this.rate[0].rateScore  *1000 / Number(_this.totalCampus) /1000
             _this.rate[1].rateScore = _this.rate[1].rateScore  / Number(_this.totalCampus)
@@ -206,7 +250,9 @@ export default {
               if(com.studyroom && _this.label.indexOf("自习室") < 0) _this.label.push("自习室")
             }
           })
-    }
+    },
+
+
   }
 };
 </script>
@@ -214,6 +260,12 @@ export default {
 <style scoped>
 ::v-deep .el-rate__icon {
   font-size: 28px;
+}
+
+
+.LabelItem:hover{
+  background-color: #a5d8ff;
+  color: white;
 }
 
 .campusList {
@@ -226,11 +278,10 @@ export default {
 }
 
 
-
 /*---年级分布----*/
 .gradeDistribution {
   margin-top: 20px;
-  height: 200px;
+  height: 340px;
   /*border: #2c3e50 solid 2px;*/
 }
 

@@ -10,6 +10,8 @@ import org.springframework.stereotype.Repository;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 
+import java.util.List;
+
 /**
  * <p>
  *  Mapper 接口
@@ -35,5 +37,12 @@ public interface CampusMapper extends BaseMapper<Campus> {
     @Update("UPDATE campus SET state='${new_state}' WHERE name='${edit_name}'")
     void updateCampusState(Integer new_state, String edit_name);
 
+
+    @Select("select * from campus where name like '%${name}%'")
+    List<Campus> getCampusLIst(String name);
+
+
+    @Update("UPDATE campus SET facilities_score='${score1}', architecture_score='${score2}', surrounding_score='${score3}', score='${score4}' WHERE name='${edit_name}'")
+    void updateCampusScore(Double score1, Double score2, Double score3,  Double score4, String edit_name);
 }
 

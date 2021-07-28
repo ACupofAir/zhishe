@@ -228,6 +228,11 @@
       },
     },
 
+    mounted() {
+      document.title='学校管理'
+
+    }
+
   }
 </script>
 

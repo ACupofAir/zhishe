@@ -37,6 +37,9 @@ public interface CampusService extends IService<Campus> {
 
     void updateCampusComment_num(Integer new_comment_num, String name);
 
+    List<Campus> getCampusList(String name);
+
+    void updateCampusScore(Double score1, Double score2, Double score3,Double score4, String edit_name);
 }
 
 

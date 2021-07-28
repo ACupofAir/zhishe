@@ -485,8 +485,9 @@
       }
     },
 
-
-
+    mounted() {
+      document.title='评价'
+    }
 
 
   }

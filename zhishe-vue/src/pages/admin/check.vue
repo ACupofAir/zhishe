@@ -234,6 +234,9 @@ export default {
         .catch(failRes => {
           console.log(failRes.data)
         })
+  },
+  mounted() {
+    document.title='审核请求'
   }
 }
 </script>

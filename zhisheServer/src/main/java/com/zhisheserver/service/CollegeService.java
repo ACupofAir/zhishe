@@ -23,4 +23,7 @@ public interface CollegeService extends IService<College> {
 
     void updateCollegeComment_num(Integer new_comment_num, String name);
 
+    Integer getCollegeCampus_num(String name);
+
+    void updateCollegeCampusNum(Integer campus_num, String name);
 }
