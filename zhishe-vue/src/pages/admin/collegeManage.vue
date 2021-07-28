@@ -178,7 +178,7 @@
           .post('/campus/updateCampus',
             {
               newName: _this.form.campusName,
-              newAddress: _this.form.address,
+              newAdress: _this.form.address,
               newSchoolName: _this.form.schoolName,
               editName: this.curEditCampusIndex,
             })

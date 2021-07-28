@@ -69,7 +69,7 @@ public class CampusController {
     public Object updateCampus(
             @RequestBody CampusEdit campusEdit
     ){
-        return this.campusService.updateCampus(campusEdit.getNewName(), campusEdit.getNewAddress(), campusEdit.getNewSchoolName(), campusEdit.geteEditName());
+        return this.campusService.updateCampus(campusEdit.getNewName(), campusEdit.getNewAdress(), campusEdit.getNewSchoolName(), campusEdit.getEditName());
     }
 }
 
