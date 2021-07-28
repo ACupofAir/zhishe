@@ -41,11 +41,11 @@
             <div style="text-align: center; font-weight: bold">特色标签</div>
             <div v-for="(item , index) in label" :key="index" class="LabelItem" style="border: #99a9bf solid 1px; border-radius: 10px; margin-left: 10px; padding: 5px">
               <i class="el-icon-collection-tag"></i>
-              {{item.labelName}}
+              {{item}}
             </div>
           </div>
           <div class="gradeDistribution">
-            <div style="border: #3c85cb solid 2px; border-radius: 10px">年级分布</div>
+            <div style="text-align: center; font-weight: bold">年级分布</div>
           </div>
         </div>
 
@@ -101,9 +101,7 @@ export default {
   data() {
     return {
       rate: [{rateTitle: "基础情况", rateScore: 0}, {rateTitle: "建筑情况", rateScore: 0}, {rateTitle: "位置情况", rateScore: 0}],
-      label: [{labelName: "独立卫浴"}, {labelName: "自习室"}, {labelName: "WIFI"},
-        {labelName: "冰箱"}, {labelName: "沙发"}, {labelName: "洗衣机",},
-        {labelName: "空调"}, {labelName: "烹饪"}, {labelName: "阳台"}],
+      label: [],
 
 
       pictureURL: "https://gitee.com/thisisbadBao/imgrepo/raw/master/imgrepo1/20210715214908.jpeg",
@@ -123,7 +121,6 @@ export default {
 
   created() {
     this.currentCollege = this.$route.params.collegeName;
-
     //去后端请求数据，查询学校存不存在
     let responseData = null
     let _this = this
@@ -160,7 +157,6 @@ export default {
     })
     .catch(failRes => {
       console.log(failRes.data)
-      console.log("12321")
     })
   },
 
@@ -171,9 +167,10 @@ export default {
         if(item !== null){
           await _this.$axios
               .get('/campus/find/' + _this.currentCollege + '-' + item)
-              .then(response =>{
+              .then(async response =>{
                 console.log(response.data)
-                if(response.data.schoolName === _this.currentCollege){
+                await _this.findLabel(_this.currentCollege+'-'+item)
+                if(response.data.schoolName === _this.currentCollege && response.data.state === true){
                   let campusName = response.data.name.split('-')
                   _this.rate[0].rateScore  = _this.rate[0].rateScore  + response.data.facilitiesScore
                   _this.rate[1].rateScore  = _this.rate[1].rateScore  + response.data.architectureScore
@@ -190,6 +187,25 @@ export default {
               })
         }
       }
+    },
+
+    async findLabel (campus) {
+      let _this = this
+      await this.$axios
+          .get('/comment/' + campus)
+          .then(response =>{
+            for(let com of response.data){
+              if(com.refrigerator && _this.label.indexOf("冰箱") < 0) _this.label.push("冰箱")
+              if(com.sofa && _this.label.indexOf("沙发") < 0) _this.label.push( "沙发")
+              if(com.washingMachine && _this.label.indexOf("洗衣机") < 0) _this.label.push("洗衣机")
+              if(com.airConditioner && _this.label.indexOf("空调") < 0) _this.label.push("空调")
+              if(com.cooking && _this.label.indexOf("烹饪") < 0) _this.label.push("烹饪")
+              if(com.outdoorBalcony && _this.label.indexOf("阳台") < 0) _this.label.push("阳台")
+              if(com.wifi && _this.label.indexOf("WIFI") < 0) _this.label.push("WIFI")
+              if(com.restroom && _this.label.indexOf("独立卫浴") < 0) _this.label.push("独立卫浴")
+              if(com.studyroom && _this.label.indexOf("自习室") < 0) _this.label.push("自习室")
+            }
+          })
     }
   }
 };

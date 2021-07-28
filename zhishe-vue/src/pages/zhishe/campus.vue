@@ -28,16 +28,16 @@
       </div>
     </div>
     <div class="statisticWrapper">
-      <div class="sort">
-        <div style="font-weight: bold; margin-bottom: 5px; margin-top: 5px; font-size: 20px">排序</div>
-        <el-radio-group v-model="radio1">
-          <div class="rankItem" v-for="(item, index) in rankName" :key="index">
-            <el-radio :label="index">{{item.name}}</el-radio>
-          </div>
-        </el-radio-group>
-      </div>
+<!--      <div class="sort">-->
+<!--        <div style="font-weight: bold; margin-bottom: 5px; margin-top: 5px; font-size: 20px">排序</div>-->
+<!--        <el-radio-group v-model="radio1">-->
+<!--          <div class="rankItem" v-for="(item, index) in rankName" :key="index">-->
+<!--            <el-radio :label="index">{{item.name}}</el-radio>-->
+<!--          </div>-->
+<!--        </el-radio-group>-->
+<!--      </div>-->
 
-      <el-divider><i class="el-icon-price-tag"></i></el-divider>
+<!--      <el-divider><i class="el-icon-price-tag"></i></el-divider>-->
 
       <div class="grade">
         <div style="font-weight: bold; margin-bottom: 5px; margin-top: 5px; font-size: 20px">匹配的年级</div>
@@ -73,7 +73,7 @@
 
         rankName: [{ name: "校区名称" }, { name: "最多评价" }, { name: "最高评分" }],
         gradeName: [{ name: "所有年级" }, { name: "大一" }, { name: "大二" }, { name: "大三" },
-        { name: "大四" }, { name: "大五" }, { name: "研究生" }],
+        { name: "大四" }, { name: "大五" }, { name: "研究生" }, { name: "博士生"}],
         briefComment: [],
         currentComment: [],
 
@@ -93,6 +93,7 @@
           case 4: toGrade = "大四"; break;
           case 5: toGrade = "大五"; break;
           case 6: toGrade = "研究生"; break;
+          case 7: toGrade = "博士生"; break;
         }
 
         let tempComments = []
@@ -140,7 +141,18 @@
                 case 4: toGrade = "大四"; break;
                 case 5: toGrade = "大五"; break;
                 case 6: toGrade = "研究生"; break;
+                case 7: toGrade = "博士生"; break;
               }
+              let _label = []
+              if(com.refrigerator) _label.push('冰箱')
+              if(com.sofa) _label.push('沙发')
+              if(com.washingMachine) _label.push('洗衣机')
+              if(com.airConditioner) _label.push('空调')
+              if(com.cooking) _label.push('烹饪')
+              if(com.outdoorBalcony) _label.push('阳台')
+              if(com.wifi) _label.push('WIFI')
+              if(com.restroom) _label.push('独立卫浴')
+              if(com.studyroom) _label.push('自习室')
               _this.briefComment.push({
                 rate: com.score,
                 isRecommend: com.recommend,
@@ -158,7 +170,7 @@
                   rate: [{ rateTitle: "基础情况(桌椅床铺门窗等)", rateScore: com.facilities },
                   { rateTitle: "建筑情况(新旧和楼层布局)", rateScore: com.architecture },
                   { rateTitle: "位置情况(周边环境和位置)", rateScore: com.surrounding }],
-                  label: ["空调", "洗衣机", "WIFI", "独立卫浴",],
+                  label: _label,
                   comment: com.briefComment,
                   dormPicture: ["https://gitee.com/thisisbadBao/imgrepo/raw/master/imgrepo1/20210715214908.jpeg"]
                 },
