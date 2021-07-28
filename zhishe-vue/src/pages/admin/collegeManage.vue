@@ -18,7 +18,6 @@
         <el-row>
           <div class="" style="margin-right:0%; margin-top: 30px;">
             <el-button type="primary" plain style="margin-right: 50px;">查询</el-button>
-            <el-button type="info" plain style="margin-right: 50px;">重置</el-button>
             <el-button type="primary" @click="dialogFormVisible = true" plain style="margin-right: 50px;">添加</el-button>
 
             <el-dialog title="新增学校" :visible.sync="dialogFormVisible">
@@ -44,7 +43,7 @@
     </div>
 
     <div class="checkList">
-      <el-table :data="tableData" border style="width: 100%; height:600px">
+      <el-table :data="tableData" border style="width: 100%;">
         <el-table-column prop="schoolName" label="学校" width="265">
         </el-table-column>
         <el-table-column prop="name" label="校区" width="265">
@@ -178,9 +177,9 @@
           .post('/campus/updateCampus',
             {
               newName: _this.form.campusName,
-              newAddress: _this.form.address,
+              newAdress: _this.form.address,
               newSchoolName: _this.form.schoolName,
-              editName: this.curEditCampusIndex,
+              editName: _this.tableData[_this.curEditCampusIndex].name,
             })
           .then(response => {
             console.log(response)
@@ -219,7 +218,6 @@
 
 <style scoped>
   .searchHeader {
-    box-shadow: 0 0 20px #cac6c6;
     height: 150px;
     margin-top: 0px;
     box-shadow: 0 9px 9px rgba(0, 0, 0, .12), 0 0 6px rgba(0, 0, 0, .04);
@@ -230,8 +228,7 @@
 
   .checkList {
     margin-top: 15px;
-    box-shadow: 0 0 20px #cac6c6;
-    height: 500px;
+    height: 700px;
     box-shadow: 0 9px 9px rgba(0, 0, 0, .12), 0 0 6px rgba(0, 0, 0, .04);
     border-radius: 8px;
   }
