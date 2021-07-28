@@ -13,4 +13,5 @@ import com.baomidou.mybatisplus.extension.service.IService;
  */
 public interface InfoService extends IService<Info> {
 //    Info getInfoById(Integer id);
+    Object updateInfoCommentId(String new_id);
 }

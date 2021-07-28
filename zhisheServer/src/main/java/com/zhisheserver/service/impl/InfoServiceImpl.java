@@ -2,6 +2,7 @@ package com.zhisheserver.service.impl;
 
 import com.zhisheserver.entity.Info;
 import com.zhisheserver.mapper.InfoMapper;
+import com.zhisheserver.result.Result;
 import com.zhisheserver.service.InfoService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,9 +19,11 @@ import org.springframework.stereotype.Service;
 @Service
 public class InfoServiceImpl extends ServiceImpl<InfoMapper, Info> implements InfoService {
 
-//    @Autowired InfoMapper infoMapper;
-//
-//    public Info getInfoById(Integer id){
-//        infoMapper.
-//    }
+    @Autowired
+    private InfoMapper infoMapper;
+
+    public Object updateInfoCommentId(String new_id){
+        this.infoMapper.updateInfoCommentId(new_id);
+        return  new Result(1);
+    }
 }

@@ -84,6 +84,20 @@ export default {
 
     CancelPostComment(index) {
       this.tableData[index].state = '未发布'
+      let _this = this
+      console.log(this.tableData[index].id)
+      this.$axios
+          .post('/comment/updateState',
+              {
+                comment_id: _this.tableData[index].id,
+                comment_state: 0
+              })
+          .then(response => {
+            console.log(response)
+          })
+          .catch(failResponse => {
+            console.log(failResponse.data)
+          })
     }
   },
   data() {
@@ -170,7 +184,6 @@ export default {
         })
         .catch(failRes => {
           console.log(failRes.data)
-          console.log("12321")
         })
   }
 }

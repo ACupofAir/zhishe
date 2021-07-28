@@ -2,6 +2,7 @@ package com.zhisheserver.controller;
 
 
 import com.zhisheserver.dto.ComState;
+import com.zhisheserver.dto.Labels;
 import com.zhisheserver.entity.Comment;
 import com.zhisheserver.entity.Info;
 import com.zhisheserver.service.CommentService;
@@ -45,7 +46,10 @@ public class CommentController {
             @RequestBody Comment comment
             ){
         Info info = this.infoService.getById(1);
-        comment.setId(info.getCommentId().toString());
+        int comId;
+        comId = Integer.parseInt(info.getCommentId()) + 1;
+        comment.setId(Integer.toString(comId));
+        this.infoService.updateInfoCommentId(comment.getId());
         return commentService.saveComment(comment);
     }
 
@@ -56,6 +60,16 @@ public class CommentController {
     ){
         System.out.println(comState.getComment_id());
         return commentService.updateCommentState(comState.getComment_id(), comState.getComment_state());
+    }
+
+
+    @PostMapping("/labels")
+    @ResponseBody
+    public List<String> labels(
+            @RequestBody Labels la
+    ){
+//        System.out.println("控制器");
+        return commentService.PartByLabels(la);
     }
 
 }

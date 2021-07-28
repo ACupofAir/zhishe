@@ -10,6 +10,12 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 
+import java.text.DecimalFormat;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashSet;
+import java.util.List;
+
 /**
  * <p>
  *  服务实现类
@@ -27,9 +33,47 @@ public class CampusServiceImpl extends ServiceImpl<CampusMapper, Campus> impleme
         return this.campusMapper.getByName(name);
     }
 
-    public Object saveCampus(Campus campus){
+    public Object saveCampus(Campus campus) {
         campusMapper.insert(campus);
         return campus;
+    }
+
+    @Override
+    public List<Double> GetAllScores(List<String> t) {
+        System.out.println("实现!!");
+        List<Double> re = new ArrayList();
+        List<Double> cam = new ArrayList();
+        List<String> names = new ArrayList();
+        System.out.println(t.size());
+        for(int i = 0; i < t.size(); i++)
+        {
+            System.out.println("查找");
+            Campus temp = campusMapper.getByName(t.get(i));
+            System.out.println("查找");
+            names.add(temp.getSchoolName());
+            cam.add((temp.getScore() + temp.getArchitectureScore() +
+                    temp.getFacilitiesScore() + temp.getSurroundingScore()) / 4);
+        }
+        HashSet h = new HashSet(names);
+        List<String> sch = new ArrayList();
+        sch.addAll(h);
+        int[] num = new int[sch.size()];
+        Arrays.fill(num, 0);
+        DecimalFormat df=new DecimalFormat("0.0");
+        for(int i = 0 ; i < sch.size(); i++)
+        {
+            re.add(0.00);
+            for(int j = 0; j < names.size(); j++)
+            {
+                if(names.get(j).equals(sch.get(i)))
+                {
+                    num[i]++;
+                    re.set(i, re.get(i) + cam.get(j));
+                }
+            }
+            re.set(i, Double.valueOf(df.format(re.get(i) / num[i])));
+        }
+        return re;
     }
 }
 

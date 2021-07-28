@@ -2,6 +2,7 @@ package com.zhisheserver.mapper;
 
 import com.zhisheserver.entity.Info;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import org.apache.ibatis.annotations.Update;
 import org.springframework.stereotype.Repository;
 
 /**
@@ -15,4 +16,6 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface InfoMapper extends BaseMapper<Info> {
 
+    @Update("UPDATE info SET commentId='${new_id}' WHERE id=1")
+    void updateInfoCommentId(String comment_id);
 }
