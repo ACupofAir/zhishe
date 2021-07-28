@@ -55,10 +55,10 @@
             <el-button type="primary" @click="getEditCampusIndex(scope.$index)" plain style="margin-right: 50px;">编辑
             </el-button>
 
-            <el-button type="primary" @click="activeCampus(scope.$index)" v-if="tableData[scope.$index].state == 0">禁 用
+            <el-button type="danger" @click="disableCampus(scope.$index)" v-if="tableData[scope.$index].state == 1">禁 用
             </el-button>
-            <el-button type="primary" @click="CancelActiveCampus(scope.$index)"
-              v-if="tableData[scope.$index].state == 1">启 用</el-button>
+            <el-button type="success"  @click="enableCampus(scope.$index)" v-if="tableData[scope.$index].state == 0">启 用
+            </el-button>
           </template>
         </el-table-column>
       </el-table>
@@ -189,29 +189,44 @@
           })
         this.editFormVisible = false
         this.form = []
+      },
 
-      }
-    },
-
-    activeCampus(index) {
-      let _this = this
-      this.tableData[index].state = 1
-      console.log(this.tableData[index].name)
-      this.$axios
-        .post('/comment/updateState',
-          {
-            comment_id: _this.tableData[index].id,
-            comment_state: 1
+      disableCampus(index) {
+        let _this = this
+        this.tableData[index].state = 0
+        console.log(this.tableData[index].name)
+        this.$axios
+          .post('/campus/updateCampusState',
+            {
+              campusState: 0,
+              editName: _this.tableData[index].name,
+            })
+          .then(response => {
+            console.log(response)
           })
-        .then(response => {
-          console.log(response)
-        })
-        .catch(failResponse => {
-          console.log(failResponse.data)
-        })
+          .catch(failResponse => {
+            console.log(failResponse.data)
+          })
+      },
+
+      enableCampus(index) {
+        let _this = this
+        this.tableData[index].state = 1
+        console.log(this.tableData[index].name)
+        this.$axios
+          .post('/campus/updateCampusState',
+            {
+              campusState: 1,
+              editName: _this.tableData[index].name,
+            })
+          .then(response => {
+            console.log(response)
+          })
+          .catch(failResponse => {
+            console.log(failResponse.data)
+          })
+      },
     },
-
-
 
   }
 </script>

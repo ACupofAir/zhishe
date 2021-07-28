@@ -2,6 +2,7 @@ package com.zhisheserver.controller;
 
 
 import com.zhisheserver.dto.CampusEdit;
+import com.zhisheserver.dto.CampusState;
 import com.zhisheserver.dto.Labels;
 import com.zhisheserver.entity.Campus;
 import com.zhisheserver.entity.College;
@@ -70,6 +71,14 @@ public class CampusController {
             @RequestBody CampusEdit campusEdit
     ){
         return this.campusService.updateCampus(campusEdit.getNewName(), campusEdit.getNewAdress(), campusEdit.getNewSchoolName(), campusEdit.getEditName());
+    }
+
+    @PostMapping("/updateCampusState")
+    @ResponseBody
+    public Object updateCampusState(
+            @RequestBody CampusState campusState
+    ){
+        return this.campusService.updateCampusState(campusState.getCampusState(), campusState.getEditName());
     }
 }
 

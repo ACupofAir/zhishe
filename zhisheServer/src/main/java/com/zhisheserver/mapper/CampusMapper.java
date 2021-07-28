@@ -32,5 +32,8 @@ public interface CampusMapper extends BaseMapper<Campus> {
     @Update("UPDATE campus SET name='${new_name}', address='${new_adress}', school_name='${new_school_name}' WHERE name='${edit_name}'")
     void updateCampus(String new_name, String new_adress, String new_school_name,  String edit_name);
 
+    @Update("UPDATE campus SET state='${new_state}' WHERE name='${edit_name}'")
+    void updateCampusState(Integer new_state, String edit_name);
+
 }
 
