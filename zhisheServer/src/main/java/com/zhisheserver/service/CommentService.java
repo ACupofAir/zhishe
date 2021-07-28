@@ -27,5 +27,8 @@ public interface CommentService extends IService<Comment> {
 
     List<String> getBoth(List<String> f, List<String> s);
 
+    Comment getCommentById(String id);
+
+
 
 }
