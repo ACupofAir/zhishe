@@ -29,6 +29,8 @@ public interface CampusService extends IService<Campus> {
 
     Object updateCampus(String new_name, String new_address, String new_school_name, String edit_name);
 
+    Object updateCampusState(Integer new_state, String edit_name);
+
     List<Double> GetAllScores(List<String> t);
 
     Integer getCampusComment_num(String name);

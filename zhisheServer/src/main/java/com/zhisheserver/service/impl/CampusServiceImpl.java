@@ -44,6 +44,11 @@ public class CampusServiceImpl extends ServiceImpl<CampusMapper, Campus> impleme
         return new Result(1);
     }
 
+    public Object updateCampusState(Integer new_state, String edit_name){
+        this.campusMapper.updateCampusState(new_state, edit_name);
+        return new Result(1);
+    }
+
     @Override
     public List<Double> GetAllScores(List<String> t) {
         System.out.println("实现!!");
