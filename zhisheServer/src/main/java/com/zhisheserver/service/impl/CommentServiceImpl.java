@@ -169,5 +169,10 @@ public class CommentServiceImpl extends ServiceImpl<CommentMapper, Comment> impl
         }
         return re;
     }
+
+    public Comment getCommentById(String id){
+        return this.commentMapper.getCommentById(id);
+    }
+
 }
 

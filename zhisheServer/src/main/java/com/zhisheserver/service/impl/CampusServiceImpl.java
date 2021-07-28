@@ -81,6 +81,14 @@ public class CampusServiceImpl extends ServiceImpl<CampusMapper, Campus> impleme
         }
         return re;
     }
+
+    public Integer getCampusComment_num(String name){
+        return this.campusMapper.getCampusComment_num(name);
+    }
+
+    public void updateCampusComment_num(Integer new_comment_num, String name){
+        this.campusMapper.updateCampusComment_num(new_comment_num, name);
+    }
 }
 
 

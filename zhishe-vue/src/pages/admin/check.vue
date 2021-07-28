@@ -5,45 +5,31 @@
 
       <div class="searchtable" style="margin-left:28px; width: 400px;">
         <el-input placeholder="请输入内容" v-model="input" class="input-with-select" style="margin-top: 25px;">
-          <el-select v-model="select" slot="prepend" placeholder="请选择">
-            <el-option label="评论编号" value="1"></el-option>
-            <el-option label="学校" value="2"></el-option>
-            <el-option label="校区" value="3"></el-option>
-            <el-option label="是否新添加" value="4"></el-option>
-            <el-option label="联系方式" value="5"></el-option>
-            <el-option label="当前状态" value="6"></el-option>
-          </el-select>
           <el-button slot="append" icon="el-icon-search"></el-button>
         </el-input>
       </div>
 
-      <div class="searchbutton">
-        <el-row>
-          <div class="" style="margin-right:65%; margin-top: 30px;">
-            <el-button type="primary" plain style="margin-right: 50px;">查询</el-button>
-            <el-button type="info" plain>重置</el-button>
-          </div>
-        </el-row>
-      </div>
     </div>
 
     <div class="checkList">
       <el-table :data="tableData" border style="width: 100%;" :stripe="isStripe">
-        <el-table-column fixed prop="id" label="评论编号" width="155">
+        <el-table-column fixed prop="id" label="评价编号" width="85">
         </el-table-column>
-        <el-table-column prop="campus" label="校区" width="165">
+        <el-table-column prop="campus" label="学校-校区" width="235">
+        </el-table-column>
+        <el-table-column prop="dorm" label="宿舍区" width="135">
         </el-table-column>
         <el-table-column prop="isNewCampus" label="是否新添加校区" width="135">
         </el-table-column>
         <el-table-column prop="isNewSchool" label="是否新添加学校" width="135">
         </el-table-column>
-        <el-table-column prop="email" label="联系邮箱" width="245">
+        <el-table-column prop="email" label="联系邮箱" width="195">
         </el-table-column>
-        <el-table-column prop="state" label="当前状态" width="155">
+        <el-table-column prop="state" label="当前状态" width="105">
         </el-table-column>
         <el-table-column fixed="right" label="操作" width="170">
           <template slot-scope="scope">
-            <el-button size="mini" @click="editComment(scope.$index)">编辑</el-button>
+            <el-button size="mini" @click="editComment(scope.$index)">详情</el-button>
             <el-button size="mini" type="success"  @click="postComment(scope.$index)" v-if="tableData[scope.$index].state === '未发布'">发布</el-button>
             <el-button size="mini" type="success"  @click="CancelPostComment(scope.$index)" v-if="tableData[scope.$index].state === '已发布'">取消发布</el-button>
           </template>
@@ -51,17 +37,87 @@
       </el-table>
     </div>
 
+    <el-dialog
+        :visible.sync="dialogVisible"
+        width="50%">
+      <comDetails :detail-rate="commentDetails.detailRate" :detail-name="commentDetails.detailName"
+                  :is-recommend="commentDetails.isRecommend" :admission-time="commentDetails.admissionTime"
+                  :grade="commentDetails.grade" :dorm-area="commentDetails.dormArea"
+                  :dorm-scale="commentDetails.dormScale" :rate="commentDetails.rate"
+                  :label="commentDetails.label" :comment="commentDetails.comment"
+                  :dorm-picture="commentDetails.dormPicture"></comDetails>
+    </el-dialog>
+
   </div>
 
 
 </template>
 
 <script>
+import comDetails from "@/components/comDetails";
 export default {
   name: "check",
+  components: {comDetails},
+  data() {
+    return {
+      input: '',
+      select: '',
+      tableData: [],
+      isStripe: true,
+      dialogVisible: false,
+      commentDetails:{
+        detailRate: 0,
+        detailName: 0,
+        isRecommend: false,
+        admissionTime: 2000,
+        grade: "toGrade",
+        dormArea: 4,
+        dormScale: 3 + "人间",
+        rate: [{ rateTitle: "基础情况(桌椅床铺门窗等)", rateScore: 3 },
+          { rateTitle: "建筑情况(新旧和楼层布局)", rateScore: 3 },
+          { rateTitle: "位置情况(周边环境和位置)", rateScore: 3 }],
+        label: ["空调", "洗衣机", "WIFI", "独立卫浴",],
+        comment: "",
+        dormPicture: ["https://gitee.com/thisisbadBao/imgrepo/raw/master/imgrepo1/20210715214908.jpeg"]
+      },
+    }
+  },
   methods: {
-    editComment() {
-
+    editComment(index) {
+      this.dialogVisible = true
+      let _this = this
+      this.$axios
+          .get('/comment/id/' + _this.tableData[index].id)
+          .then(response => {
+            let com = response.data
+            console.log(com)
+            let toGrade = ""
+            switch (com.grade) {
+              case 1: toGrade = "大一"; break;
+              case 2: toGrade = "大二"; break;
+              case 3: toGrade = "大三"; break;
+              case 4: toGrade = "大四"; break;
+              case 5: toGrade = "大五"; break;
+              case 6: toGrade = "研究生"; break;
+            }
+            _this.commentDetails = {
+                detailRate: com.score,
+                detailName: com.campus,
+                isRecommend: com.recommend,
+                admissionTime: com.year,
+                grade: toGrade,
+                dormArea: com.dorm,
+                dormScale: com.scale + "人间",
+                rate: [{ rateTitle: "基础情况(桌椅床铺门窗等)", rateScore: com.facilities },
+                  { rateTitle: "建筑情况(新旧和楼层布局)", rateScore: com.architecture },
+                  { rateTitle: "位置情况(周边环境和位置)", rateScore: com.surrounding }],
+                label: ["空调", "洗衣机", "WIFI", "独立卫浴",],
+                comment: com.briefComment,
+                dormPicture: ["https://gitee.com/thisisbadBao/imgrepo/raw/master/imgrepo1/20210715214908.jpeg"]
+            }
+          }).catch(failResponse => {
+        console.log(failResponse)
+      })
     },
 
     postComment(index) {
@@ -100,14 +156,7 @@ export default {
           })
     }
   },
-  data() {
-    return {
-      input: '',
-      select: '',
-      tableData: [],
-      isStripe: true,
-    }
-  },
+
 
 
   created() {
@@ -192,7 +241,7 @@ export default {
 <style scoped>
   .searchHeader {
     box-shadow: 0 0 20px #cac6c6;
-    height: 150px;
+    height: 90px;
     margin-top: 0px;
 
   }
@@ -200,7 +249,7 @@ export default {
   .checkList {
     margin-top: 15px;
     box-shadow: 0 0 20px #cac6c6;
-    height: 500px;
+    height: 600px;
   }
 
   .el-select .el-input {

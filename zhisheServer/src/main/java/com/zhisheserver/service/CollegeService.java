@@ -2,6 +2,8 @@ package com.zhisheserver.service;
 
 import com.zhisheserver.entity.College;
 import com.baomidou.mybatisplus.extension.service.IService;
+import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.Update;
 
 /**
  * <p>
@@ -16,5 +18,9 @@ public interface CollegeService extends IService<College> {
     College getByName(String name);
 
     Object saveCollege(College college);
+
+    Integer getCollegeComment_num(String name);
+
+    void updateCollegeComment_num(Integer new_comment_num, String name);
 
 }

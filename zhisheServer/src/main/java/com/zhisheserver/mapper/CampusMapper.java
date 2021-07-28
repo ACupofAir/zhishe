@@ -23,7 +23,14 @@ public interface CampusMapper extends BaseMapper<Campus> {
     @Select("select * from campus where name='${name}'")
     Campus getByName(String name);
 
+    @Select("SELECT comment_num FROM campus WHERE name='${name}'")
+    Integer getCampusComment_num(String name);
+
+    @Update("UPDATE campus SET comment_num='${new_comment_num}' WHERE name='${name}'")
+    void updateCampusComment_num(Integer new_comment_num, String name);
+
     @Update("UPDATE campus SET name='${new_name}', address='${new_adress}', school_name='${new_school_name}' WHERE name='${edit_name}'")
     void updateCampus(String new_name, String new_adress, String new_school_name,  String edit_name);
+
 }
 

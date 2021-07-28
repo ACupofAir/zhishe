@@ -58,4 +58,8 @@ public interface CommentMapper extends BaseMapper<Comment> {
 
     @Select("select campus from comment where studyroom = ${label}")
     List<String> getSchoolByLabel8(int label);
+
+
+    @Select("select * from comment where id=${id}")
+    Comment getCommentById(String id);
 }

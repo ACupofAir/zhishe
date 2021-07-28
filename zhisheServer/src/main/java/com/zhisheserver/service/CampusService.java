@@ -6,6 +6,7 @@ import com.zhisheserver.entity.Comment;
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.zhisheserver.mapper.CampusMapper;
 import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.Update;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -29,6 +30,10 @@ public interface CampusService extends IService<Campus> {
     Object updateCampus(String new_name, String new_address, String new_school_name, String edit_name);
 
     List<Double> GetAllScores(List<String> t);
+
+    Integer getCampusComment_num(String name);
+
+    void updateCampusComment_num(Integer new_comment_num, String name);
 
 }
 
