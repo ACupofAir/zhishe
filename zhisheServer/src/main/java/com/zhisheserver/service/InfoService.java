@@ -29,4 +29,6 @@ public interface InfoService extends IService<Info> {
     Integer getInfoCommentPost();
 
     void updateInfoCommentPosted(Integer new_commentPosted);
+
+    Info getAllInfo();
 }

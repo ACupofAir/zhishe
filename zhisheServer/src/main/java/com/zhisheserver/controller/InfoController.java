@@ -23,6 +23,14 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("//info")
 public class InfoController {
 
+    @Autowired
+    private InfoService infoService;
+
+    @GetMapping("/datas")
+    public Info getInfo()
+    {
+        return infoService.getAllInfo();
+    }
 
 }
 
