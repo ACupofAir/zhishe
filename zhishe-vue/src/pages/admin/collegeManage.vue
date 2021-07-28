@@ -3,7 +3,7 @@
 
     <div class="searchHeader">
 
-      <div class="searchtable" style="margin-top: 0px; margin-left:15%; width: 800px;">
+      <div class="searchtable" style="margin-top: 0px; margin-left:10%; width: 80%;">
         <el-input placeholder="请输入内容" v-model="searchInput" class="input-with-select" style="margin-top: 25px;">
           <el-select v-model="select" slot="prepend" placeholder="请选择">
             <el-option label="地址" value="1"></el-option>
@@ -53,11 +53,34 @@
         </el-table-column>
         <el-table-column fixed="right" label="操作" width="370">
           <template slot-scope="scope">
-            <el-button size="mini" @click="handleEdit(scope.$index, scope.row)">Edit</el-button>
-            <el-button size="mini" type="danger" @click="handleDelete(scope.$index, scope.row)">Delete</el-button>
+            <el-button type="primary" @click="getEditCampusIndex(scope.$index)" plain style="margin-right: 50px;">编辑
+            </el-button>
+
+            <el-button type="primary" @click="activeCampus(scope.$index)" v-if="tableData[scope.$index].state == 0">禁 用
+            </el-button>
+            <el-button type="primary" @click="CancelActiveCampus(scope.$index)"
+              v-if="tableData[scope.$index].state == 1">启 用</el-button>
           </template>
         </el-table-column>
       </el-table>
+
+      <el-dialog title="修改学校" :visible.sync="editFormVisible">
+        <el-form :model="form">
+          <el-form-item label="学校名称" :label-width="formLabelWidth">
+            <el-input v-model="form.schoolName" autocomplete="off"></el-input>
+          </el-form-item>
+          <el-form-item label="校区名称" :label-width="formLabelWidth">
+            <el-input v-model="form.campusName" autocomplete="off"></el-input>
+          </el-form-item>
+          <el-form-item label="校区地址" :label-width="formLabelWidth">
+            <el-input v-model="form.address" autocomplete="off"></el-input>
+          </el-form-item>
+        </el-form>
+        <div slot="footer" class="dialog-footer">
+          <el-button @click="editFormVisible = false">取 消</el-button>
+          <el-button type="primary" @click="postEditedCampus()">确 定</el-button>
+        </div>
+      </el-dialog>
     </div>
 
   </div>
@@ -75,14 +98,16 @@
         select: '',
         tableData: [],
 
-        dialogTableVisible: false,
         dialogFormVisible: false,
+        editFormVisible: false,
         form: {
           schoolName: '',
           campusName: '',
           address: '',
         },
-        formLabelWidth: '120px'
+        formLabelWidth: '120px',
+
+        curEditCampusIndex: '',
       }
     },
 
@@ -103,10 +128,6 @@
     },
 
     methods: {
-      handleClick(row) {
-        console.log(row);
-      },
-
       addItem() {
         let _this = this
         this.$axios
@@ -141,11 +162,55 @@
           })
         console.log("add success!")
         this.dialogFormVisible = false
-        this.dialogTableVisible = false
+        this.form = []
+
+      },
+
+      getEditCampusIndex(index) {
+        this.editFormVisible = true
+        this.curEditCampusIndex = index
+      },
+
+      postEditedCampus() {
+        console.log(this.curEditCampusIndex)
+        let _this = this
+        this.$axios
+          .post('/campus/updateCampus',
+            {
+              newName: _this.form.campusName,
+              newAddress: _this.form.address,
+              newSchoolName: _this.form.schoolName,
+              editName: this.curEditCampusIndex,
+            })
+          .then(response => {
+            console.log(response)
+          })
+          .catch(failResponse => {
+            console.log(failResponse.data)
+          })
+        this.editFormVisible = false
         this.form = []
 
       }
-    }
+    },
+
+    activeCampus(index) {
+      let _this = this
+      this.tableData[index].state = 1
+      console.log(this.tableData[index].name)
+      this.$axios
+        .post('/comment/updateState',
+          {
+            comment_id: _this.tableData[index].id,
+            comment_state: 1
+          })
+        .then(response => {
+          console.log(response)
+        })
+        .catch(failResponse => {
+          console.log(failResponse.data)
+        })
+    },
 
 
 

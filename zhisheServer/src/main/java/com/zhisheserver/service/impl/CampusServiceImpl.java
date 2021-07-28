@@ -2,6 +2,7 @@ package com.zhisheserver.service.impl;
 
 import com.zhisheserver.entity.Campus;
 import com.zhisheserver.mapper.CampusMapper;
+import com.zhisheserver.result.Result;
 import com.zhisheserver.service.CampusService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.apache.ibatis.annotations.Select;
@@ -36,6 +37,11 @@ public class CampusServiceImpl extends ServiceImpl<CampusMapper, Campus> impleme
     public Object saveCampus(Campus campus) {
         campusMapper.insert(campus);
         return campus;
+    }
+
+    public Object updateCampus(String new_name, String new_adress, String new_school_name, String edit_name){
+        this.campusMapper.updateCampus(new_name, new_adress, new_school_name, edit_name);
+        return new Result(1);
     }
 
     @Override

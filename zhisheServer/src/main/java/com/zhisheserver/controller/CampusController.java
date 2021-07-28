@@ -1,6 +1,7 @@
 package com.zhisheserver.controller;
 
 
+import com.zhisheserver.dto.CampusEdit;
 import com.zhisheserver.dto.Labels;
 import com.zhisheserver.entity.Campus;
 import com.zhisheserver.entity.College;
@@ -60,7 +61,15 @@ public class CampusController {
     ){
         System.out.println("控制器");
         System.out.println(commentService.PartByLabels(la));
-        return campusService.GetAllScores(commentService.PartByLabels(la));
+        return this.campusService.GetAllScores(commentService.PartByLabels(la));
+    }
+
+    @PostMapping("/updateCampus")
+    @ResponseBody
+    public Object updateCampus(
+            @RequestBody CampusEdit campusEdit
+    ){
+        return this.campusService.updateCampus(campusEdit.getNewName(), campusEdit.getNewAddress(), campusEdit.getNewSchoolName(), campusEdit.geteEditName());
     }
 }
 
