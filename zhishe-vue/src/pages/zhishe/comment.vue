@@ -387,7 +387,7 @@
         let _this = this
         this.$axios
             .post('/comment/post', {
-              id: "3",
+              id: "1",
 
               campus: _campus,
 
@@ -458,14 +458,22 @@
         let date = new Date()
         let month = date.getMonth() + 1
         let strDate = date.getDate()
+        let minute = date.getMinutes()
+        let second = date.getSeconds()
         if (month >= 1 && month <= 9) {
           month = "0" + month
         }
         if (strDate >= 0 && strDate <= 9) {
           strDate = "0" + strDate
         }
+        if (minute >= 0 && minute <= 9) {
+          minute = "0" + minute
+        }
+        if (second >= 0 && second <= 9) {
+          second = "0" + second
+        }
         let currentDate = date.getFullYear() + "-" + month + "-" + strDate
-            + "T" + date.getHours() + ":" + date.getMinutes() + ":" + date.getSeconds()
+            + "T" + date.getHours() + ":" + minute + ":" + second
         return currentDate
       },
 

@@ -10,6 +10,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 
+import java.util.List;
+
 /**
  * <p>
  *  服务类
@@ -23,6 +25,9 @@ public interface CampusService extends IService<Campus> {
     Campus getByName(String name);
 
     Object saveCampus(Campus campus);
+
+    List<Double> GetAllScores(List<String> t);
+
 }
 
 
