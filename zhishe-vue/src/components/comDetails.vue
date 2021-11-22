@@ -75,6 +75,8 @@ export default {
     'dormScale', 'rate', 'label', 'comment', 'dormPicture'],
   data() {
     return {
+      dormPic: null,
+      picUrl: this.dormPicture,
       // detailRate: 3.6,
       // detailName: "东南大学(九龙湖校区)",
       // isRecommend: false,
@@ -89,7 +91,27 @@ export default {
       // comment: "赶紧跑赶紧跑赶紧跑赶紧跑赶紧跑赶紧跑赶紧跑赶紧跑赶紧跑赶紧跑",
       // dormPicture:["https://gitee.com/thisisbadBao/imgrepo/raw/master/imgrepo1/20210715214908.jpeg",],
     }
-  }
+  },
+      methods: {
+        base64ImgtoFile(dataurl, filename = 'file') {
+          let arr = dataurl.split(',')
+          let mime = arr[0].match(/:(.*?);/)[1]
+          let suffix = mime.split('/')[1]
+          let bstr = atob(arr[1])
+          let n = bstr.length
+          let u8arr = new Uint8Array(n)
+          while (n--) {
+            u8arr[n] = bstr.charCodeAt(n)
+          }
+          return new File([u8arr], `${filename}.${suffix}`, {
+            type: mime
+          })
+        } 
+      },
+
+    created() {
+      this.dormPic = base64ImgtoFile(picUrl)
+    }
 }
 </script>
 

@@ -26,7 +26,7 @@
           <font color="white">校区地址</font>
         </span>
         <div class="checkBoxRight">
-          <el-input v-model="campusAddr" placeholder="请输入内容" ></el-input>
+          <el-input v-model="campusAddr" placeholder="请输入内容"></el-input>
         </div>
       </div>
 
@@ -254,6 +254,7 @@
           <div class="el-upload__text">将文件拖到此处，或<em>点击上传</em></div>
           <div class="el-upload__tip" slot="tip">只能上传jpg/png文件，且不超过500kb</div>
         </el-upload>
+        <input type="file" id="file" multiple @change="upload"></input>
       </span>
 
     </div>
@@ -275,7 +276,8 @@
         <el-button type="primary" v-on:click="submit">提交<i class="el-icon-upload el-icon--right"></i></el-button>
       </span>
       <span class="buttonBoxRight">
-        <el-button type="primary" v-on:click="resetForm">重置<i class="el-icon-refresh-right el-icon--right"></i></el-button>
+        <el-button type="primary" v-on:click="resetForm">重置<i class="el-icon-refresh-right el-icon--right"></i>
+        </el-button>
       </span>
     </div>
 
@@ -330,7 +332,7 @@
         hasStudyroom: false,
         shortComment: "",
         email: '',
-        photo:"https://gitee.com/thisisbadBao/imgrepo/raw/master/imgrepo1/20210715214908.jpeg",
+        photo: "",
 
 
 
@@ -339,14 +341,14 @@
         dormFixed: false,
       }
     },
-    beforeRouteEnter (to, from, next){
+    beforeRouteEnter(to, from, next) {
       console.log(from.name)
       console.log(from)
-      if(from.name === 'Campus'){
+      if (from.name === 'Campus') {
         let camp = from.params.campusName.split('-')
         next(vm => vm.setDataFromCamp(camp))
       } else if (from.name === 'College') {
-        if (from.params.collegeName === 'notFound'){
+        if (from.params.collegeName === 'notFound') {
           next(vm => vm.setDataFromNotfound())
         }
         else {
@@ -359,7 +361,7 @@
 
     },
     methods: {
-      setDataFromCamp (camp) {
+      setDataFromCamp(camp) {
         console.log('从校区页面到评价')
         this.collegeFixed = true
         this.collegeName = camp[0]
@@ -368,16 +370,29 @@
         // console.log(this.campusName)
       },
 
-      setDataFromCollege (college) {
+      setDataFromCollege(college) {
         console.log('从学校页面到评价')
         this.collegeFixed = true
         this.collegeName = college
         // console.log(this.campusName)
       },
 
-      setDataFromNotfound () {
+      setDataFromNotfound() {
 
       },
+
+      upload(e) {
+        let imageItem = e.target.files[0];
+        var _this = this;
+        let reader = new FileReader();
+        reader.readAsDataURL(imageItem);
+        console.log(imageItem);
+        reader.addEventListener('load', function () {
+          _this.photo = this.result;
+          console.log(_this.photo);
+        })
+      },
+
 
       setData() {
 
@@ -386,75 +401,75 @@
         let _campus = this.collegeName + '-' + this.campusName
         let _this = this
         this.$axios
-            .post('/comment/post', {
-              id: "1",
+          .post('/comment/post', {
+            id: "1",
 
-              campus: _campus,
+            campus: _campus,
 
-              dorm: _this.dormArea,
+            dorm: _this.dormArea,
 
-              location: _this.campusAddr,
+            location: _this.campusAddr,
 
-              year: _this.yearIn.getFullYear(),
+            year: _this.yearIn.getFullYear(),
 
-              grade: Number(_this.gradeValue),
+            grade: Number(_this.gradeValue),
 
-              scale: _this.scale,
+            scale: _this.scale,
 
-              recommend: _this.isRecommend,
+            recommend: _this.isRecommend,
 
-              email: _this.email,
+            email: _this.email,
 
-              facilities: _this.basicInfoScore,
+            facilities: _this.basicInfoScore,
 
-              architecture: _this.buildingScore,
+            architecture: _this.buildingScore,
 
-              surrounding: _this.locationScore,
+            surrounding: _this.locationScore,
 
-              score: _this.score,
+            score: _this.score,
 
-              photo: _this.photo,
+            photo: _this.photo,
 
-              briefComment: _this.shortComment,
+            briefComment: _this.shortComment,
 
-              airConditioner: _this.hasAirCool,
+            airConditioner: _this.hasAirCool,
 
-              sofa: _this.hasSofa,
+            sofa: _this.hasSofa,
 
-              outdoorBalcony: _this.hasBalcony,
+            outdoorBalcony: _this.hasBalcony,
 
-              washingMachine: _this.hasWasher,
+            washingMachine: _this.hasWasher,
 
-              refrigerator: _this.hasRefrigerator,
+            refrigerator: _this.hasRefrigerator,
 
-              cooking: _this.hasCooker,
+            cooking: _this.hasCooker,
 
-              wifi: _this.hasWifi,
+            wifi: _this.hasWifi,
 
-              restroom: _this.hasBathroom,
+            restroom: _this.hasBathroom,
 
-              timeStamp: _this.getCurrentDate(),
+            timeStamp: _this.getCurrentDate(),
 
-              studyroom: _this.hasStudyroom,
+            studyroom: _this.hasStudyroom,
 
-              state: false,   //未发布
+            state: false,   //未发布
 
-              isNewSchool: !_this.collegeFixed,
+            isNewSchool: !_this.collegeFixed,
 
-              isNewCampus: !_this.campusFixed,
+            isNewCampus: !_this.campusFixed,
 
-              isChecked: false,
+            isChecked: false,
 
-            })
-            .then(successResponse => {
-              console.log(successResponse.data);
-            })
-            .catch(failResponse => {
-              console.log(failResponse.data)
-            })
+          })
+          .then(successResponse => {
+            console.log(successResponse.data);
+          })
+          .catch(failResponse => {
+            console.log(failResponse.data)
+          })
       },
 
-      getCurrentDate () {
+      getCurrentDate() {
         let date = new Date()
         let month = date.getMonth() + 1
         let strDate = date.getDate()
@@ -473,7 +488,7 @@
           second = "0" + second
         }
         let currentDate = date.getFullYear() + "-" + month + "-" + strDate
-            + "T" + date.getHours() + ":" + minute + ":" + second
+          + "T" + date.getHours() + ":" + minute + ":" + second
         return currentDate
       },
 
@@ -486,7 +501,7 @@
     },
 
     mounted() {
-      document.title='评价'
+      document.title = '评价'
     }
 
 
@@ -788,4 +803,3 @@
     text-align: center;
   }
 </style>
-

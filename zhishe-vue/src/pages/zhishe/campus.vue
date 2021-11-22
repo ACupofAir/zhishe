@@ -189,7 +189,7 @@
                   { rateTitle: "位置情况(周边环境和位置)", rateScore: com.surrounding }],
                   label: _label,
                   comment: com.briefComment,
-                  dormPicture: ["https://gitee.com/thisisbadBao/imgrepo/raw/master/imgrepo1/20210715214908.jpeg"]
+                  dormPicture: com.photo,
                 },
               });
             }
